@@ -21,9 +21,11 @@ function ForgotPassword() {
     }
     return (
         <>
-            <Link id='backbutton' to="/home">
-                <img id="back" src="back.png" alt="back" />
-            </Link>
+            <button className="backbutton">
+                <Link to="/">
+                    <img id="back" src="back.png" alt="back" />
+                </Link>
+            </button>
             <div id="rectangles">
                 <img id='rect6' src="Rectangles/Rectangle 6.png" alt="Rectangle 6" />
                 <img id='rect7' src="Rectangles/Rectangle 7.png" alt="Rectangle 7" />
