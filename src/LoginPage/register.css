@@ -1,0 +1,13 @@
+#continuewithgoogle {
+    position: absolute;
+    bottom: 40px;
+    right: 40px;
+}
+
+#signup {
+    height: 680px;
+    width: 635px;
+    box-shadow: 0px 0px 38px rgba(0, 0, 0, 0.36);
+    background-color: white;
+    border-radius: 55px;
+}

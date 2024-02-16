@@ -1,0 +1,195 @@
+body {
+    height: 1000px;
+    width: 1920px;
+    overflow: hidden;
+}
+
+#containerbackg {
+    height: 100%;
+    width: 100%;
+}
+
+#logo {
+    width: 137px;
+    height: 137px;
+    position: relative;
+    top: 35px;
+    left: 35px;
+}
+
+#rect6 {
+    position: absolute;
+    top: 36.9px;
+    left: 105px;
+    transform: scale(.9);
+}
+
+#rect7 {
+    position: absolute;
+    top: 32.2px;
+    left: 90px;
+    transform: scale(.9);
+}
+
+#rect5 {
+    position: absolute;
+    left: 181px;
+    top: -67px;
+    transform: scale(1.07);
+}
+
+#rect4 {
+    position: absolute;
+    top: -14px;
+    left: 167px;
+    transform: scale(.94);
+}
+
+#rect8 {
+    position: absolute;
+    top: 203px;
+    left: 334px;
+    transform: scale(.95);
+}
+
+#rect13 {
+    position: absolute;
+    top: 241px;
+    left: 248px;
+    transform: scale(.98);
+}
+
+#rect11 {
+    position: absolute;
+    top: 434px;
+    left: 993px;
+    transform: scale(.9);
+}
+
+#rect10 {
+    position: absolute;
+    top: 548px;
+    left: 1118px;
+    transform: scale(.9);
+}
+
+#slogan {
+    position: absolute;
+    transform: scale(.8);
+    bottom: 40px;
+    right: 18px;
+}
+
+#containertop {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#login {
+    height: 660px;
+    width: 635px;
+    box-shadow: 0px 0px 38px rgba(0, 0, 0, 0.36);
+    background-color: white;
+    border-radius: 55px;
+}
+
+#logincenter {
+    text-align: center;
+}
+
+#lets {
+    position: absolute;
+    transform: scale(.9);
+}
+
+#connecthead {
+    transform: scale(.9);
+}
+
+.textbox {
+    background-color: #D9D9D9;
+    border-radius: 13px;
+    width: 400px;
+    height: 45px;
+    padding-left: 20px;
+    border: none;
+    margin: 8px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.textbox::placeholder {
+    color: black;
+    font-family: Roboto;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.textbox:focus {
+    outline-color: #FF9100;
+}
+
+.loginButton {
+    height: 50px;
+    width: 420px;
+    color: white;
+    font-weight: bold;
+    font-family: Roboto;
+    font-size: 20px;
+    border-radius: 18px;
+    box-shadow: 0px 0px 2px #6b6b6b;
+    border: none;
+    background-color: #FF9100;
+    letter-spacing: 1px;
+}
+
+.myLink {
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+}
+
+.Link {
+    color: black;
+    text-decoration: none;
+}
+
+#mySection {
+    padding: 0px;
+    margin: 0px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+#mySection p {
+    color: #6b6b6b;
+    padding: 0px 20px;
+    font-weight: bold;
+    font-size: 18px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#mySection hr {
+    background-color: #6b6b6b;
+    margin: 0px;
+    height: 0px;
+    width: 25%;
+}
+
+.myOutButton {
+    height: 57px;
+    width: 420px;
+    border-radius: 50px;
+    background-color: white;
+    border: 4px solid #FF9100;
+}
+
+.myOutButton img {
+    transform: scale(.8);
+}

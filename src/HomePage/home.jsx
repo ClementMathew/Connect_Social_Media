@@ -1,5 +1,5 @@
 import { getAuth, signOut } from "firebase/auth";
-import app from '../firebase';
+import app from '../Firebase/firebase';
 import { useNavigate } from "react-router-dom";
 
 const Home = () => {

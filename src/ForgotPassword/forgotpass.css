@@ -1,0 +1,10 @@
+#back {
+    padding-top: 57px;
+    padding-left: 57px;
+    transform: scale(.9);
+}
+
+.info {
+    font-size: 18px;
+    font-family: Arial, Helvetica, sans-serif;
+}
