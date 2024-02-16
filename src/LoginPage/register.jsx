@@ -3,6 +3,7 @@ import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
 import { getFirestore, doc, setDoc } from 'firebase/firestore';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import './welcome.css'
 import './register.css'
 
 const SignUp = () => {
@@ -18,8 +19,8 @@ const SignUp = () => {
 
   const auth = getAuth(app);
   const db = getFirestore(app);
-
   const navigate = useNavigate();
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -80,10 +81,10 @@ const SignUp = () => {
     setMyPassError('')
   }
 
-
   return (
     <>
       <img id="logo" src="logo.png" alt="Logo" />
+
       <div id="rectangles">
         <img id='rect6' src="Rectangles/Rectangle 6.png" alt="Rectangle 6" />
         <img id='rect7' src="Rectangles/Rectangle 7.png" alt="Rectangle 7" />
@@ -94,14 +95,19 @@ const SignUp = () => {
         <img id='rect11' src="Rectangles/Rectangle 11.png" alt="Rectangle 11" />
         <img id='rect10' src="Rectangles/Rectangle 10.png" alt="Rectangle 10" />
       </div>
-      <img id="continuewithgoogle" src="google.png" alt="continue with google" />
+      
+      <img id="slogan" src="slogan.svg" alt="Slogan" />
+
       <div id="containertop">
         <div id="signup">
-          <img id='lets' style={{ paddingTop: '72px', paddingLeft: '115px' }} src="lets.svg" alt="lets" />
-          <div id='logincenter'>
-            <img src="connecthead.png" style={{ paddingTop: '90px', paddingBottom: '20px' }} alt="connecthead" id="connecthead" />
-            <form onSubmit={handleSubmit}>
 
+          <img id='lets' style={{ paddingTop: '72px', paddingLeft: '115px' }} src="lets.svg" alt="lets" />
+
+          <div id='logincenter'>
+
+            <img src="connecthead.png" style={{ paddingTop: '90px', paddingBottom: '20px' }} alt="connecthead" id="connecthead" />
+
+            <form onSubmit={handleSubmit}>
               <input
                 className='textbox'
                 type="text"
@@ -149,16 +155,19 @@ const SignUp = () => {
                 required
               />
               <br />
+
               <button type="submit" className='loginButton' style={{ marginBottom: '40px', marginTop: '15px' }}>
                 Sign Up
               </button>
               <br />
+
               <div className='myLink'>
                 <Link className='Link' to="/">Already have an account ?</Link>
               </div>
             </form>
           </div>
         </div>
+
         <div style={togglePassError}>
           {mypasserror}
         </div>

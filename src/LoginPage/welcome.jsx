@@ -1,8 +1,7 @@
 
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import { signInWithEmailAndPassword, getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
 import React, { useState } from 'react';
 import app from "../Firebase/firebase";
-import { getAuth } from 'firebase/auth';
 import { Link, useNavigate } from 'react-router-dom';
 import './welcome.css'
 
@@ -51,15 +50,30 @@ const SignIn = () => {
     });
     setMyError("Invalid Credentials !")
   }
+
   const hideError = () => {
     settoggleError({
     });
     setMyError('')
   }
 
+  const signInWithGoogle = () => {
+    const provider = new GoogleAuthProvider();
+    signInWithPopup(auth, provider).then(() => {
+      navigate("/home")
+    }).catch((error) => {
+      showError()
+      setTimeout(() => {
+        hideError()
+      }, 2000
+      ) 
+    });
+  };
+
   return (
     <>
       <img id="logo" src="logo.png" alt="Logo" />
+
       <div id="rectangles">
         <img id='rect6' src="Rectangles/Rectangle 6.png" alt="Rectangle 6" />
         <img id='rect7' src="Rectangles/Rectangle 7.png" alt="Rectangle 7" />
@@ -70,12 +84,18 @@ const SignIn = () => {
         <img id='rect11' src="Rectangles/Rectangle 11.png" alt="Rectangle 11" />
         <img id='rect10' src="Rectangles/Rectangle 10.png" alt="Rectangle 10" />
       </div>
+
       <img id="slogan" src="slogan.svg" alt="Slogan" />
+
       <div id="containertop">
         <div id="login">
+
           <img id='lets' style={{ paddingTop: '72px', paddingLeft: '115px' }} src="lets.svg" alt="lets" />
+
           <div id='logincenter'>
+
             <img src="connecthead.png" style={{ paddingTop: '90px', paddingBottom: '20px' }} alt="connecthead" id="connecthead" />
+
             <form onSubmit={handleSubmit}>
               <input className='textbox'
                 type="email"
@@ -93,27 +113,33 @@ const SignIn = () => {
                 required
               />
               <br />
+
               <button type="submit" style={{ marginBottom: '40px', marginTop: '15px' }} className='loginButton'>
                 Login
               </button>
               <br />
+
               <div className='myLink' >
                 <Link className="Link" to="/forgotpass">Forgot Password ?</Link>
               </div>
+
               <ul id='mySection'>
                 <hr />
                 <p>or</p>
                 <hr />
               </ul>
+
               <div className='myLink'>
                 <Link className='Link' to="/signup">Sign Up</Link>
               </div>
             </form>
-            <button className="myOutButton" style={{ marginTop: '30px' }}>
+
+            <button className="myOutButton" onClick={signInWithGoogle} style={{ marginTop: '30px' }}>
               <img src="google.png" alt="continue with google" />
             </button>
           </div>
         </div>
+
         <div style={toggleError}>
           {myerror}
         </div>

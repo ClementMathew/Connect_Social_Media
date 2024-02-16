@@ -2,6 +2,7 @@ import { sendPasswordResetEmail, getAuth } from "firebase/auth";
 import React from "react";
 import app from "../Firebase/firebase";
 import { Link, useNavigate } from "react-router-dom";
+import '../LoginPage/welcome.css'
 import './forgotpass.css'
 
 function ForgotPassword() {
@@ -26,6 +27,7 @@ function ForgotPassword() {
                     <img id="back" src="back.png" alt="back" />
                 </Link>
             </button>
+
             <div id="rectangles">
                 <img id='rect6' src="Rectangles/Rectangle 6.png" alt="Rectangle 6" />
                 <img id='rect7' src="Rectangles/Rectangle 7.png" alt="Rectangle 7" />
@@ -36,11 +38,16 @@ function ForgotPassword() {
                 <img id='rect11' src="Rectangles/Rectangle 11.png" alt="Rectangle 11" />
                 <img id='rect10' src="Rectangles/Rectangle 10.png" alt="Rectangle 10" />
             </div>
+
             <div id="containertop">
                 <div id="forgot">
+
                     <img id='lets' style={{ paddingTop: '72px', paddingLeft: '115px' }} src="lets.svg" alt="lets" />
+
                     <div id='logincenter'>
+
                         <img src="connecthead.png" style={{ paddingTop: '90px', paddingBottom: '20px' }} alt="connecthead" id="connecthead" />
+
                         <form onSubmit={(e) => handleSubmit(e)}>
                             <input className='textbox' style={{ marginTop: '20px', marginBottom: '20px' }}
                                 type="email"
@@ -49,17 +56,22 @@ function ForgotPassword() {
                                 required
                             />
                             <br />
+
                             <button type="submit" style={{ marginBottom: '30px' }} className='loginButton'>
                                 Reset Password
                             </button>
                         </form>
+
                         <ul id='mySection'>
                             <hr />
                             <p>Info</p>
                             <hr />
                         </ul>
+
                         <p className="info" style={{ marginTop: '30px' }}><strong>Step 1 :</strong> Reset link is send to your email address.</p>
+
                         <p className="info" style={{ marginTop: '22px', marginBottom: '22px' }}><strong>Step 2 :</strong> Enter the new password.</p>
+                        
                         <p className="info"><strong>Step 3 :</strong> Relogin to your account with new password.</p>
                     </div>
                 </div>
