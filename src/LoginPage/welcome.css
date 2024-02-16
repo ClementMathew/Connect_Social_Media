@@ -4,11 +4,6 @@ body {
     overflow: hidden;
 }
 
-#containerbackg {
-    height: 100%;
-    width: 100%;
-}
-
 #logo {
     width: 137px;
     height: 137px;
@@ -135,6 +130,7 @@ body {
 }
 
 .loginButton {
+    cursor: pointer;
     height: 50px;
     width: 420px;
     color: white;
@@ -183,6 +179,7 @@ body {
 }
 
 .myOutButton {
+    cursor: pointer;
     height: 57px;
     width: 420px;
     border-radius: 50px;

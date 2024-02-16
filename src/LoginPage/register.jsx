@@ -9,8 +9,12 @@ const SignUp = () => {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [repassword, setRePassword] = useState('');
   const [theName, setName] = useState('');
   const [userName, setUserName] = useState('');
+
+  const [mypasserror, setMyPassError] = useState('');
+  const [togglePassError, settogglePassError] = useState({});
 
   const auth = getAuth(app);
   const db = getFirestore(app);
@@ -20,28 +24,65 @@ const SignUp = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    try {
-      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-      const user = userCredential.user;
-      const userDocRef = doc(db, 'Users', user.uid);
+    if (password == repassword) {
 
-      await setDoc(userDocRef, {
-        email: email,
-        name: theName,
-        username: userName,
-      });
-      navigate('/home')
+      try {
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        const user = userCredential.user;
+        const userDocRef = doc(db, 'Users', user.uid);
+
+        await setDoc(userDocRef, {
+          email: email,
+          name: theName,
+          username: userName,
+        });
+        navigate('/home')
+        // You can send a request to your authentication server here
+      } catch (error) {
+        alert(error);
+        console.error(error);
+      }
       // You can send a request to your authentication server here
-    } catch (error) {
-      alert(error);
-      console.error(error);
     }
-    // You can send a request to your authentication server here
+    else {
+      showPassError()
+      setTimeout(() => {
+        hidePassError()
+      }, 2000
+      )
+    }
   };
+
+  const showPassError = () => {
+    settogglePassError({
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      position: 'absolute',
+      borderRadius: '15px',
+      color: 'white',
+      fontWeight: 'bold',
+      boxShadow: '0px 0px 7px 0px rgb(68, 68, 68)',
+      fontSize: '18px',
+      fontFamily: "'Times New Roman', Times, serif",
+      letterSpacing: '1px',
+      bottom: '50px',
+      height: '50px',
+      width: '400px',
+      backgroundColor: 'rgb(255, 40, 40)'
+    });
+    setMyPassError("Passwords doesn't match !")
+  }
+
+  const hidePassError = () => {
+    settogglePassError({
+    });
+    setMyPassError('')
+  }
 
 
   return (
-    <div id='containerbackg'>
+    <>
       <img id="logo" src="logo.png" alt="Logo" />
       <div id="rectangles">
         <img id='rect6' src="Rectangles/Rectangle 6.png" alt="Rectangle 6" />
@@ -74,6 +115,8 @@ const SignUp = () => {
                 className='textbox'
                 type="text"
                 placeholder='Enter Username'
+                pattern="[a-z]+"
+                title='Enter only small letters'
                 value={userName}
                 onChange={(e) => setUserName(e.target.value)}
                 required
@@ -101,8 +144,8 @@ const SignUp = () => {
                 className='textbox'
                 type="password"
                 placeholder='Retype Password'
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                value={repassword}
+                onChange={(e) => setRePassword(e.target.value)}
                 required
               />
               <br />
@@ -116,8 +159,11 @@ const SignUp = () => {
             </form>
           </div>
         </div>
+        <div style={togglePassError}>
+          {mypasserror}
+        </div>
       </div>
-    </div >
+    </ >
   );
 }
 

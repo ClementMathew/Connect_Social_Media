@@ -7,21 +7,23 @@ import './forgotpass.css'
 function ForgotPassword() {
 
     const auth = getAuth(app);
-    const history = useNavigate();
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault()
         const emalVal = e.target.email.value;
         sendPasswordResetEmail(auth, emalVal).then(data => {
             alert("Check your gmail")
-            history("/")
+            navigate("/")
         }).catch(err => {
             alert(err.code)
         })
     }
     return (
-        <div id='containerbackg'>
-            <img id="back" src="back.png" alt="back" />
+        <>
+            <Link id='backbutton' to="/home">
+                <img id="back" src="back.png" alt="back" />
+            </Link>
             <div id="rectangles">
                 <img id='rect6' src="Rectangles/Rectangle 6.png" alt="Rectangle 6" />
                 <img id='rect7' src="Rectangles/Rectangle 7.png" alt="Rectangle 7" />
@@ -33,18 +35,19 @@ function ForgotPassword() {
                 <img id='rect10' src="Rectangles/Rectangle 10.png" alt="Rectangle 10" />
             </div>
             <div id="containertop">
-                <div id="login">
+                <div id="forgot">
                     <img id='lets' style={{ paddingTop: '72px', paddingLeft: '115px' }} src="lets.svg" alt="lets" />
                     <div id='logincenter'>
                         <img src="connecthead.png" style={{ paddingTop: '90px', paddingBottom: '20px' }} alt="connecthead" id="connecthead" />
-                        <form onSubmit={handleSubmit}>
-                            <input className='textbox'
+                        <form onSubmit={(e) => handleSubmit(e)}>
+                            <input className='textbox' style={{ marginTop: '20px', marginBottom: '20px' }}
                                 type="email"
                                 placeholder='Enter Email'
+                                name="email"
                                 required
                             />
                             <br />
-                            <button type="submit" className='loginButton'>
+                            <button type="submit" style={{ marginBottom: '30px' }} className='loginButton'>
                                 Reset Password
                             </button>
                         </form>
@@ -53,19 +56,13 @@ function ForgotPassword() {
                             <p>Info</p>
                             <hr />
                         </ul>
-                        <p className="info"><strong>Step 1 </strong>: Reset link is send to your email address.</p>
-                        <p className="info"><strong>Step 2</strong> : Enter the new password.</p>
+                        <p className="info" style={{ marginTop: '30px' }}><strong>Step 1 :</strong> Reset link is send to your email address.</p>
+                        <p className="info" style={{ marginTop: '22px', marginBottom: '22px' }}><strong>Step 2 :</strong> Enter the new password.</p>
+                        <p className="info"><strong>Step 3 :</strong> Relogin to your account with new password.</p>
                     </div>
                 </div>
             </div>
-        </div>
-        // <div className="App">
-        //     <h1>Forgot Password</h1>
-        //     <form onSubmit={(e) => handleSubmit(e)}>
-        //         <input name="email" /><br /><br />
-        //         <button>Reset</button>
-        //     </form>
-        // </div>
+        </>
     )
 }
 export default ForgotPassword;

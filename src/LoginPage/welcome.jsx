@@ -10,9 +10,10 @@ const SignIn = () => {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [myerror, setMyError] = useState('');
+  const [toggleError, settoggleError] = useState({});
 
   const auth = getAuth(app);
-
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
@@ -21,13 +22,43 @@ const SignIn = () => {
     signInWithEmailAndPassword(auth, email, password).then(() => {
       navigate('/home');
     }).catch((error) => {
-      console.log(error);
+      showError()
+      setTimeout(() => {
+        hideError()
+      }, 2000
+      )
     });
     // You can send a request to your authentication server here
   };
 
+  const showError = () => {
+    settoggleError({
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      position: 'absolute',
+      borderRadius: '15px',
+      color: 'white',
+      fontWeight: 'bold',
+      boxShadow: '0px 0px 7px 0px rgb(68, 68, 68)',
+      fontSize: '18px',
+      fontFamily: "'Times New Roman', Times, serif",
+      letterSpacing: '1px',
+      bottom: '50px',
+      height: '50px',
+      width: '400px',
+      backgroundColor: 'rgb(255, 40, 40)'
+    });
+    setMyError("Invalid Credentials !")
+  }
+  const hideError = () => {
+    settoggleError({
+    });
+    setMyError('')
+  }
+
   return (
-    <div id='containerbackg'>
+    <>
       <img id="logo" src="logo.png" alt="Logo" />
       <div id="rectangles">
         <img id='rect6' src="Rectangles/Rectangle 6.png" alt="Rectangle 6" />
@@ -54,7 +85,7 @@ const SignIn = () => {
                 required
               />
               <br />
-              <input className='textbox'
+              <input className='textbox' minLength={8}
                 type="password"
                 placeholder='Enter Password'
                 value={password}
@@ -78,13 +109,16 @@ const SignIn = () => {
                 <Link className='Link' to="/signup">Sign Up</Link>
               </div>
             </form>
-            <button className="myOutButton" style={{ marginTop: '30px'}}>
+            <button className="myOutButton" style={{ marginTop: '30px' }}>
               <img src="google.png" alt="continue with google" />
             </button>
           </div>
         </div>
+        <div style={toggleError}>
+          {myerror}
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 
