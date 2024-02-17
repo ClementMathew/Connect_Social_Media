@@ -5,6 +5,7 @@ import './home.css'
 import SuggestComponent from "./Components/SuggestComponent";
 import StoryComponent from "./Components/StoryComponent";
 import PostComponent from "./Components/PostComponent";
+import NavComponent from "./Components/NavComponent";
 
 const Home = () => {
 
@@ -25,10 +26,23 @@ const Home = () => {
     return (
         <div id="containerhome">
             <div id="sidebar">
-                <div id="homeconnect">
-
+                <div id="connectwithlogo">
+                    <img src="connectwithlogo.png" alt="connectlogo" />
                 </div>
-                <img src="logo.png" alt="logo" id="logohome" />
+                <div id="stripes">
+                    <div id="blackstripe"></div>
+                    <div id="orangestripe"></div>
+                </div>
+                <div id="navhome">
+                    <NavComponent iconSource='home.png' navName="Home"></NavComponent>
+                    <NavComponent iconSource='search.png' navName="Search"></NavComponent>
+                    <NavComponent iconSource='messages.png' navName="Messages"></NavComponent>
+                    <NavComponent iconSource='notifications.png' navName="Notifications"></NavComponent>
+                    <NavComponent iconSource='create.png' navName="Create"></NavComponent>
+                    <NavComponent iconSource='profile_icon.png' navName="Profile"></NavComponent>
+                    <NavComponent iconSource='more.png' navName="More"></NavComponent>
+                </div>
+                <div id="sloganhome">Get Connected, Get Social</div>
             </div>
 
             <div className="verticalline"></div>

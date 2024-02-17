@@ -1,0 +1,25 @@
+#nav {
+    height: 80px;
+    display: flex;
+    align-items: center;
+    margin: 10px 30px 10px 30px;
+    border-radius: 26px;
+    cursor: pointer;
+}
+
+#nav:hover {
+    background-color: #F3F3F3;
+
+}
+
+#nav img {
+    height: 28px;
+    margin-left: 35px;
+    margin-right: 25px;
+}
+
+#nav p {
+    font-size: 25px;
+    font-weight: bold;
+    font-family: Amaranth;
+}
