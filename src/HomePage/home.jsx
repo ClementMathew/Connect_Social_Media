@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import './home.css'
 import SuggestComponent from "./Components/SuggestComponent";
 import StoryComponent from "./Components/StoryComponent";
+import PostComponent from "./Components/PostComponent";
 
 const Home = () => {
 
@@ -44,6 +45,10 @@ const Home = () => {
                 </div>
 
                 <div className="horizontalline"></div>
+
+                <div id="posthome">
+                    <PostComponent postPicSource='profile.jpg' postName='__clement.m__' postSource='post.png' postLikes='736' postComments='126' postShare='56' postAbout='Excellent Performance ...'></PostComponent>
+                </div>
             </div>
 
             <div className="verticalline"></div>

@@ -1,0 +1,77 @@
+#postProfilePic {
+    margin-left: 20px;
+    display: flex;
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+    overflow: hidden;
+}
+
+#posthead {
+    display: flex;
+    align-items: center;
+    height: 70px;
+}
+
+#postname {
+    margin-left: 20px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+}
+
+#postimage {
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    height: 600px;
+}
+
+#postfoot {
+    display: flex;
+    align-items: center;
+    margin-left: 25px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#likes,
+#share,
+#comments,
+#postabout {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+}
+
+#likes img {
+    cursor: pointer;
+    height: 29px;
+    margin-right: 10px;
+}
+
+#comments img {
+    cursor: pointer;
+    height: 31px;
+    margin-right: 10px;
+}
+
+#share img {
+    cursor: pointer;
+    height: 33px;
+    margin-right: 10px;
+}
+
+#likes p,
+#comments p,
+#share p {
+    font-size: 17px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bold;
+}
+
+#postabout p {
+    margin-left: 10px;
+    font-size: 16px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
