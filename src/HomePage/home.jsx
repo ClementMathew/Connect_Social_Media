@@ -3,6 +3,7 @@ import app from '../Firebase/firebase';
 import { useNavigate } from "react-router-dom";
 import './home.css'
 import SuggestComponent from "./Components/SuggestComponent";
+import StoryComponent from "./Components/StoryComponent";
 
 const Home = () => {
 
@@ -28,11 +29,55 @@ const Home = () => {
                 </div>
                 <img src="logo.png" alt="logo" id="logohome" />
             </div>
+
+            <div className="verticalline"></div>
+
             <div id="center">
-                hi
+                <div id="storyhome">
+                    <StoryComponent storyPicSource='profile.jpg' storyName='__clement.m__'></StoryComponent>
+                    <StoryComponent storyPicSource='profile.jpg' storyName='__clement.m__'></StoryComponent>
+                    <StoryComponent storyPicSource='profile.jpg' storyName='__clement.m__'></StoryComponent>
+                    <StoryComponent storyPicSource='profile.jpg' storyName='__clement.m__'></StoryComponent>
+                    <StoryComponent storyPicSource='profile.jpg' storyName='__clement.m__'></StoryComponent>
+                    <StoryComponent storyPicSource='profile.jpg' storyName='__clement.m__'></StoryComponent>
+                    <StoryComponent storyPicSource='profile.jpg' storyName='__clement.m__'></StoryComponent>
+                </div>
+
+                <div className="horizontalline"></div>
             </div>
+
+            <div className="verticalline"></div>
+
             <div id="rightside">
-                <SuggestComponent></SuggestComponent>
+                <div id="userhome">
+                    <div id='profilepic'>
+                        <img src='profile.jpg' alt="profile picture" />
+                    </div>
+                    <div id="nametag">
+                        <p id="username">
+                            __clement.m__
+                        </p>
+                        <p id="mainname">
+                            Clement Mathew
+                        </p>
+                    </div>
+                    <div id="switchbutton">
+                        <button>Switch</button>
+                    </div>
+                </div>
+                <div id="suggestionheading">
+                    <p>Suggested for you</p>
+                    <button>See All</button>
+                </div>
+                <div id="suggestionshome">
+                    <SuggestComponent picSource='profile.jpg' userName='__clement.m__' mainName='Clement Mathew'></SuggestComponent>
+                    <SuggestComponent picSource='profile.jpg' userName='__clement.m__' mainName='Clement Mathew'></SuggestComponent>
+                    <SuggestComponent picSource='profile.jpg' userName='__clement.m__' mainName='Clement Mathew'></SuggestComponent>
+                    <SuggestComponent picSource='profile.jpg' userName='__clement.m__' mainName='Clement Mathew'></SuggestComponent>
+                </div>
+                <div id="copyright">
+                    @ 2024 Copyright from Connect
+                </div>
             </div>
         </div>
     );

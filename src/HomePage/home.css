@@ -11,13 +11,30 @@
 #center {
     width: 52%;
     height: 100%;
-    border: 1px solid green;
+}
+
+#storyhome {
+    display: flex;
+    padding-top: 20px;
+    padding-left: 20px;
+    padding-bottom: 15px;
+}
+
+.verticalline {
+    border-left: 1px solid rgba(128, 128, 128, .2);
+    height: 100vh;
+    box-shadow: -1px 0px 4px 0px rgb(192, 192, 192);
+}
+
+.horizontalline {
+    width: 998px;
+    border-top: 1px solid rgba(128, 128, 128, .2);
+    box-shadow: 0px 1px 4px 0px rgb(192, 192, 192);
 }
 
 #rightside {
     width: 28%;
     height: 100%;
-    border: 1px solid blue;
 }
 
 #homeconnect {
@@ -26,4 +43,59 @@
 
 #logohome {
     height: 100px;
+}
+
+#userhome {
+    margin: 50px 0px 40px 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#switchbutton button {
+    background-color: white;
+    border: none;
+    height: 40px;
+    width: 100px;
+    border-radius: 12px;
+    color: #0085FF;
+    font-weight: bold;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+#suggestionheading {
+    display: flex;
+    line-height: 0px;
+    margin-bottom: 35px;
+    align-items: center;
+}
+
+#suggestionheading button {
+    background-color: white;
+    border: none;
+    height: 40px;
+    width: 100px;
+    border-radius: 12px;
+    color: #0085FF;
+    font-weight: bold;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+#suggestionheading p {
+    padding-left: 70px;
+    padding-right: 107px;
+    font-size: 20px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#copyright {
+    position: absolute;
+    top: 93%;
+    right: 8%;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    color: #606060;
 }

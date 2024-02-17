@@ -1,17 +1,44 @@
 #suggestions {
+    margin: 15px 0px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 #profilepic {
-    height: 60px;
-    width: 60px;
+    height: 65px;
+    width: 65px;
     border-radius: 50%;
     display: flex;
     overflow: hidden;
 }
 
 #nametag {
-    
+    margin: 0px 2.08vw 0px 1.56vw;
+    line-height: 8px;
+    text-align: center;
+}
+
+#username {
+    font-size: 20px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#mainname {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+}
+
+#followbutton button {
+    background-color: #FF9100;
+    border: none;
+    height: 40px;
+    width: 100px;
+    border-radius: 12px;
+    color: white;
+    font-weight: bold;
+    font-size: 15px;
+    box-shadow: 0px 0px 2px 0px rgb(128, 128, 128);
+    cursor: pointer;
 }
