@@ -66,7 +66,7 @@ const SignIn = () => {
       setTimeout(() => {
         hideError()
       }, 2000
-      ) 
+      )
     });
   };
 

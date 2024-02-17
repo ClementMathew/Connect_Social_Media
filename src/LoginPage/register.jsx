@@ -20,12 +20,12 @@ const SignUp = () => {
   const auth = getAuth(app);
   const db = getFirestore(app);
   const navigate = useNavigate();
-  
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (password == repassword) {
+    if (password === repassword) {
 
       try {
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
@@ -95,7 +95,7 @@ const SignUp = () => {
         <img id='rect11' src="Rectangles/Rectangle 11.png" alt="Rectangle 11" />
         <img id='rect10' src="Rectangles/Rectangle 10.png" alt="Rectangle 10" />
       </div>
-      
+
       <img id="slogan" src="slogan.svg" alt="Slogan" />
 
       <div id="containertop">

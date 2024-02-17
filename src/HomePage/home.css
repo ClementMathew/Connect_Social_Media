@@ -1,61 +1,29 @@
-.sidenav {
-    position: fixed;
+#containerhome {
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    z-index: 1;
 }
 
-.sidenav__logo {
-    width: 120px;
-    margin: 25px;
+#sidebar {
+    width: 20%;
+    height: 100%;
+    border: 1px solid red;
 }
 
-.sidenav__buttons {
-    display: flex;
-    flex-direction: column;
+#center {
+    width: 52%;
+    height: 100%;
+    border: 1px solid green;
 }
 
-.sidenav__button {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    color: white;
-    background: 0;
-    border: 0;
-    margin: 5px 10px 5px 10px;
-    padding: 10px 15px 10px 15px;
-    border-radius: 15px;
-    width: 100%;
+#rightside {
+    width: 28%;
+    height: 100%;
+    border: 1px solid blue;
 }
 
-.sidenav__button:hover {
-    cursor: pointer;
-    background-color: rgba(255, 255, 255, 0.128);
+#homeconnect {
+    height: 185px;
 }
 
-.sidenav__button>span {
-    font-size: 18px;
-    font-weight: bolder;
-    margin-left: 10px;
-}
-
-.sidenav__more {
-    position: fixed;
-    bottom: 3px;
-}
-
-.logout__button {
-    font-size: 15px;
-    border-radius: 10px;
-    font-weight: bold;
-    color: white;
-    background-color: rgba(255, 255, 255, 0.211);
-    border: 0;
-    padding: 10px;
-}
-
-.logout__button:hover {
-    cursor: pointer;
-    background-color: rgba(255, 255, 255, 0.424);
+#logohome {
+    height: 100px;
 }

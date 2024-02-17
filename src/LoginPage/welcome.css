@@ -1,6 +1,6 @@
 body {
-    height: 1000px;
-    width: 1920px;
+    height: 100vh;
+    width: 100vw;
     overflow: hidden;
 }
 
@@ -14,43 +14,55 @@ body {
 
 #rect6 {
     position: absolute;
-    top: 36.9px;
-    left: 105px;
+    /* top: 36.9px;
+    left: 105px; */
+    top: 3.85vh;
+    left: 5.4vw;
     transform: scale(.9);
 }
 
 #rect7 {
     position: absolute;
-    top: 32.2px;
-    left: 90px;
+    /* top: 32.2px;
+    left: 90px; */
+    top: 3.37vh;
+    left: 4.67vw;
     transform: scale(.9);
 }
 
 #rect5 {
     position: absolute;
-    left: 181px;
-    top: -67px;
+    /* top: -67px;
+    left: 181px; */
+    top: -7vh;
+    left: 9.45vw;
     transform: scale(1.07);
 }
 
 #rect4 {
     position: absolute;
-    top: -14px;
-    left: 167px;
+    /* top: -14px;
+    left: 167px; */
+    top: -1.35vh;
+    left: 8.65vw;
     transform: scale(.94);
 }
 
 #rect8 {
     position: absolute;
-    top: 203px;
-    left: 334px;
+    /* top: 203px;
+    left: 334px; */
+    top: 21.35vh;
+    left: 17.35vw;
     transform: scale(.95);
 }
 
 #rect13 {
     position: absolute;
-    top: 241px;
-    left: 248px;
+    /* top: 241px;
+    left: 248px; */
+    top: 25.35vh;
+    left: 12.95vw;
     transform: scale(.98);
 }
 
@@ -58,6 +70,8 @@ body {
     position: absolute;
     top: 434px;
     left: 993px;
+    /* top: 45.6vh;
+    left: 51.7vw; */
     transform: scale(.9);
 }
 
@@ -65,6 +79,8 @@ body {
     position: absolute;
     top: 548px;
     left: 1118px;
+    /* top: 57.6vh;
+    left: 58.2vw; */
     transform: scale(.9);
 }
 

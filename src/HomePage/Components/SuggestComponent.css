@@ -1,0 +1,17 @@
+#suggestions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#profilepic {
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    display: flex;
+    overflow: hidden;
+}
+
+#nametag {
+    
+}
