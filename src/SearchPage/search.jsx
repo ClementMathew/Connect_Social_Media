@@ -38,12 +38,17 @@ export default function Search() {
                     <button id="searchbutton">Search</button>
                 </div>
 
-                <div id="recent">Recent</div>
+                <div id="recent">
+                    <p>Recent</p>
+                    <button>Clear All</button>
+                </div>
 
-                <RecentSearch></RecentSearch>
-                <RecentSearch></RecentSearch>
-                <RecentSearch></RecentSearch>
-                <RecentSearch></RecentSearch>
+                <div id="recentHistory">
+                    <RecentSearch picSource='profile.jpg' userName='__clement.m__' mainName='Clement Mathew'></RecentSearch>
+                    <RecentSearch picSource='profile.jpg' userName='__clement.m__' mainName='Clement Mathew'></RecentSearch>
+                    <RecentSearch picSource='profile.jpg' userName='__clement.m__' mainName='Clement Mathew'></RecentSearch>
+                    <RecentSearch picSource='profile.jpg' userName='__clement.m__' mainName='Clement Mathew'></RecentSearch>
+                </div>
             </div>
 
             <div className="verticalline"></div>

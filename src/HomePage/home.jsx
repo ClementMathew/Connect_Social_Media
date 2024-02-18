@@ -2,10 +2,10 @@ import { getAuth, signOut } from "firebase/auth";
 import app from '../Firebase/firebase';
 import { useNavigate } from "react-router-dom";
 import './home.css'
-import SuggestComponent from "../Components/SuggestComponent";
-import StoryComponent from "../Components/StoryComponent";
-import PostComponent from "../Components/PostComponent";
-import NavComponent from "../Components/NavComponent";
+import SuggestComponent from "../HomeComponents/SuggestComponent";
+import StoryComponent from "../HomeComponents/StoryComponent";
+import PostComponent from "../HomeComponents/PostComponent";
+import NavComponent from "../HomeComponents/NavComponent";
 import { useEffect, useRef } from "react";
 
 const Home = () => {
