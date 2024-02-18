@@ -1,3 +1,8 @@
+#navigation {
+    text-decoration: none;
+    color: black;
+}
+
 #nav {
     height: 80px;
     display: flex;
@@ -9,7 +14,6 @@
 
 #nav:hover {
     background-color: #F3F3F3;
-
 }
 
 #nav img {

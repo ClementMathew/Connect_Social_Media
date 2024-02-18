@@ -9,10 +9,11 @@
 }
 
 #connectwithlogo {
+    padding-top: 13px;
     display: flex;
     align-items: center;
     margin-left: 40px;
-    height: 164px;
+    height: 151px;
 }
 
 #connectwithlogo img {
@@ -40,7 +41,7 @@
     margin-left: 65px;
     font-size: 13px;
     font-family: Arial, Helvetica, sans-serif;
-    margin-top: 70px;
+    margin-top: 75px;
 }
 
 #center {
@@ -50,10 +51,28 @@
 }
 
 #storyhome {
+    scrollbar-width: none;
     display: flex;
     padding-top: 20px;
     padding-left: 20px;
     padding-bottom: 15px;
+    overflow-y: hidden;
+    overflow-x: auto;
+}
+
+#storyhome::-webkit-scrollbar {
+    display: none;
+}
+
+#posthome {
+    scrollbar-width: none;
+    overflow-x: hidden;
+    overflow-y: auto;
+    height: 800px;
+}
+
+#posthome::-webkit-scrollbar {
+    display: none;
 }
 
 .verticalline {
@@ -117,6 +136,17 @@
     font-size: 20px;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
+}
+
+#suggestionshome {
+    scrollbar-width: none;
+    height: 610px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+#suggestionshome::-webkit-scrollbar {
+    display: none;
 }
 
 #copyright {

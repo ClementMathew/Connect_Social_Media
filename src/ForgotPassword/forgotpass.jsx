@@ -71,7 +71,7 @@ function ForgotPassword() {
                         <p className="info" style={{ marginTop: '30px' }}><strong>Step 1 :</strong> Reset link is send to your email address.</p>
 
                         <p className="info" style={{ marginTop: '22px', marginBottom: '22px' }}><strong>Step 2 :</strong> Enter the new password.</p>
-                        
+
                         <p className="info"><strong>Step 3 :</strong> Relogin to your account with new password.</p>
                     </div>
                 </div>
