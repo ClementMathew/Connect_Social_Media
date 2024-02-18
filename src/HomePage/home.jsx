@@ -42,8 +42,9 @@ const Home = () => {
                     <div id="blackstripe"></div>
                     <div id="orangestripe"></div>
                 </div>
+
                 <div id="navhome">
-                    <NavComponent iconSource='home.png' navName="Home" navPage='/home'></NavComponent>
+                    <NavComponent selected='#F3F3F3' iconSource='home.png' navName="Home" navPage='/home'></NavComponent>
                     <NavComponent iconSource='search.png' navName="Search" navPage="/search"></NavComponent>
                     <NavComponent iconSource='messages.png' navName="Messages" navPage="/messages"></NavComponent>
                     <NavComponent iconSource='notifications.png' navName="Notifications" navPage="/notifications"></NavComponent>

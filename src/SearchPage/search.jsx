@@ -1,8 +1,9 @@
 import React from 'react'
-import NavComponent from '../Components/NavComponent'
+import NavComponent from '../HomeComponents/NavComponent'
 import '../HomePage/home.css'
 import './search.css'
 import ProfileDetails from '../Components/ProfileDetails'
+import RecentSearch from '../Components/RecentSearch'
 
 export default function Search() {
     return (
@@ -17,7 +18,7 @@ export default function Search() {
                 </div>
                 <div id="navhome">
                     <NavComponent iconSource='home.png' navName="Home" navPage='/home'></NavComponent>
-                    <NavComponent iconSource='search.png' navName="Search" navPage="/search"></NavComponent>
+                    <NavComponent selected='#F3F3F3' iconSource='search.png' navName="Search" navPage="/search"></NavComponent>
                     <NavComponent iconSource='messages.png' navName="Messages" navPage="/messages"></NavComponent>
                     <NavComponent iconSource='notifications.png' navName="Notifications" navPage="/notifications"></NavComponent>
                     <NavComponent iconSource='create.png' navName="Create" navPage="/create"></NavComponent>
@@ -30,12 +31,19 @@ export default function Search() {
             <div className="verticalline"></div>
 
             <div id="center">
+
                 <div id="searchbar">
                     <input id="searchbox" placeholder='Enter something ...'>
                     </input>
                     <button id="searchbutton">Search</button>
                 </div>
+
                 <div id="recent">Recent</div>
+
+                <RecentSearch></RecentSearch>
+                <RecentSearch></RecentSearch>
+                <RecentSearch></RecentSearch>
+                <RecentSearch></RecentSearch>
             </div>
 
             <div className="verticalline"></div>

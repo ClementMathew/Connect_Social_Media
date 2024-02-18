@@ -55,4 +55,6 @@
     cursor: pointer;
 }
 
-#recent {}
+#recent {
+    margin-left: 4.06vw;
+}
