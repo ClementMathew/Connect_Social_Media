@@ -4,9 +4,16 @@
     font-weight: bold;
     padding-left: 80px;
     padding-top: 70px;
+    padding-bottom: 50px;
 }
 
 #notificationbody {
     padding-left: 80px;
-    padding-top: 10px;
+    overflow-y: auto;
+    height: 800px;
+    scrollbar-width: none;
+}
+
+#notificationbody::-webkit-scrollbar {
+    display: none;
 }

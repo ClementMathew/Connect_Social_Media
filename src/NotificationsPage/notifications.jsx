@@ -36,8 +36,13 @@ export default function Notifications() {
         <div id="notificationhead">Notifications</div>
 
         <div id="notificationbody">
+
           <NotificationDay day='New'></NotificationDay>
           <NotificationDay day='Today'></NotificationDay>
+          <NotificationDay day='Yesterday'></NotificationDay>
+          <NotificationDay day='17, February, 2024'></NotificationDay>
+
+          <div style={{ paddingBottom: '30px' }}></div>
         </div>
       </div>
 

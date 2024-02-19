@@ -5,7 +5,7 @@ import CommentNotification from './CommentNotification'
 
 export default function NotificationDay(props) {
     return (
-        <div style={{ paddingTop: '20px' }}>
+        <div style={{ paddingBottom: '20px' }}>
             <p style={{ fontFamily: 'Amaranth', fontWeight: 'bold', fontSize: '20px' }}>{props.day}</p>
 
             <LikeNotification picSource='profile.jpg' userName='__clement.m__' ></LikeNotification>

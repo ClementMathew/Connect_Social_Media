@@ -48,6 +48,13 @@ export default function Search() {
                     <RecentSearch picSource='profile.jpg' userName='__clement.m__' mainName='Clement Mathew'></RecentSearch>
                     <RecentSearch picSource='profile.jpg' userName='__clement.m__' mainName='Clement Mathew'></RecentSearch>
                     <RecentSearch picSource='profile.jpg' userName='__clement.m__' mainName='Clement Mathew'></RecentSearch>
+                    <RecentSearch picSource='profile.jpg' userName='__clement.m__' mainName='Clement Mathew'></RecentSearch>
+                    <RecentSearch picSource='profile.jpg' userName='__clement.m__' mainName='Clement Mathew'></RecentSearch>
+                    <RecentSearch picSource='profile.jpg' userName='__clement.m__' mainName='Clement Mathew'></RecentSearch>
+                    <RecentSearch picSource='profile.jpg' userName='__clement.m__' mainName='Clement Mathew'></RecentSearch>
+                    <RecentSearch picSource='profile.jpg' userName='__clement.m__' mainName='Clement Mathew'></RecentSearch>
+                    <RecentSearch picSource='profile.jpg' userName='__clement.m__' mainName='Clement Mathew'></RecentSearch>
+                    <div style={{ paddingBottom: '40px' }}></div>
                 </div>
             </div>
 

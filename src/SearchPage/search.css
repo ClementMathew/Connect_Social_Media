@@ -82,6 +82,17 @@
     cursor: pointer;
 }
 
+#recentHistory {
+    overflow-y: auto;
+    height: 730px;
+    scrollbar-width: none;
+}
+
+#recentHistory::-webkit-scrollbar {
+    display: none;
+    scrollbar-width: 0px;
+}
+
 #closebutton img {
     margin-left: 24.6vw;
     height: 14px;
