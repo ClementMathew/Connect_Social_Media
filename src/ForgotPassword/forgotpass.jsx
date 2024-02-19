@@ -42,7 +42,7 @@ function ForgotPassword() {
             <div id="containertop">
                 <div id="forgot">
 
-                    <img id='lets' style={{ paddingTop: '72px', paddingLeft: '115px' }} src="lets.svg" alt="lets" />
+                    <img id='lets' style={{ paddingTop: '75px', paddingLeft: '115px' }} src="lets.svg" alt="lets" />
 
                     <div id='logincenter'>
 

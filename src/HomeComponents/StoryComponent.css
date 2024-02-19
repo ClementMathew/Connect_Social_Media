@@ -6,8 +6,8 @@
 }
 
 #storyProfilePic {
-    height: 85px;
-    width: 85px;
+    height: 82px;
+    width: 82px;
     border-radius: 50%;
     display: flex;
     overflow: hidden;
@@ -18,8 +18,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 91px;
-    width: 91px;
+    height: 88px;
+    width: 88px;
     border-radius: 50%;
     border: 4px solid #FF9100;
     margin-bottom: 8px;

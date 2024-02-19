@@ -3,6 +3,8 @@ import '../HomePage/home.css'
 import '../SearchPage/search.css'
 import NavComponent from '../HomeComponents/NavComponent'
 import ProfileDetails from '../Components/ProfileDetails'
+import './notifications.css'
+import NotificationDay from '../Components/NotificationDay'
 
 export default function Notifications() {
   return (
@@ -31,7 +33,12 @@ export default function Notifications() {
 
       <div id="center">
 
+        <div id="notificationhead">Notifications</div>
 
+        <div id="notificationbody">
+          <NotificationDay day='New'></NotificationDay>
+          <NotificationDay day='Today'></NotificationDay>
+        </div>
       </div>
 
       <div className="verticalline"></div>
@@ -46,7 +53,7 @@ export default function Notifications() {
           <ProfileDetails detailType='Phone' detailName="+918156819141"></ProfileDetails>
         </div>
 
-        <div id="copyright">
+        <div id="copyright" style={{ paddingTop: '144px' }}>
           @ 2024 Copyright from Connect
         </div>
       </div>

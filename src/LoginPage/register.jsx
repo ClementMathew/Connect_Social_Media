@@ -101,7 +101,7 @@ const SignUp = () => {
       <div id="containertop">
         <div id="signup">
 
-          <img id='lets' style={{ paddingTop: '72px', paddingLeft: '115px' }} src="lets.svg" alt="lets" />
+          <img id='lets' style={{ paddingTop: '75px', paddingLeft: '115px' }} src="lets.svg" alt="lets" />
 
           <div id='logincenter'>
 

@@ -63,7 +63,7 @@ export default function Search() {
                     <ProfileDetails detailType='Phone' detailName="+918156819141"></ProfileDetails>
                 </div>
 
-                <div id="copyright">
+                <div id="copyright" style={{ paddingTop: '144px' }}>
                     @ 2024 Copyright from Connect
                 </div>
             </div>

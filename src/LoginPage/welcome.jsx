@@ -90,7 +90,7 @@ const SignIn = () => {
       <div id="containertop">
         <div id="login">
 
-          <img id='lets' style={{ paddingTop: '72px', paddingLeft: '115px' }} src="lets.svg" alt="lets" />
+          <img id='lets' style={{ paddingTop: '75px', paddingLeft: '115px' }} src="lets.svg" alt="lets" />
 
           <div id='logincenter'>
 

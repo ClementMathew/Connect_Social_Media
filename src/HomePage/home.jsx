@@ -82,7 +82,7 @@ const Home = () => {
                     <PostComponent postPicSource='profile.jpg' postName='__clement.m__' postSource='post.png' postLikes='736' postComments='126' postShare='56' postAbout='Excellent Performance ...'></PostComponent>
                     <PostComponent postPicSource='profile.jpg' postName='__clement.m__' postSource='post.png' postLikes='736' postComments='126' postShare='56' postAbout='Excellent Performance ...'></PostComponent>
 
-                    <div style={{ paddingBottom: '15px' }}></div>
+                    <div style={{ paddingBottom: '120px' }}></div>
                 </div>
             </div>
 
@@ -120,7 +120,7 @@ const Home = () => {
                     <SuggestComponent picSource='profile.jpg' userName='__clement.m__' mainName='Clement Mathew'></SuggestComponent>
                     <SuggestComponent picSource='profile.jpg' userName='__clement.m__' mainName='Clement Mathew'></SuggestComponent>
                 </div>
-                <div id="copyright">
+                <div id="copyright" style={{ paddingTop: '45px' }}>
                     @ 2024 Copyright from Connect
                 </div>
             </div>
