@@ -1,6 +1,3 @@
-import { getAuth, signOut } from "firebase/auth";
-import app from '../Firebase/firebase';
-import { useNavigate } from "react-router-dom";
 import './home.css'
 import SuggestComponent from "../HomeComponents/SuggestComponent";
 import StoryComponent from "../HomeComponents/StoryComponent";
@@ -10,21 +7,7 @@ import { useEffect, useRef } from "react";
 
 const Home = () => {
 
-    const navigate = useNavigate();
-    const auth = getAuth(app);
-
     const story = useRef(null);
-
-    const handleClick = (e) => {
-        e.preventDefault();
-        // Add your authentication logic here
-        signOut(auth).then(() => {
-            navigate('/');
-        }).catch((error) => {
-            console.log(error);
-        });
-        // You can send a request to your authentication server here
-    };
 
     useEffect(() => {
         story.current.addEventListener('wheel', (event) => {

@@ -1,0 +1,41 @@
+#moreBody {
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 800px;
+}
+
+#moreContainer {
+    height: 650px;
+    width: 706px;
+    background-color: #f2f2f2;
+    border-radius: 38px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+#moreContainer hr {
+    border: none;
+    margin: 0px;
+    background-color: rgb(195, 195, 195);
+    height: 1px;
+}
+
+.moreToggleSwitch {
+    display: flex;
+    align-items: center;
+}
+
+.moreContent {
+    padding: 10px 110px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+#deleteAccount {
+    color: #FF0000;
+}

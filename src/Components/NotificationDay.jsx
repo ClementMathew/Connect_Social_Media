@@ -6,7 +6,7 @@ import CommentNotification from './CommentNotification'
 export default function NotificationDay(props) {
     return (
         <div style={{ paddingBottom: '20px' }}>
-            <p style={{ fontFamily: 'Amaranth', fontWeight: 'bold', fontSize: '20px' }}>{props.day}</p>
+            <p style={{ lineHeight: '15px', paddingBottom: '15px', fontFamily: 'Amaranth', fontWeight: 'bold', fontSize: '20px' }}>{props.day}</p>
 
             <LikeNotification picSource='profile.jpg' userName='__clement.m__' ></LikeNotification>
             <ConnectRequest picSource='profile.jpg' userName='__clement.m__' ></ConnectRequest>

@@ -1,0 +1,142 @@
+#profileRightSide {
+    display: block;
+    width: 80%;
+    /* overflow-y: auto;
+    height: 980px; */
+}
+
+#profileHead {
+    height: 400px;
+    width: 1200px;
+    display: flex;
+}
+
+#profileHeadPic {
+    width: 38%;
+    overflow: hidden;
+    text-align: center;
+}
+
+#profileHeadPic img {
+    border-radius: 50%;
+    height: 250px;
+    width: 250px;
+    margin-top: 90px;
+}
+
+#profileHeadBio {
+    width: 68%;
+    margin-top: 80px;
+}
+
+#profileHeadBioTop {
+    display: flex;
+    align-items: center;
+}
+
+#profileHeadBioTop p {
+    margin-right: 80px;
+    font-size: 30px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+}
+
+#editProfile {
+    margin-right: 30px;
+    background-color: #FF9100;
+    border: none;
+    height: 47px;
+    width: 140px;
+    border-radius: 12px;
+    color: white;
+    font-weight: bold;
+    padding-top: 5px;
+    font-size: 16px;
+    box-shadow: 0px 0px 2px 0px rgb(128, 128, 128);
+    cursor: pointer;
+}
+
+#logOut {
+    padding-top: 5px;
+    background-color: #eaeaea;
+    border: none;
+    height: 47px;
+    width: 130px;
+    border-radius: 12px;
+    color: black;
+    font-weight: bold;
+    font-size: 16px;
+    box-shadow: 0px 0px 2px 0px rgb(189, 189, 189);
+    cursor: pointer;
+}
+
+#profileFollowers,
+#postsCount,
+#followersCount,
+#followingCount {
+    align-items: baseline;
+    display: flex;
+}
+
+.followPointer {
+    cursor: pointer;
+}
+
+.CountPrefix {
+    margin-right: 9px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 21px;
+    font-weight: bold;
+}
+
+.CountSuffix {
+    margin-right: 40px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    font-weight: 100;
+}
+
+#BioName {
+    font-size: 21px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#Bio {
+    line-height: 13px;
+    font-size: 19px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.profileHorizontalLine {
+    width: 80vw;
+    border-top: 1px solid rgba(128, 128, 128, .2);
+    box-shadow: 0px -1px 4px 0px rgb(192, 192, 192);
+}
+
+#profilePostsHead {
+    padding: 15px 0px;
+    width: 1536px;
+    letter-spacing: 1px;
+    text-align: center;
+    font-size: 25px;
+    font-family: Amaranth;
+    font-weight: bold;
+}
+
+#profilePostImages {
+    overflow-y: auto;
+    height: 510px;
+    display: grid;
+    grid-gap: 2fr;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+}
+
+#profilePostImages img {
+    height: 212px;
+    margin: 1px 0px;
+}
+
+#profilePostImages::-webkit-scrollbar {
+    display: none;
+}

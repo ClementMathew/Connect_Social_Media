@@ -28,7 +28,7 @@ export default function ConnectRequest(props) {
         border: 'none',
         height: '38px',
         width: '100px',
-        borderRadius: '10px',
+        borderRadius: '12px',
         color: 'white',
         fontWeight: ' bold',
         fontSize: '15px',
@@ -37,11 +37,11 @@ export default function ConnectRequest(props) {
       }}>Connect</button>
 
       <button style={{
-        backgroundColor: '#F3F3F3',
+        backgroundColor: '#eaeaea',
         border: 'none',
         height: '38px',
         width: '100px',
-        borderRadius: '10px',
+        borderRadius: '12px',
         color: 'black',
         fontWeight: ' bold',
         fontSize: '15px',
