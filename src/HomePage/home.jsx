@@ -4,6 +4,7 @@ import StoryComponent from "../HomeComponents/StoryComponent";
 import PostComponent from "../HomeComponents/PostComponent";
 import NavComponent from "../HomeComponents/NavComponent";
 import { useEffect, useRef } from "react";
+import '../HomeComponents/NavComponent.css'
 
 const Home = () => {
 
@@ -31,7 +32,12 @@ const Home = () => {
                     <NavComponent iconSource='search.png' navName="Search" navPage="/search"></NavComponent>
                     <NavComponent iconSource='messages.png' navName="Messages" navPage="/messages"></NavComponent>
                     <NavComponent iconSource='notifications.png' navName="Notifications" navPage="/notifications"></NavComponent>
-                    <NavComponent iconSource='create.png' navName="Create" navPage="/create"></NavComponent>
+
+                    <div id='nav' >
+                        <img src='create.png' alt="navIcon" />
+                        <p>Create</p>
+                    </div>
+
                     <NavComponent iconSource='profile_icon.png' navName="Profile" navPage="/profile"></NavComponent>
                     <NavComponent iconSource='more.png' navName="More" navPage="/more"></NavComponent>
                 </div>

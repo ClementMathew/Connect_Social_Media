@@ -4,6 +4,7 @@ import '../HomePage/home.css'
 import './search.css'
 import ProfileDetails from '../Components/ProfileDetails'
 import RecentSearch from '../Components/RecentSearch'
+import '../HomeComponents/NavComponent.css'
 
 export default function Search() {
     return (
@@ -21,7 +22,12 @@ export default function Search() {
                     <NavComponent selected='#F3F3F3' iconSource='search.png' navName="Search" navPage="/search"></NavComponent>
                     <NavComponent iconSource='messages.png' navName="Messages" navPage="/messages"></NavComponent>
                     <NavComponent iconSource='notifications.png' navName="Notifications" navPage="/notifications"></NavComponent>
-                    <NavComponent iconSource='create.png' navName="Create" navPage="/create"></NavComponent>
+
+                    <div id='nav' >
+                        <img src='create.png' alt="navIcon" />
+                        <p>Create</p>
+                    </div>
+
                     <NavComponent iconSource='profile_icon.png' navName="Profile" navPage="/profile"></NavComponent>
                     <NavComponent iconSource='more.png' navName="More" navPage="/more"></NavComponent>
                 </div>
