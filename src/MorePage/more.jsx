@@ -4,7 +4,7 @@ import '../HomePage/home.css'
 import './more.css'
 import '../NotificationsPage/notifications.css'
 import '../ProfilePage/profile.css'
-import ToggleSwitch from '../Components/ToggleSwitch'
+import ToggleSwitch from '../ToggleSwitch/ToggleSwitch'
 import { useState } from 'react'
 import '../HomeComponents/NavComponent.css'
 import CreateComponent from '../CreatePage/CreateComponent';

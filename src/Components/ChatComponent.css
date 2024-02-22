@@ -1,0 +1,12 @@
+#chatPerson {
+    justify-content: initial;
+    display: flex;
+    align-items: center;
+    padding: 13px 0px 13px 25px;
+    border-radius: 20px;
+    width: 87%;
+}
+
+#chatPerson:hover {
+    background-color: #F3F3F3;
+}
