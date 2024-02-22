@@ -5,9 +5,17 @@ import { signOut, getAuth } from "firebase/auth";
 import NavComponent from '../HomeComponents/NavComponent'
 import '../HomePage/home.css'
 import './profile.css'
+import { useState } from 'react';
 import '../HomeComponents/NavComponent.css'
+import CreateComponent from '../CreatePage/CreateComponent';
 
 export default function Profile() {
+
+    const [createToggle, setCreateToggle] = useState(false)
+
+    const popUp = () => {
+        setCreateToggle(!createToggle)
+    }
 
     const auth = getAuth(app);
 
@@ -41,7 +49,7 @@ export default function Profile() {
                     <NavComponent iconSource='messages.png' navName="Messages" navPage="/messages"></NavComponent>
                     <NavComponent iconSource='notifications.png' navName="Notifications" navPage="/notifications"></NavComponent>
 
-                    <div id='nav' >
+                    <div id='nav' onClick={popUp}>
                         <img src='create.png' alt="navIcon" />
                         <p>Create</p>
                     </div>
@@ -90,34 +98,56 @@ export default function Profile() {
                     <div className="profileHorizontalLine"></div>
                     <div id='profilePostsHead'>Posts</div>
                     <div id="profilePostImages">
-                        <img src="profile.jpg" alt="post image" />
-                        <img src="profile.jpg" alt="post image" />
-                        <img src="profile.jpg" alt="post image" />
-                        <img src="profile.jpg" alt="post image" />
-                        <img src="profile.jpg" alt="post image" />
-                        <img src="profile.jpg" alt="post image" />
-                        <img src="profile.jpg" alt="post image" />
-                        <img src="profile.jpg" alt="post image" />
-                        <img src="profile.jpg" alt="post image" />
-                        <img src="profile.jpg" alt="post image" />
-                        <img src="profile.jpg" alt="post image" />
-                        <img src="profile.jpg" alt="post image" />
-                        <img src="profile.jpg" alt="post image" />
-                        <img src="profile.jpg" alt="post image" />
-                        <img src="profile.jpg" alt="post image" />
-                        <img src="profile.jpg" alt="post image" />
-                        <img src="profile.jpg" alt="post image" />
-                        <img src="profile.jpg" alt="post image" />
-                        <img src="profile.jpg" alt="post image" />
-                        <img src="profile.jpg" alt="post image" />
-                        <img src="profile.jpg" alt="post image" />
-                        <img src="profile.jpg" alt="post image" />
-                        <img src="profile.jpg" alt="post image" />
-                        <img src="profile.jpg" alt="post image" />
-                        <div style={{ paddingBottom: '230px' }}></div>
+                        <img src="profile.jpg" alt="post pic" />
+                        <img src="profile.jpg" alt="post pic" />
+                        <img src="profile.jpg" alt="post pic" />
+                        <img src="profile.jpg" alt="post pic" />
+                        <img src="profile.jpg" alt="post pic" />
+                        <img src="profile.jpg" alt="post pic" />
+                        <img src="profile.jpg" alt="post pic" />
+                        <img src="profile.jpg" alt="post pic" />
+                        <img src="profile.jpg" alt="post pic" />
+                        <img src="profile.jpg" alt="post pic" />
+                        <img src="profile.jpg" alt="post pic" />
+                        <img src="profile.jpg" alt="post pic" />
+                        <img src="profile.jpg" alt="post pic" />
+                        <img src="profile.jpg" alt="post pic" />
+                        <img src="profile.jpg" alt="post pic" />
+                        <img src="profile.jpg" alt="post pic" />
+                        <img src="profile.jpg" alt="post pic" />
+                        <img src="profile.jpg" alt="post pic" />
+                        <img src="profile.jpg" alt="post pic" />
+                        <img src="profile.jpg" alt="post pic" />
+                        <img src="profile.jpg" alt="post pic" />
+                        <img src="profile.jpg" alt="post pic" />
+                        <img src="profile.jpg" alt="post pic" />
+                        <img src="profile.jpg" alt="post pic" />
+                        <img src="profile.jpg" alt="post pic" />
+                        <img src="profile.jpg" alt="post pic" />
+                        <img src="profile.jpg" alt="post pic" />
+                        <img src="profile.jpg" alt="post pic" />
+                        <img src="profile.jpg" alt="post pic" />
+                        <img src="profile.jpg" alt="post pic" />
+                        <img src="profile.jpg" alt="post pic" />
+                        <img src="profile.jpg" alt="post pic" />
+                        <img src="profile.jpg" alt="post pic" />
+                        <img src="profile.jpg" alt="post pic" />
+                        <img src="profile.jpg" alt="post pic" />
+                        <img src="profile.jpg" alt="post pic" />
+                        <img src="profile.jpg" alt="post pic" />
+                        <img src="profile.jpg" alt="post pic" />
+                        <img src="profile.jpg" alt="post pic" />
+                        <img src="profile.jpg" alt="post pic" />
+                        <img src="profile.jpg" alt="post pic" />
+                        <img src="profile.jpg" alt="post pic" />
+                        <img src="profile.jpg" alt="post pic" />
+                        <div style={{ paddingBottom: '400px' }}></div>
                     </div>
                 </div>
             </div>
+
+            <CreateComponent show={createToggle ? 'flex' : 'none'} createToggle={createToggle} setCreateToggle={setCreateToggle}></CreateComponent>
+
         </div>
     )
 }

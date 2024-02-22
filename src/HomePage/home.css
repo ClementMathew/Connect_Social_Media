@@ -68,7 +68,7 @@
     scrollbar-width: none;
     overflow-x: hidden;
     overflow-y: auto;
-    height: 900px;
+    height: 90vh;
 }
 
 #posthome::-webkit-scrollbar {
@@ -112,7 +112,7 @@
 }
 
 #suggestionheading {
-    margin-right: 8px;
+    margin-right: 6px;
     justify-content: center;
     display: flex;
     line-height: 0px;
@@ -134,7 +134,7 @@
 
 #suggestionheading p {
     padding-left: 8px;
-    padding-right: 100px;
+    padding-right: 5.2vw;
     font-size: 20px;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;

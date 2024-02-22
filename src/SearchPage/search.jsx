@@ -1,12 +1,21 @@
 import React from 'react'
 import NavComponent from '../HomeComponents/NavComponent'
 import '../HomePage/home.css'
+import { useState } from 'react'
 import './search.css'
 import ProfileDetails from '../Components/ProfileDetails'
 import RecentSearch from '../Components/RecentSearch'
 import '../HomeComponents/NavComponent.css'
+import CreateComponent from '../CreatePage/CreateComponent';
 
 export default function Search() {
+
+    const [createToggle, setCreateToggle] = useState(false)
+
+    const popUp = () => {
+        setCreateToggle(!createToggle)
+    }
+
     return (
         <div id='containerhome'>
             <div id="sidebar">
@@ -23,7 +32,7 @@ export default function Search() {
                     <NavComponent iconSource='messages.png' navName="Messages" navPage="/messages"></NavComponent>
                     <NavComponent iconSource='notifications.png' navName="Notifications" navPage="/notifications"></NavComponent>
 
-                    <div id='nav' >
+                    <div id='nav' onClick={popUp}>
                         <img src='create.png' alt="navIcon" />
                         <p>Create</p>
                     </div>
@@ -60,7 +69,11 @@ export default function Search() {
                     <RecentSearch picSource='profile.jpg' userName='__clement.m__' mainName='Clement Mathew'></RecentSearch>
                     <RecentSearch picSource='profile.jpg' userName='__clement.m__' mainName='Clement Mathew'></RecentSearch>
                     <RecentSearch picSource='profile.jpg' userName='__clement.m__' mainName='Clement Mathew'></RecentSearch>
-                    <div style={{ paddingBottom: '40px' }}></div>
+                    <RecentSearch picSource='profile.jpg' userName='__clement.m__' mainName='Clement Mathew'></RecentSearch>
+                    <RecentSearch picSource='profile.jpg' userName='__clement.m__' mainName='Clement Mathew'></RecentSearch>
+                    <RecentSearch picSource='profile.jpg' userName='__clement.m__' mainName='Clement Mathew'></RecentSearch>
+                    <RecentSearch picSource='profile.jpg' userName='__clement.m__' mainName='Clement Mathew'></RecentSearch>
+                    <div style={{ paddingBottom: '160px' }}></div>
                 </div>
             </div>
 
@@ -80,6 +93,8 @@ export default function Search() {
                     @ 2024 Copyright from Connect
                 </div>
             </div>
+
+            <CreateComponent show={createToggle ? 'flex' : 'none'} createToggle={createToggle} setCreateToggle={setCreateToggle}></CreateComponent>
 
         </div>
     )

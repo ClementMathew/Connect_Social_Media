@@ -6,7 +6,6 @@ import ForgotPassword from "./ForgotPassword/forgotpass";
 import Search from "./SearchPage/search";
 import More from "./MorePage/more";
 import Profile from "./ProfilePage/profile";
-import CreateComponent from "./CreatePage/CreateComponent";
 import Notifications from "./NotificationsPage/notifications";
 import Messages from "./MessagesPage/messages";
 

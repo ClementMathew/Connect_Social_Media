@@ -3,10 +3,17 @@ import SuggestComponent from "../HomeComponents/SuggestComponent";
 import StoryComponent from "../HomeComponents/StoryComponent";
 import PostComponent from "../HomeComponents/PostComponent";
 import NavComponent from "../HomeComponents/NavComponent";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import '../HomeComponents/NavComponent.css'
+import CreateComponent from '../CreatePage/CreateComponent';
 
 const Home = () => {
+
+    const [createToggle, setCreateToggle] = useState(false)
+
+    const popUp = () => {
+        setCreateToggle(!createToggle)
+    }
 
     const story = useRef(null);
 
@@ -33,7 +40,7 @@ const Home = () => {
                     <NavComponent iconSource='messages.png' navName="Messages" navPage="/messages"></NavComponent>
                     <NavComponent iconSource='notifications.png' navName="Notifications" navPage="/notifications"></NavComponent>
 
-                    <div id='nav' >
+                    <div id='nav' onClick={popUp}>
                         <img src='create.png' alt="navIcon" />
                         <p>Create</p>
                     </div>
@@ -80,7 +87,7 @@ const Home = () => {
             <div id="rightside">
                 <div id="userhome">
                     <div id='profilepic'>
-                        <img src='profile.jpg' alt="profile picture" />
+                        <img src='profile.jpg' alt="profile pic" />
                     </div>
                     <div id="nametag">
                         <p id="username">
@@ -113,6 +120,9 @@ const Home = () => {
                     @ 2024 Copyright from Connect
                 </div>
             </div>
+
+            <CreateComponent show={createToggle ? 'flex' : 'none'} createToggle={createToggle} setCreateToggle={setCreateToggle}></CreateComponent>
+
         </div>
     );
 }

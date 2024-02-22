@@ -5,9 +5,18 @@ import './more.css'
 import '../NotificationsPage/notifications.css'
 import '../ProfilePage/profile.css'
 import ToggleSwitch from '../Components/ToggleSwitch'
+import { useState } from 'react'
 import '../HomeComponents/NavComponent.css'
+import CreateComponent from '../CreatePage/CreateComponent';
 
 export default function More() {
+
+    const [createToggle, setCreateToggle] = useState(false)
+
+    const popUp = () => {
+        setCreateToggle(!createToggle)
+    }
+
     return (
         <div id="containerhome">
             <div id="sidebar">
@@ -25,7 +34,7 @@ export default function More() {
                     <NavComponent iconSource='messages.png' navName="Messages" navPage="/messages"></NavComponent>
                     <NavComponent iconSource='notifications.png' navName="Notifications" navPage="/notifications"></NavComponent>
 
-                    <div id='nav' >
+                    <div id='nav' onClick={popUp}>
                         <img src='create.png' alt="navIcon" />
                         <p>Create</p>
                     </div>
@@ -85,6 +94,8 @@ export default function More() {
                     <div style={{ padding: '15px' }}></div>
                 </div>
             </div>
+
+            <CreateComponent show={createToggle ? 'flex' : 'none'} createToggle={createToggle} setCreateToggle={setCreateToggle}></CreateComponent>
 
         </div >
     )

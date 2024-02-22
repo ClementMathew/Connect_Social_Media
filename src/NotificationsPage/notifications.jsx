@@ -6,8 +6,17 @@ import ProfileDetails from '../Components/ProfileDetails'
 import './notifications.css'
 import NotificationDay from '../Components/NotificationDay'
 import '../HomeComponents/NavComponent.css'
+import { useState } from 'react'
+import CreateComponent from '../CreatePage/CreateComponent';
 
 export default function Notifications() {
+
+  const [createToggle, setCreateToggle] = useState(false)
+
+  const popUp = () => {
+    setCreateToggle(!createToggle)
+  }
+
   return (
     <div id='containerhome'>
       <div id="sidebar">
@@ -24,7 +33,7 @@ export default function Notifications() {
           <NavComponent iconSource='messages.png' navName="Messages" navPage="/messages"></NavComponent>
           <NavComponent selected='#F3F3F3' iconSource='notifications.png' navName="Notifications" navPage="/notifications"></NavComponent>
 
-          <div id='nav' >
+          <div id='nav' onClick={popUp}>
             <img src='create.png' alt="navIcon" />
             <p>Create</p>
           </div>
@@ -47,8 +56,9 @@ export default function Notifications() {
           <NotificationDay day='Today'></NotificationDay>
           <NotificationDay day='Yesterday'></NotificationDay>
           <NotificationDay day='17, February, 2024'></NotificationDay>
+          <NotificationDay day='16, February, 2024'></NotificationDay>
 
-          <div style={{ paddingBottom: '30px' }}></div>
+          <div style={{ paddingBottom: '80px' }}></div>
         </div>
       </div>
 
@@ -68,6 +78,8 @@ export default function Notifications() {
           @ 2024 Copyright from Connect
         </div>
       </div>
+
+      <CreateComponent show={createToggle ? 'flex' : 'none'} createToggle={createToggle} setCreateToggle={setCreateToggle}></CreateComponent>
 
     </div>
   )

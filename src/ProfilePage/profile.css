@@ -125,15 +125,19 @@
 }
 
 #profilePostImages {
+    margin-left: 2px;
+    margin-right: 1px;
+    scrollbar-width: none;
     overflow-y: auto;
-    height: 510px;
+    height: 70vh;
     display: grid;
-    grid-gap: 2fr;
-    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    grid-gap: 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(217px, 1fr));
 }
 
 #profilePostImages img {
-    height: 212px;
+    width: 217px;
+    height: 217px;
     margin: 1px 0px;
 }
 

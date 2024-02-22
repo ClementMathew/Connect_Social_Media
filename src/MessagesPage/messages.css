@@ -1,0 +1,25 @@
+#messageSidebar {
+    height: 100%;
+    width: 8.2%;
+    overflow: hidden;
+}
+
+#messageLogo {
+    padding-top: 13px;
+    display: flex;
+    align-items: center;
+    margin-left: 38px;
+    height: 151px;
+}
+
+#messageLogo img {
+    height: 88px;
+}
+
+#messageCenter {
+    width: 31.8%;
+}
+
+#messageRightside {
+    width: 60%;
+}

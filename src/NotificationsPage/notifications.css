@@ -10,7 +10,7 @@
 #notificationbody {
     padding-left: 80px;
     overflow-y: auto;
-    height: 800px;
+    height: 90vh;
     scrollbar-width: none;
 }
 

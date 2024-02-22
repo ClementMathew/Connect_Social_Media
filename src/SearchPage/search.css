@@ -84,7 +84,7 @@
 
 #recentHistory {
     overflow-y: auto;
-    height: 730px;
+    height: 90vh;
     scrollbar-width: none;
 }
 
