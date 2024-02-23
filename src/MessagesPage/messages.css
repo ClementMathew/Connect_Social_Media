@@ -22,9 +22,14 @@
 
 #ChatsList {
     overflow-y: auto;
-    height: 700px;
+    height: 90vh;
     margin-left: 40px;
     margin-top: 15px;
+    scrollbar-width: none;
+}
+
+#ChatsList::-webkit-scrollbar {
+    display: none;
 }
 
 #newDot {
@@ -40,4 +45,17 @@
 
 #messageRightside {
     width: 64%;
+}
+
+#chattingTop {
+    align-items: center;
+    display: flex;
+    margin: 28px 0px 18px 40px;
+}
+
+.callSize {
+    height: 32px;
+    margin: 0px 12px;
+    padding: 0px 8px;
+    cursor: pointer;
 }

@@ -4,9 +4,9 @@ export default function ConnectRequest(props) {
   return (
     <div style={{ display: 'flex', alignItems: 'center', lineHeight: '25px' }}>
 
-      <div style={{ cursor: 'pointer', borderRadius: '50%', display: 'flex', overflow: 'hidden', height: '52px', width: '52px' }}>
+      <div style={{ cursor: 'pointer', display: 'flex', height: '52px', width: '52px' }}>
 
-        <img src={props.picSource} alt="profile picture" />
+        <img style={{ borderRadius: '50%' }} src={props.picSource} alt="profile picture" />
 
       </div>
 

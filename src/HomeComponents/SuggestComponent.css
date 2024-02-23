@@ -8,9 +8,11 @@
 #profilepic {
     height: 65px;
     width: 65px;
-    border-radius: 50%;
     display: flex;
-    overflow: hidden;
+}
+
+#profilepic img {
+    border-radius: 50%;
 }
 
 #nametag {
