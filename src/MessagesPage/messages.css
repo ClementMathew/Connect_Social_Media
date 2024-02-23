@@ -32,16 +32,6 @@
     display: none;
 }
 
-#newDot {
-    transform: scale(.8);
-    margin-top: 5px;
-}
-
-#msgCount {
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    font-size: 15px;
-    font-weight: bold;
-}
 
 #messageRightside {
     width: 64%;
@@ -57,5 +47,70 @@
     height: 32px;
     margin: 0px 12px;
     padding: 0px 8px;
+    cursor: pointer;
+}
+
+
+#chattingBottom {
+    position: absolute;
+    bottom: 30px;
+    display: flex;
+}
+
+#chatTyping {
+    background-color: #F3F3F3;
+    padding: 15px;
+    border-radius: 40px;
+    margin-left: 40px;
+    display: flex;
+    align-items: center;
+    width: 800px;
+}
+
+#chatTyping img {
+    margin-left: 10px;
+    height: 30px;
+    cursor: pointer;
+}
+
+#chatTyping input {
+    margin-left: 12px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    font-size: 16x;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    width: 100%;
+}
+
+#chatTyping input::placeholder {
+    color: black;
+}
+
+#chatSend {
+    margin-left: 35px;
+    display: flex;
+    align-items: center;
+}
+
+#chatSend img {
+    margin-left: 25px;
+    cursor: pointer;
+    height: 34px;
+}
+
+#chatSend button {
+    padding-top: 3px;
+    margin-left: 40px;
+    background-color: rgb(255, 145, 0);
+    border: none;
+    height: 45px;
+    width: 100px;
+    border-radius: 22px;
+    color: white;
+    font-weight: bold;
+    font-size: 17px;
+    box-shadow: rgb(128, 128, 128) 0px 0px 2px 0px;
     cursor: pointer;
 }

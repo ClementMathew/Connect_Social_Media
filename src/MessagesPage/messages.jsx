@@ -97,7 +97,15 @@ export default function Messages() {
                 <div className="horizontalline" style={{ width: '80vw' }}></div>
 
                 <div id="chattingBottom">
-                    <input type="text" placeholder='Enter Something ...' />
+                    <div id="chatTyping">
+                        <img src="smiley.png" alt="smiley" />
+                        <input type="text" placeholder='Enter Something ...' />
+                    </div>
+                    <div id="chatSend">
+                        <img src="voice.png" alt="voice" />
+                        <img src="gallery.png" alt="gallery" />
+                        <button id="chatSendButton">Send</button>
+                    </div>
                 </div>
             </div>
 
