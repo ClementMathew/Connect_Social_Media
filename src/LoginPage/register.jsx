@@ -17,35 +17,64 @@ const SignUp = () => {
   const [mypasserror, setMyPassError] = useState('');
   const [togglePassError, settogglePassError] = useState({});
 
+  const [loading, setLoading] = useState(false)
+
   const auth = getAuth(app);
   const db = getFirestore(app);
   const navigate = useNavigate();
 
-
   const handleSubmit = async (e) => {
+
+    setLoading(true)
     e.preventDefault();
 
-    if (password === repassword) {
+    if (email.includes('.com')) {
 
-      try {
-        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-        const user = userCredential.user;
-        const userDocRef = doc(db, 'Users', user.uid);
 
-        await setDoc(userDocRef, {
-          email: email,
-          name: theName,
-          username: userName,
-        });
-        navigate('/home')
+      if (password === repassword) {
+
+        try {
+          const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+
+          const user = userCredential.user;
+          const userDocRef = doc(db, 'Users', user.uid);
+
+          await setDoc(userDocRef, {
+            email: email,
+            name: theName,
+            username: userName,
+          });
+          navigate('/home')
+          // You can send a request to your authentication server here
+        } catch (error) {
+
+          setLoading(false)
+          switch (error.code) {
+            case 'auth/email-already-in-use':
+              setMyPassError('Email Already Taken !')
+              break;
+          }
+          showPassError()
+          setTimeout(() => {
+            hidePassError()
+          }, 2000
+          )
+        }
         // You can send a request to your authentication server here
-      } catch (error) {
-        alert(error);
-        console.error(error);
       }
-      // You can send a request to your authentication server here
+      else {
+        setLoading(false)
+        setMyPassError("Passwords doesn't match !")
+        showPassError()
+        setTimeout(() => {
+          hidePassError()
+        }, 2000
+        )
+      }
     }
     else {
+      setLoading(false)
+      setMyPassError("Inavlid Email !")
       showPassError()
       setTimeout(() => {
         hidePassError()
@@ -72,7 +101,6 @@ const SignUp = () => {
       width: '400px',
       backgroundColor: 'rgb(255, 40, 40)'
     });
-    setMyPassError("Passwords doesn't match !")
   }
 
   const hidePassError = () => {
@@ -156,9 +184,16 @@ const SignUp = () => {
               />
               <br />
 
-              <button type="submit" className='loginButton' style={{ marginBottom: '40px', marginTop: '15px' }}>
-                Sign Up
-              </button>
+              {loading ?
+                <div id='loading'>
+                  <img id='loadingBox' src='loading_box.gif' alt='loading...'></img>
+                  <p>Loading...</p>
+                </div>
+                :
+                <button type="submit" className='loginButton' style={{ marginBottom: '40px', marginTop: '15px' }}>
+                  Sign Up
+                </button>
+              }
               <br />
 
               <div className='myLink'>

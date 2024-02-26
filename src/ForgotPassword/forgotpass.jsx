@@ -1,24 +1,84 @@
 import { sendPasswordResetEmail, getAuth } from "firebase/auth";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import app from "../Firebase/firebase";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import '../LoginPage/welcome.css'
 import './forgotpass.css'
+import '../LoginPage/welcome.css'
 
 function ForgotPassword() {
 
     const auth = getAuth(app);
-    const navigate = useNavigate();
+
+    const [loading, setLoading] = useState(false)
+    const [myalert, setMyAlert] = useState('');
+    const [theError, settheError] = useState(false);
+    const [toggleAlert, settoggleAlert] = useState({});
+
+    useEffect(() => {
+        if (myalert) {
+            settoggleAlert({
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                position: 'absolute',
+                borderRadius: '15px',
+                color: 'white',
+                fontWeight: 'bold',
+                boxShadow: '0px 0px 7px 0px rgb(68, 68, 68)',
+                fontSize: '18px',
+                fontFamily: "'Times New Roman', Times, serif",
+                letterSpacing: '1px',
+                bottom: '50px',
+                height: '50px',
+                width: '400px',
+                backgroundColor: myalert === "Check your Gmail !" ? 'rgb(0, 202, 30)' : 'rgb(255, 40, 40)'
+            });
+            settheError(true)
+        }
+    }, [myalert])
+
+
+    const hideAlert = () => {
+        settoggleAlert({
+        });
+        settheError(false)
+        setMyAlert('')
+    }
 
     const handleSubmit = async (e) => {
+
+        setLoading(true)
         e.preventDefault()
+
         const emalVal = e.target.email.value;
-        sendPasswordResetEmail(auth, emalVal).then(data => {
-            alert("Check your gmail")
-            navigate("/")
-        }).catch(err => {
-            alert(err.code)
-        })
+
+        if (emalVal.includes('.com')) {
+
+            await sendPasswordResetEmail(auth, emalVal).then(data => {
+                setLoading(false)
+                setMyAlert("Check your Gmail !")
+                setTimeout(() => {
+                    hideAlert()
+                }, 2000
+                )
+            }).catch(err => {
+                setLoading(false)
+                setMyAlert("Check your Internet Connection !")
+                setTimeout(() => {
+                    hideAlert()
+                }, 2000
+                )
+            })
+        }
+        else {
+            setLoading(false)
+            setMyAlert("Invalid Email !")
+            setTimeout(() => {
+                hideAlert()
+            }, 2000
+            )
+        }
     }
     return (
         <>
@@ -57,9 +117,16 @@ function ForgotPassword() {
                             />
                             <br />
 
-                            <button type="submit" style={{ marginBottom: '30px' }} className='loginButton'>
-                                Reset Password
-                            </button>
+                            {loading ?
+                                <div id='loading' style={{ height: '80px' }}>
+                                    <img id='loadingBox' src='loading_box.gif' alt='loading...'></img>
+                                    <p>Loading...</p>
+                                </div>
+                                :
+                                <button type="submit" style={{ marginBottom: '30px' }} className='loginButton'>
+                                    Reset Password
+                                </button>
+                            }
                         </form>
 
                         <ul id='mySection'>
@@ -75,6 +142,12 @@ function ForgotPassword() {
                         <p className="info"><strong>Step 3 :</strong> Relogin to your account with new password.</p>
                     </div>
                 </div>
+                {
+                    theError ? <div style={toggleAlert}>
+                        {myalert}
+                    </div> : ''
+                }
+
             </div>
         </>
     )

@@ -50,6 +50,16 @@
     cursor: pointer;
 }
 
+#userChats {
+    height: 100%;
+    overflow: auto;
+    height: 730px;
+    scrollbar-width: none;
+}
+
+#userChats::-webkit-scrollbar {
+    display: none;
+}
 
 #chattingBottom {
     position: absolute;

@@ -11,16 +11,24 @@ const SignIn = () => {
   const [password, setPassword] = useState('');
   const [myerror, setMyError] = useState('');
   const [toggleError, settoggleError] = useState({});
+  const [loading, setLoading] = useState(false)
+  const [loadingCWG, setLoadingCWG] = useState(false)
 
   const auth = getAuth(app);
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
+
+    setLoading(true)
     e.preventDefault();
     // Add your authentication logic here
+
     signInWithEmailAndPassword(auth, email, password).then(() => {
       navigate('/home');
     }).catch((error) => {
+
+      setLoading(false)
+      setMyError("Invalid Credentials !")
       showError()
       setTimeout(() => {
         hideError()
@@ -48,7 +56,6 @@ const SignIn = () => {
       width: '400px',
       backgroundColor: 'rgb(255, 40, 40)'
     });
-    setMyError("Invalid Credentials !")
   }
 
   const hideError = () => {
@@ -58,10 +65,15 @@ const SignIn = () => {
   }
 
   const signInWithGoogle = () => {
+
+    setLoadingCWG(true)
     const provider = new GoogleAuthProvider();
     signInWithPopup(auth, provider).then(() => {
+      setLoadingCWG(false)
       navigate("/home")
     }).catch((error) => {
+
+      setMyError("Check your Internet Connection !")
       showError()
       setTimeout(() => {
         hideError()
@@ -114,9 +126,16 @@ const SignIn = () => {
               />
               <br />
 
-              <button type="submit" style={{ marginBottom: '40px', marginTop: '15px' }} className='loginButton'>
-                Login
-              </button>
+              {loading ?
+                <div id='loading'>
+                  <img id='loadingBox' src='loading_box.gif' alt='loading...'></img>
+                  <p>Loading...</p>
+                </div>
+                :
+                <button type="submit" style={{ marginBottom: '40px', marginTop: '15px' }} className='loginButton'>
+                  Login
+                </button>}
+
               <br />
 
               <div className='myLink' >
@@ -134,9 +153,14 @@ const SignIn = () => {
               </div>
             </form>
 
-            <button className="myOutButton" onClick={signInWithGoogle} style={{ marginTop: '30px' }}>
-              <img src="google.png" alt="continue with google" />
-            </button>
+            {loadingCWG ?
+              <button className='cancelLoading' style={{ marginTop: '30px' }} onClick={() => setLoadingCWG(false)}><p>Cancel</p></button>
+              :
+              <button className="myOutButton" onClick={signInWithGoogle} style={{ marginTop: '30px' }}>
+                <img src="google.png" alt="continue with google" />
+              </button>
+            }
+
           </div>
         </div>
 
@@ -144,6 +168,12 @@ const SignIn = () => {
           {myerror}
         </div>
       </div>
+
+      {loadingCWG ? <div id="loadingCWG" >
+        <img src="loading_leaf.gif" alt="loading..." />
+        <img src="loading_leaf.gif" alt="loading..." />
+      </div> : ''}
+
     </>
   );
 }

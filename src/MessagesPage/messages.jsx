@@ -4,8 +4,9 @@ import CreateComponent from '../CreatePage/CreateComponent'
 import './messages.css'
 import '../HomePage/home.css'
 import MessageNavComponent from '../Components/MessageNavComponent'
-import ChatComponent from '../Components/ChatComponent'
+import ChatComponent from '../ChatComponents/ChatComponent'
 import '../NotificationsPage/notifications.css'
+import UserChats from '../ChatComponents/UserChats'
 
 export default function Messages() {
 
@@ -96,11 +97,25 @@ export default function Messages() {
 
                 <div className="horizontalline" style={{ width: '80vw' }}></div>
 
+                <div id="userChats">
+                    <div style={{ padding: '10px' }}></div>
+                    <UserChats chatType="Sent"></UserChats>
+                    <UserChats chatType="Recieve"></UserChats>
+                    <UserChats chatType="Recieve"></UserChats>
+                    <UserChats chatType="Sent"></UserChats>
+                    <UserChats chatType="Sent"></UserChats>
+                    <UserChats chatType="Sent"></UserChats>
+                    <UserChats chatType="Sent"></UserChats>
+                    <UserChats chatType="Sent"></UserChats>
+                </div>
+
                 <div id="chattingBottom">
                     <div id="chatTyping">
                         <img src="smiley.png" alt="smiley" />
                         <input type="text" placeholder='Enter Something ...' />
                     </div>
+
+
                     <div id="chatSend">
                         <img src="voice.png" alt="voice" />
                         <img src="gallery.png" alt="gallery" />
