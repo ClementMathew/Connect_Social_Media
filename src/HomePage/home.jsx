@@ -6,8 +6,13 @@ import NavComponent from "../HomeComponents/NavComponent";
 import { useEffect, useRef, useState } from "react";
 import '../HomeComponents/NavComponent.css'
 import CreateComponent from '../CreatePage/CreateComponent';
+import { getAuth } from 'firebase/auth'
+import app from '../Firebase/firebase';
 
 const Home = () => {
+
+    // const auth = getAuth(app)
+    // const userId = auth.currentUser.uid
 
     const [createToggle, setCreateToggle] = useState(false)
 

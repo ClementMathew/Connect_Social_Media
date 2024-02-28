@@ -102,7 +102,7 @@ body {
 }
 
 #login {
-    height: 660px;
+    height: 665px;
     width: 635px;
     box-shadow: 0px 0px 38px rgba(0, 0, 0, 0.36);
     background-color: white;
@@ -256,6 +256,7 @@ body {
 }
 
 #loadingCWG {
+    display: flex;
     height: 100vh;
     position: absolute;
     top: 0;

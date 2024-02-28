@@ -66,7 +66,7 @@ export default function More() {
 
                         <hr />
                         <div className='moreToggleSwitch'>
-                            <p className="moreContent">Private Account</p>
+                            <p className="moreContent">Public Account</p>
                             <ToggleSwitch ></ToggleSwitch>
                         </div>
 

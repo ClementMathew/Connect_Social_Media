@@ -1,5 +1,5 @@
 import app from '../Firebase/firebase';
-import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
+import { createUserWithEmailAndPassword, getAuth, updateProfile, updatePhoneNumber } from 'firebase/auth';
 import { getFirestore, doc, setDoc } from 'firebase/firestore';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
@@ -9,6 +9,7 @@ import './register.css'
 const SignUp = () => {
 
   const [email, setEmail] = useState('');
+  const [phone, setPhoneNumber] = useState('');
   const [password, setPassword] = useState('');
   const [repassword, setRePassword] = useState('');
   const [theName, setName] = useState('');
@@ -30,7 +31,6 @@ const SignUp = () => {
 
     if (email.includes('.com')) {
 
-
       if (password === repassword) {
 
         try {
@@ -39,10 +39,24 @@ const SignUp = () => {
           const user = userCredential.user;
           const userDocRef = doc(db, 'Users', user.uid);
 
+          updateProfile(user, {
+            displayName: theName,
+          }).then(() => {
+            console.log(user.displayName)
+          })
+
           await setDoc(userDocRef, {
-            email: email,
-            name: theName,
             username: userName,
+            name: theName,
+            email: email,
+            phone: phone,
+            posts: 0,
+            followers: 0,
+            following: 0,
+            Bio: "",
+            Darkmode: 'Off',
+            Public: 'Off',
+            Notifications: 'Off'
           });
           navigate('/home')
           // You can send a request to your authentication server here
@@ -74,7 +88,7 @@ const SignUp = () => {
     }
     else {
       setLoading(false)
-      setMyPassError("Inavlid Email !")
+      setMyPassError("Invalid Email !")
       showPassError()
       setTimeout(() => {
         hidePassError()
@@ -149,7 +163,7 @@ const SignUp = () => {
                 className='textbox'
                 type="text"
                 placeholder='Enter Username'
-                pattern="[a-z]+"
+                pattern="[a-z._]+"
                 title='Enter only small letters'
                 value={userName}
                 onChange={(e) => setUserName(e.target.value)}
@@ -162,6 +176,18 @@ const SignUp = () => {
                 placeholder='Enter Email'
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+              <br />
+              <input
+                className='textbox'
+                type="tel"
+                maxLength='10'
+                pattern="[0-9]{10,}"
+                title="Please enter a valid phone number (10 digits)"
+                placeholder='Enter Phone Number'
+                value={phone}
+                onChange={(e) => setPhoneNumber(e.target.value)}
                 required
               />
               <br />
@@ -196,7 +222,7 @@ const SignUp = () => {
               }
               <br />
 
-              <div className='myLink'>
+              <div className='myLink' style={{ paddingTop: '10px' }}>
                 <Link className='Link' to="/">Already have an account ?</Link>
               </div>
             </form>
