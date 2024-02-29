@@ -16,9 +16,10 @@
 }
 
 #nametag {
-    margin: 0px 2.08vw 0px 1.56vw;
+    margin: 0px 2.04vw 0px 1.56vw;
     line-height: 8px;
     text-align: center;
+    width: 145px;
 }
 
 #username {

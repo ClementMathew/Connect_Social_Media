@@ -25,8 +25,20 @@ const SignIn = () => {
     e.preventDefault();
     // Add your authentication logic here
 
-    signInWithEmailAndPassword(auth, email, password).then(() => {
-      navigate('/home');
+    signInWithEmailAndPassword(auth, email, password).then(async (credential) => {
+
+      const user = credential.user
+
+      const docRef = doc(collection(db, "Users"), user.uid)
+      const docSnap = await getDoc(docRef)
+      const userName = docSnap.data().username
+
+      const dataToHome = {
+        name: user.displayName,
+        username: userName
+      }
+
+      navigate('/home', { state: dataToHome });
     }).catch((error) => {
 
       setLoading(false)
@@ -82,14 +94,16 @@ const SignIn = () => {
       const docRef = doc(collection(db, "Users"), userData.uid)
       const docSnap = await getDoc(docRef);
       if (docSnap.exists()) {
-        navigate('/home')
+        const userName = docSnap.data().username
+        userData.username = userName
+        navigate('/home', { state: userData })
       } else {
         navigate("/cwg", { state: userData })
       }
 
       setLoadingCWG(false)
     }).catch((error) => {
-      
+
       setMyError("Check your Internet Connection !")
       showError()
       setTimeout(() => {
