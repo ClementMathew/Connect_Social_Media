@@ -58,7 +58,13 @@ const SignUp = () => {
             Public: 'Off',
             Notifications: 'Off'
           });
-          navigate('/home')
+
+          const dataToHome = {
+            username: userName,
+            name: theName
+          }
+
+          navigate('/home', { state: dataToHome })
           // You can send a request to your authentication server here
         } catch (error) {
 
@@ -163,7 +169,7 @@ const SignUp = () => {
                 className='textbox'
                 type="text"
                 placeholder='Enter Username'
-                pattern="[a-z._]+"
+                pattern="[a-z._0-9]+"
                 title='Enter only small letters'
                 value={userName}
                 onChange={(e) => setUserName(e.target.value)}

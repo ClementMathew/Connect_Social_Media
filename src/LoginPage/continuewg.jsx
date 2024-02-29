@@ -42,7 +42,8 @@ export default function ContinueWithGoogle() {
                 Public: 'Off',
                 Notifications: 'Off'
             });
-            navigate('/home')
+            userData.username = userName
+            navigate('/home', { state: userData })
             // You can send a request to your authentication server here
         } catch (error) {
 

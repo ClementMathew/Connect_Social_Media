@@ -95,7 +95,7 @@ const Home = () => {
                     </div>
                     <div id="nametag">
                         <p id="username">
-                            {dataToHome.username}
+                            {dataToHome.username.length > 13 ? dataToHome.username.slice(0, 13).concat('..') : dataToHome.username}
                         </p>
                         <p id="mainname">
                             {dataToHome.name}
