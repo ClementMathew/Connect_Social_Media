@@ -13,7 +13,7 @@ export default function Messages() {
 
     const [createToggle, setCreateToggle] = useState(false)
     const location = useLocation()
-    const dataToSearch = location.state.data
+    const dataToMessages = location.state.data
 
     const popUp = () => {
         setCreateToggle(!createToggle)
@@ -33,17 +33,17 @@ export default function Messages() {
                 </div>
 
                 <div id="navhome">
-                    <MessageNavComponent iconSource='home.png' navPage='/home' data={dataToSearch}></MessageNavComponent>
-                    <MessageNavComponent iconSource='search.png' navPage='/search'></MessageNavComponent>
-                    <MessageNavComponent selected='#F3F3F3' iconSource='messages.png' navPage='/messages'></MessageNavComponent>
-                    <MessageNavComponent iconSource='notifications.png' navPage='/notifications'></MessageNavComponent>
+                    <MessageNavComponent iconSource='home.png' navPage='/home' data={dataToMessages}></MessageNavComponent>
+                    <MessageNavComponent iconSource='search.png' navPage='/search' data={dataToMessages}></MessageNavComponent>
+                    <MessageNavComponent selected='#F3F3F3' iconSource='messages.png' navPage='/messages' data={dataToMessages}></MessageNavComponent>
+                    <MessageNavComponent iconSource='notifications.png' navPage='/notifications' data={dataToMessages}></MessageNavComponent>
 
                     <div id='nav' onClick={popUp} style={{ justifyContent: 'center' }}>
                         <img style={{ margin: '0px' }} src='create.png' alt="navIcon" />
                     </div>
 
-                    <MessageNavComponent iconSource='profile_icon.png' navPage='/profile'></MessageNavComponent>
-                    <MessageNavComponent iconSource='more.png' navPage='/more'></MessageNavComponent>
+                    <MessageNavComponent iconSource='profile_icon.png' navPage='/profile' data={dataToMessages}></MessageNavComponent>
+                    <MessageNavComponent iconSource='more.png' navPage='/more' data={dataToMessages}></MessageNavComponent>
                 </div>
             </div>
 

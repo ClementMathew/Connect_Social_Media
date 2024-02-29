@@ -19,7 +19,7 @@ export default function More() {
     }
 
     const location = useLocation()
-    const dataToSearch = location.state.data
+    const dataToMore = location.state.data
 
     return (
         <div id="containerhome">
@@ -33,18 +33,18 @@ export default function More() {
                 </div>
 
                 <div id="navhome">
-                    <NavComponent iconSource='home.png' navName="Home" navPage='/home' data={dataToSearch}></NavComponent>
-                    <NavComponent iconSource='search.png' navName="Search" navPage="/search" data={dataToSearch}></NavComponent>
-                    <NavComponent iconSource='messages.png' navName="Messages" navPage="/messages" data={dataToSearch}></NavComponent>
-                    <NavComponent iconSource='notifications.png' navName="Notifications" navPage="/notifications" data={dataToSearch}></NavComponent>
+                    <NavComponent iconSource='home.png' navName="Home" navPage='/home' data={dataToMore}></NavComponent>
+                    <NavComponent iconSource='search.png' navName="Search" navPage="/search" data={dataToMore}></NavComponent>
+                    <NavComponent iconSource='messages.png' navName="Messages" navPage="/messages" data={dataToMore}></NavComponent>
+                    <NavComponent iconSource='notifications.png' navName="Notifications" navPage="/notifications" data={dataToMore}></NavComponent>
 
                     <div id='nav' onClick={popUp}>
                         <img src='create.png' alt="navIcon" />
                         <p>Create</p>
                     </div>
 
-                    <NavComponent iconSource='profile_icon.png' navName="Profile" navPage="/profile" data={dataToSearch}></NavComponent>
-                    <NavComponent selected='#F3F3F3' iconSource='more.png' navName="More" navPage="/more" data={dataToSearch}></NavComponent>
+                    <NavComponent iconSource='profile_icon.png' navName="Profile" navPage="/profile" data={dataToMore}></NavComponent>
+                    <NavComponent selected='#F3F3F3' iconSource='more.png' navName="More" navPage="/more" data={dataToMore}></NavComponent>
                 </div>
                 <div id="sloganhome">Get Connected, Get Social</div>
             </div>
