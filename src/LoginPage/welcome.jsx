@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import app from "../Firebase/firebase";
 import { Link, useNavigate } from 'react-router-dom';
 import './welcome.css'
+import { collection, getDoc, doc, getFirestore } from 'firebase/firestore';
 
 const SignIn = () => {
 
@@ -15,6 +16,7 @@ const SignIn = () => {
   const [loadingCWG, setLoadingCWG] = useState(false)
 
   const auth = getAuth(app);
+  const db = getFirestore(app);
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
@@ -68,11 +70,26 @@ const SignIn = () => {
 
     setLoadingCWG(true)
     const provider = new GoogleAuthProvider();
-    signInWithPopup(auth, provider).then(() => {
-      setLoadingCWG(false)
-      navigate("/home")
-    }).catch((error) => {
+    signInWithPopup(auth, provider).then(async (credential) => {
 
+      const user = credential.user
+      let userData = {
+        name: user.displayName,
+        uid: user.uid,
+        email: user.email
+      }
+
+      const docRef = doc(collection(db, "Users"), userData.uid)
+      const docSnap = await getDoc(docRef);
+      if (docSnap.exists()) {
+        navigate('/home')
+      } else {
+        navigate("/cwg", { state: userData })
+      }
+
+      setLoadingCWG(false)
+    }).catch((error) => {
+      
       setMyError("Check your Internet Connection !")
       showError()
       setTimeout(() => {

@@ -53,7 +53,7 @@
 #userChats {
     height: 100%;
     overflow: auto;
-    height: 730px;
+    height: 720px;
     scrollbar-width: none;
 }
 

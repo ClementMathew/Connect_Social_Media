@@ -8,11 +8,36 @@ import '../HomeComponents/NavComponent.css'
 import CreateComponent from '../CreatePage/CreateComponent';
 import { getAuth } from 'firebase/auth'
 import app from '../Firebase/firebase';
+import { getFirestore, collection, doc, getDoc } from 'firebase/firestore'
 
 const Home = () => {
 
-    // const auth = getAuth(app)
-    // const userId = auth.currentUser.uid
+    const [fieldData, setfieldData] = useState({})
+
+    const auth = getAuth(app)
+    const db = getFirestore(app)
+
+    const fetchDocumentField = async () => {
+        try {
+            const userId = auth.currentUser.uid
+            const docRef = doc(collection(db, 'Users'), userId);
+            const docSnap = await getDoc(docRef);
+            if (docSnap.exists()) {
+                setfieldData(docSnap.data());
+            } else {
+                // Document does not exist
+                console.log('Document does not exist');
+            }
+        } catch (error) {
+            // Handle errors
+            console.error('Error fetching document:', error);
+        }
+    };
+
+    // Call the fetchDocumentField function
+    useEffect(() => {
+        fetchDocumentField();
+    })
 
     const [createToggle, setCreateToggle] = useState(false)
 
@@ -96,10 +121,10 @@ const Home = () => {
                     </div>
                     <div id="nametag">
                         <p id="username">
-                            __clement.m__
+                            {fieldData.username}
                         </p>
                         <p id="mainname">
-                            Clement Mathew
+                            {fieldData.name}
                         </p>
                     </div>
                     <div id="switchbutton">

@@ -8,6 +8,7 @@ import More from "./MorePage/more";
 import Profile from "./ProfilePage/profile";
 import Notifications from "./NotificationsPage/notifications";
 import Messages from "./MessagesPage/messages";
+import ContinueWithGoogle from "./LoginPage/continuewg";
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
       <Routes>
         <Route path="/" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/cwg" element={<ContinueWithGoogle />} />
         <Route path="/forgotpass" element={<ForgotPassword />} />
         <Route path="/home" element={<Home />} />
         <Route path="/search" element={<Search />} />
