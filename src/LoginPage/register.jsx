@@ -1,5 +1,5 @@
 import app from '../Firebase/firebase';
-import { createUserWithEmailAndPassword, getAuth, updateProfile, updatePhoneNumber } from 'firebase/auth';
+import { createUserWithEmailAndPassword, getAuth, updateProfile } from 'firebase/auth';
 import { getFirestore, doc, setDoc } from 'firebase/firestore';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
@@ -49,7 +49,7 @@ const SignUp = () => {
             username: userName,
             name: theName,
             email: email,
-            phone: phone,
+            phone: ("+91" + phone),
             posts: 0,
             followers: 0,
             following: 0,
@@ -61,7 +61,9 @@ const SignUp = () => {
 
           const dataToHome = {
             username: userName,
-            name: theName
+            name: theName,
+            email: email,
+            phone: ("+91" + phone)
           }
 
           navigate('/home', { state: dataToHome })

@@ -7,10 +7,13 @@ import MessageNavComponent from '../Components/MessageNavComponent'
 import ChatComponent from '../ChatComponents/ChatComponent'
 import '../NotificationsPage/notifications.css'
 import UserChats from '../ChatComponents/UserChats'
+import { useLocation } from 'react-router-dom'
 
 export default function Messages() {
 
     const [createToggle, setCreateToggle] = useState(false)
+    const location = useLocation()
+    const dataToSearch = location.state.data
 
     const popUp = () => {
         setCreateToggle(!createToggle)
@@ -30,7 +33,7 @@ export default function Messages() {
                 </div>
 
                 <div id="navhome">
-                    <MessageNavComponent iconSource='home.png' navPage='/home'></MessageNavComponent>
+                    <MessageNavComponent iconSource='home.png' navPage='/home' data={dataToSearch}></MessageNavComponent>
                     <MessageNavComponent iconSource='search.png' navPage='/search'></MessageNavComponent>
                     <MessageNavComponent selected='#F3F3F3' iconSource='messages.png' navPage='/messages'></MessageNavComponent>
                     <MessageNavComponent iconSource='notifications.png' navPage='/notifications'></MessageNavComponent>

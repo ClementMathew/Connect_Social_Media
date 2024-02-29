@@ -31,11 +31,13 @@ const SignIn = () => {
 
       const docRef = doc(collection(db, "Users"), user.uid)
       const docSnap = await getDoc(docRef)
-      const userName = docSnap.data().username
+      const fieldData = docSnap.data()
 
       const dataToHome = {
         name: user.displayName,
-        username: userName
+        username: fieldData.username,
+        phone: fieldData.phone,
+        email: fieldData.email
       }
 
       navigate('/home', { state: dataToHome });
@@ -93,9 +95,13 @@ const SignIn = () => {
 
       const docRef = doc(collection(db, "Users"), userData.uid)
       const docSnap = await getDoc(docRef);
+
       if (docSnap.exists()) {
-        const userName = docSnap.data().username
-        userData.username = userName
+
+        const fieldData = docSnap.data()
+        userData.username = fieldData.username
+        userData.phone = fieldData.phone
+
         navigate('/home', { state: userData })
       } else {
         navigate("/cwg", { state: userData })

@@ -7,6 +7,7 @@ import ProfileDetails from '../Components/ProfileDetails'
 import RecentSearch from '../Components/RecentSearch'
 import '../HomeComponents/NavComponent.css'
 import CreateComponent from '../CreatePage/CreateComponent';
+import { useLocation } from 'react-router-dom'
 
 export default function Search() {
 
@@ -15,6 +16,9 @@ export default function Search() {
     const popUp = () => {
         setCreateToggle(!createToggle)
     }
+
+    const location = useLocation()
+    const dataToSearch = location.state.data
 
     return (
         <div id='containerhome'>
@@ -27,18 +31,18 @@ export default function Search() {
                     <div id="orangestripe"></div>
                 </div>
                 <div id="navhome">
-                    <NavComponent iconSource='home.png' navName="Home" navPage='/home'></NavComponent>
-                    <NavComponent selected='#F3F3F3' iconSource='search.png' navName="Search" navPage="/search"></NavComponent>
-                    <NavComponent iconSource='messages.png' navName="Messages" navPage="/messages"></NavComponent>
-                    <NavComponent iconSource='notifications.png' navName="Notifications" navPage="/notifications"></NavComponent>
+                    <NavComponent iconSource='home.png' navName="Home" navPage='/home' data={dataToSearch}></NavComponent>
+                    <NavComponent selected='#F3F3F3' iconSource='search.png' navName="Search" navPage="/search" data={dataToSearch}></NavComponent>
+                    <NavComponent iconSource='messages.png' navName="Messages" navPage="/messages" data={dataToSearch}></NavComponent>
+                    <NavComponent iconSource='notifications.png' navName="Notifications" navPage="/notifications" data={dataToSearch}></NavComponent>
 
                     <div id='nav' onClick={popUp}>
                         <img src='create.png' alt="navIcon" />
                         <p>Create</p>
                     </div>
 
-                    <NavComponent iconSource='profile_icon.png' navName="Profile" navPage="/profile"></NavComponent>
-                    <NavComponent iconSource='more.png' navName="More" navPage="/more"></NavComponent>
+                    <NavComponent iconSource='profile_icon.png' navName="Profile" navPage="/profile" data={dataToSearch}></NavComponent>
+                    <NavComponent iconSource='more.png' navName="More" navPage="/more" data={dataToSearch}></NavComponent>
                 </div>
                 <div id="sloganhome">Get Connected, Get Social</div>
             </div>
@@ -83,10 +87,10 @@ export default function Search() {
 
                 <div id="profileDetails">
                     <img src="profile.jpg" alt="profilepic" />
-                    <ProfileDetails detailType='Username' detailName="__clement.m__"></ProfileDetails>
-                    <ProfileDetails detailType='Name' detailName="Clement Mathew"></ProfileDetails>
-                    <ProfileDetails detailType='Email' detailName="clementmathew924@gmail.com"></ProfileDetails>
-                    <ProfileDetails detailType='Phone' detailName="+918156819141"></ProfileDetails>
+                    <ProfileDetails detailType='Username' detailName={dataToSearch.username}></ProfileDetails>
+                    <ProfileDetails detailType='Name' detailName={dataToSearch.name}></ProfileDetails>
+                    <ProfileDetails detailType='Email' detailName={dataToSearch.email}></ProfileDetails>
+                    <ProfileDetails detailType='Phone' detailName={dataToSearch.phone}></ProfileDetails>
                 </div>
 
                 <div id="copyright" style={{ paddingTop: '144px' }}>

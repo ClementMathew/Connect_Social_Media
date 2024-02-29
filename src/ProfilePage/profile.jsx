@@ -1,6 +1,6 @@
 import React from 'react'
 import app from '../Firebase/firebase';
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { signOut, getAuth } from "firebase/auth";
 import NavComponent from '../HomeComponents/NavComponent'
 import '../HomePage/home.css'
@@ -16,6 +16,9 @@ export default function Profile() {
     const popUp = () => {
         setCreateToggle(!createToggle)
     }
+
+    const location = useLocation()
+    const dataToSearch = location.state.data
 
     const auth = getAuth(app);
 
@@ -44,18 +47,18 @@ export default function Profile() {
                 </div>
 
                 <div id="navhome">
-                    <NavComponent iconSource='home.png' navName="Home" navPage='/home'></NavComponent>
-                    <NavComponent iconSource='search.png' navName="Search" navPage="/search"></NavComponent>
-                    <NavComponent iconSource='messages.png' navName="Messages" navPage="/messages"></NavComponent>
-                    <NavComponent iconSource='notifications.png' navName="Notifications" navPage="/notifications"></NavComponent>
+                    <NavComponent iconSource='home.png' navName="Home" navPage='/home' data={dataToSearch}></NavComponent>
+                    <NavComponent iconSource='search.png' navName="Search" navPage="/search" data={dataToSearch}></NavComponent>
+                    <NavComponent iconSource='messages.png' navName="Messages" navPage="/messages" data={dataToSearch}></NavComponent>
+                    <NavComponent iconSource='notifications.png' navName="Notifications" navPage="/notifications" data={dataToSearch}></NavComponent>
 
                     <div id='nav' onClick={popUp}>
                         <img src='create.png' alt="navIcon" />
                         <p>Create</p>
                     </div>
 
-                    <NavComponent selected='#F3F3F3' iconSource='profile_icon.png' navName="Profile" navPage="/profile"></NavComponent>
-                    <NavComponent iconSource='more.png' navName="More" navPage="/more"></NavComponent>
+                    <NavComponent selected='#F3F3F3' iconSource='profile_icon.png' navName="Profile" navPage="/profile" data={dataToSearch}></NavComponent>
+                    <NavComponent iconSource='more.png' navName="More" navPage="/more" data={dataToSearch}></NavComponent>
                 </div>
                 <div id="sloganhome">Get Connected, Get Social</div>
             </div>

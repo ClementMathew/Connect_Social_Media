@@ -33,7 +33,7 @@ export default function ContinueWithGoogle() {
                 username: userName,
                 name: userData.name,
                 email: userData.email,
-                phone: phone,
+                phone: ("+91" + phone),
                 posts: 0,
                 followers: 0,
                 following: 0,
@@ -43,6 +43,8 @@ export default function ContinueWithGoogle() {
                 Notifications: 'Off'
             });
             userData.username = userName
+            userData.phone = ("+91" + phone)
+
             navigate('/home', { state: userData })
             // You can send a request to your authentication server here
         } catch (error) {
@@ -116,7 +118,7 @@ export default function ContinueWithGoogle() {
                                 className='textbox'
                                 type="text"
                                 placeholder='Enter Username'
-                                pattern="[a-z._]+"
+                                pattern="[a-z._0-9]+"
                                 title='Enter only small letters'
                                 value={userName}
                                 onChange={(e) => setUserName(e.target.value)}

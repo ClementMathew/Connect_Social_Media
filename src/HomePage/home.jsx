@@ -10,8 +10,15 @@ import { useLocation } from 'react-router-dom';
 
 const Home = () => {
 
-    const location = useLocation()
-    const dataToHome = location.state
+    let location = useLocation()
+    let dataToHome = {}
+
+    if (location.state) {
+        dataToHome = location.state
+    }
+    if (location.state.data) {
+        dataToHome = location.state.data
+    }
 
     const [createToggle, setCreateToggle] = useState(false)
 
@@ -39,18 +46,18 @@ const Home = () => {
                 </div>
 
                 <div id="navhome">
-                    <NavComponent selected='#F3F3F3' iconSource='home.png' navName="Home" navPage='/home'></NavComponent>
-                    <NavComponent iconSource='search.png' navName="Search" navPage="/search"></NavComponent>
-                    <NavComponent iconSource='messages.png' navName="Messages" navPage="/messages"></NavComponent>
-                    <NavComponent iconSource='notifications.png' navName="Notifications" navPage="/notifications"></NavComponent>
+                    <NavComponent selected='#F3F3F3' iconSource='home.png' navName="Home" navPage='/home' data={dataToHome}></NavComponent>
+                    <NavComponent iconSource='search.png' navName="Search" navPage="/search" data={dataToHome}></NavComponent>
+                    <NavComponent iconSource='messages.png' navName="Messages" navPage="/messages" data={dataToHome}></NavComponent>
+                    <NavComponent iconSource='notifications.png' navName="Notifications" navPage="/notifications" data={dataToHome}></NavComponent>
 
                     <div id='nav' onClick={popUp}>
                         <img src='create.png' alt="navIcon" />
                         <p>Create</p>
                     </div>
 
-                    <NavComponent iconSource='profile_icon.png' navName="Profile" navPage="/profile"></NavComponent>
-                    <NavComponent iconSource='more.png' navName="More" navPage="/more"></NavComponent>
+                    <NavComponent iconSource='profile_icon.png' navName="Profile" navPage="/profile" data={dataToHome}></NavComponent>
+                    <NavComponent iconSource='more.png' navName="More" navPage="/more" data={dataToHome}></NavComponent>
                 </div>
                 <div id="sloganhome">Get Connected, Get Social</div>
             </div>
