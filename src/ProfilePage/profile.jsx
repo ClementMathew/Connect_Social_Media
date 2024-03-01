@@ -8,13 +8,19 @@ import './profile.css'
 import { useState } from 'react';
 import '../HomeComponents/NavComponent.css'
 import CreateComponent from '../CreatePage/CreateComponent';
+import EditProfile from './editprofile';
 
 export default function Profile() {
 
     const [createToggle, setCreateToggle] = useState(false)
+    const [editProfileToggle, setEditProfileToggle] = useState(false)
 
     const popUp = () => {
         setCreateToggle(!createToggle)
+    }
+
+    const editPopUp = () => {
+        setEditProfileToggle(!editProfileToggle)
     }
 
     const location = useLocation()
@@ -68,12 +74,12 @@ export default function Profile() {
             <div id="profileRightSide">
                 <div id="profileHead">
                     <div id="profileHeadPic">
-                        <img src="profile.jpg" alt="profile page dp" />
+                        <img src="profile.png" alt="profile page dp" />
                     </div>
                     <div id="profileHeadBio">
                         <div id="profileHeadBioTop">
-                            <p >__clement.m__</p>
-                            <button id="editProfile">Edit Profile</button>
+                            <p >{dataToProfile.username}</p>
+                            <button id="editProfile" onClick={editPopUp}>Edit Profile</button>
                             <button id="logOut" onClick={handleClick}>Logout</button>
                         </div>
                         <div id="profileFollowers">
@@ -82,7 +88,7 @@ export default function Profile() {
                                 <p className='CountSuffix'>posts</p>
                             </div>
                             <div id="followersCount">
-                                <p className='CountPrefix followPointer'>1001</p>
+                                <p className='CountPrefix followPointer'>{dataToProfile.followers}</p>
                                 <p className='CountSuffix followPointer'>followers</p>
                             </div>
                             <div id="followingCount">
@@ -91,7 +97,7 @@ export default function Profile() {
                             </div>
                         </div>
                         <div id="profileBio">
-                            <p id='BioName'>Clement Mathew</p>
+                            <p id='BioName'>{dataToProfile.name}</p>
                             <p id='Bio'>Studying B.Tech at Gec Wayanad</p>
                         </div>
                     </div>
@@ -150,6 +156,8 @@ export default function Profile() {
             </div>
 
             <CreateComponent show={createToggle ? 'flex' : 'none'} createToggle={createToggle} setCreateToggle={setCreateToggle}></CreateComponent>
+
+            <EditProfile show={editProfileToggle ? 'flex' : 'none'} editProfileToggle={editProfileToggle} setEditProfileToggle={setEditProfileToggle}></EditProfile>
 
         </div>
     )

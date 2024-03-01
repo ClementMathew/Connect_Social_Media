@@ -71,11 +71,11 @@ export default function Notifications() {
       <div id="rightside">
 
         <div id="profileDetails">
-          <img src="profile.jpg" alt="profilepic" />
-          <ProfileDetails detailType='Username' detailName="__clement.m__"></ProfileDetails>
-          <ProfileDetails detailType='Name' detailName="Clement Mathew"></ProfileDetails>
-          <ProfileDetails detailType='Email' detailName="clementmathew924@gmail.com"></ProfileDetails>
-          <ProfileDetails detailType='Phone' detailName="+918156819141"></ProfileDetails>
+          <img src="profile.png" alt="profilepic" />
+          <ProfileDetails detailType='Username' detailName={dataToNotifications.username}></ProfileDetails>
+          <ProfileDetails detailType='Name' detailName={dataToNotifications.name}></ProfileDetails>
+          <ProfileDetails detailType='Email' detailName={dataToNotifications.email}></ProfileDetails>
+          <ProfileDetails detailType='Phone' detailName={dataToNotifications.phone}></ProfileDetails>
         </div>
 
         <div id="copyright" style={{ paddingTop: '144px' }}>

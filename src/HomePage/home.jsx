@@ -7,8 +7,14 @@ import { useEffect, useRef, useState } from "react";
 import '../HomeComponents/NavComponent.css'
 import CreateComponent from '../CreatePage/CreateComponent';
 import { useLocation } from 'react-router-dom';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import app from '../Firebase/firebase';
+import { doc, collection, getFirestore, getDoc } from 'firebase/firestore';
 
 const Home = () => {
+
+    const auth = getAuth(app)
+    const db = getFirestore(app)
 
     let location = useLocation()
     let dataToHome = {}
@@ -32,6 +38,25 @@ const Home = () => {
         story.current.addEventListener('wheel', (event) => {
             story?.current.scrollBy({ left: event.deltaY * 5, top: 0, behavior: "smooth" });
         })
+
+        const unsubscribe = onAuthStateChanged(auth, async (user) => {
+
+            const docRef = doc(collection(db, "Users"), user.uid)
+            const docSnap = await getDoc(docRef)
+            const fieldData = docSnap.data()
+
+            dataToHome.posts = fieldData.posts
+            dataToHome.followers = fieldData.followers
+            dataToHome.following = fieldData.following
+            dataToHome.darkmode = fieldData.darkmode
+            dataToHome.notifications = fieldData.notifications
+            dataToHome.bio = fieldData.bio
+            dataToHome.public = fieldData.public
+        });
+
+        // Clean up subscription to avoid memory leaks
+        return () => unsubscribe();
+
     }, [])
 
     return (
@@ -98,7 +123,7 @@ const Home = () => {
             <div id="rightside">
                 <div id="userhome">
                     <div id='profilepic'>
-                        <img src='profile.jpg' alt="profile pic" />
+                        <img src='profile.png' alt="profile pic" />
                     </div>
                     <div id="nametag">
                         <p id="username">

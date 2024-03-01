@@ -50,13 +50,14 @@ const SignUp = () => {
             name: theName,
             email: email,
             phone: ("+91" + phone),
-            posts: 0,
+            posts: {},
+            recenthistory: {},
             followers: 0,
             following: 0,
-            Bio: "",
-            Darkmode: 'Off',
-            Public: 'Off',
-            Notifications: 'Off'
+            bio: "",
+            darkmode: 'Off',
+            public: 'Off',
+            notifications: 'Off'
           });
 
           const dataToHome = {

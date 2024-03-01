@@ -34,13 +34,14 @@ export default function ContinueWithGoogle() {
                 name: userData.name,
                 email: userData.email,
                 phone: ("+91" + phone),
-                posts: 0,
+                posts: {},
+                recenthistory: {},
                 followers: 0,
                 following: 0,
-                Bio: "",
-                Darkmode: 'Off',
-                Public: 'Off',
-                Notifications: 'Off'
+                bio: "",
+                darkmode: 'Off',
+                public: 'Off',
+                notifications: 'Off'
             });
             userData.username = userName
             userData.phone = ("+91" + phone)
