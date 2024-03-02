@@ -86,7 +86,7 @@ export default function Search() {
             <div id="rightside">
 
                 <div id="profileDetails">
-                    <img src="profile.png" alt="profilepic" />
+                    <img src={dataToSearch.profilepicurl === '' ? 'profile.png' : dataToSearch.profilepicurl} alt="profilepic" />
                     <ProfileDetails detailType='Username' detailName={dataToSearch.username}></ProfileDetails>
                     <ProfileDetails detailType='Name' detailName={dataToSearch.name}></ProfileDetails>
                     <ProfileDetails detailType='Email' detailName={dataToSearch.email}></ProfileDetails>

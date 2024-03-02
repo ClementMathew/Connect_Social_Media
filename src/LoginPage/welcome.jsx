@@ -37,7 +37,8 @@ const SignIn = () => {
         name: user.displayName,
         username: fieldData.username,
         phone: fieldData.phone,
-        email: fieldData.email
+        email: fieldData.email,
+        profilepicurl: fieldData.profilepicurl
       }
 
       navigate('/home', { state: dataToHome });
@@ -101,6 +102,7 @@ const SignIn = () => {
         const fieldData = docSnap.data()
         userData.username = fieldData.username
         userData.phone = fieldData.phone
+        userData.profilepicurl = fieldData.profilepicurl
 
         navigate('/home', { state: userData })
       } else {

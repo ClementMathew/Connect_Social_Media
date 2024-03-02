@@ -1,8 +1,6 @@
 #profileRightSide {
     display: block;
     width: 80%;
-    /* overflow-y: auto;
-    height: 980px; */
 }
 
 #profileHead {
@@ -13,15 +11,26 @@
 
 #profileHeadPic {
     width: 38%;
+    padding-top: 25px;
     overflow: hidden;
-    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-#profileHeadPic img {
-    border-radius: 50%;
-    height: 250px;
+#profilePicShape {
     width: 250px;
-    margin-top: 90px;
+    height: 250px;
+    overflow: hidden;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#profilePicShape img {
+    width: 100%;
+    height: auto;
 }
 
 #profileHeadBio {
@@ -103,6 +112,7 @@
 }
 
 #Bio {
+    color: rgb(56, 56, 56);
     line-height: 13px;
     font-size: 19px;
     font-family: Arial, Helvetica, sans-serif;

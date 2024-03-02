@@ -71,7 +71,7 @@ export default function Notifications() {
       <div id="rightside">
 
         <div id="profileDetails">
-          <img src="profile.png" alt="profilepic" />
+          <img src={dataToNotifications.profilepicurl === '' ? 'profile.png' : dataToNotifications.profilepicurl}  alt="profilepic" />
           <ProfileDetails detailType='Username' detailName={dataToNotifications.username}></ProfileDetails>
           <ProfileDetails detailType='Name' detailName={dataToNotifications.name}></ProfileDetails>
           <ProfileDetails detailType='Email' detailName={dataToNotifications.email}></ProfileDetails>

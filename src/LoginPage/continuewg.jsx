@@ -36,6 +36,8 @@ export default function ContinueWithGoogle() {
                 phone: ("+91" + phone),
                 posts: {},
                 recenthistory: {},
+                notificationslist: {},
+                profilepicurl: '',
                 followers: 0,
                 following: 0,
                 bio: "",

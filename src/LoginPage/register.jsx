@@ -52,6 +52,8 @@ const SignUp = () => {
             phone: ("+91" + phone),
             posts: {},
             recenthistory: {},
+            notificationslist: {},
+            profilepicurl: '',
             followers: 0,
             following: 0,
             bio: "",
@@ -64,7 +66,7 @@ const SignUp = () => {
             username: userName,
             name: theName,
             email: email,
-            phone: ("+91" + phone)
+            phone: ("+91" + phone),
           }
 
           navigate('/home', { state: dataToHome })

@@ -39,24 +39,29 @@ const Home = () => {
             story?.current.scrollBy({ left: event.deltaY * 5, top: 0, behavior: "smooth" });
         })
 
-        const unsubscribe = onAuthStateChanged(auth, async (user) => {
+        try {
+            const unsubscribe = onAuthStateChanged(auth, async (user) => {
 
-            const docRef = doc(collection(db, "Users"), user.uid)
-            const docSnap = await getDoc(docRef)
-            const fieldData = docSnap.data()
+                const docRef = doc(collection(db, "Users"), user.uid)
+                const docSnap = await getDoc(docRef)
+                const fieldData = docSnap.data()
 
-            dataToHome.posts = fieldData.posts
-            dataToHome.followers = fieldData.followers
-            dataToHome.following = fieldData.following
-            dataToHome.darkmode = fieldData.darkmode
-            dataToHome.notifications = fieldData.notifications
-            dataToHome.bio = fieldData.bio
-            dataToHome.public = fieldData.public
-        });
+                dataToHome.profilepicurl = fieldData.profilepicurl
+                dataToHome.posts = fieldData.posts
+                dataToHome.followers = fieldData.followers
+                dataToHome.following = fieldData.following
+                dataToHome.darkmode = fieldData.darkmode
+                dataToHome.notifications = fieldData.notifications
+                dataToHome.bio = fieldData.bio
+                dataToHome.public = fieldData.public
+            });
 
-        // Clean up subscription to avoid memory leaks
-        return () => unsubscribe();
+            // Clean up subscription to avoid memory leaks
+            return () => unsubscribe();
 
+        } catch (error) {
+            console.log(error)
+        }
     }, [])
 
     return (
@@ -123,7 +128,7 @@ const Home = () => {
             <div id="rightside">
                 <div id="userhome">
                     <div id='profilepic'>
-                        <img src='profile.png' alt="profile pic" />
+                        <img src={dataToHome.profilepicurl === '' ? 'profile.png' : dataToHome.profilepicurl} alt="profile pic" />
                     </div>
                     <div id="nametag">
                         <p id="username">

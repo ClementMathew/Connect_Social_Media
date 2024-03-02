@@ -9,11 +9,13 @@ import { useState } from 'react';
 import '../HomeComponents/NavComponent.css'
 import CreateComponent from '../CreatePage/CreateComponent';
 import EditProfile from './editprofile';
+import ProfilePicUpload from './profilepic';
 
 export default function Profile() {
 
     const [createToggle, setCreateToggle] = useState(false)
     const [editProfileToggle, setEditProfileToggle] = useState(false)
+    const [uploadPicToggle, setUploadPicToggle] = useState(false)
 
     const popUp = () => {
         setCreateToggle(!createToggle)
@@ -23,11 +25,14 @@ export default function Profile() {
         setEditProfileToggle(!editProfileToggle)
     }
 
+    const profilePopUp = () => {
+        setUploadPicToggle(!uploadPicToggle)
+    }
+
     const location = useLocation()
     const dataToProfile = location.state.data
 
     const auth = getAuth(app);
-
     const navigate = useNavigate();
 
     const handleClick = (e) => {
@@ -73,8 +78,10 @@ export default function Profile() {
 
             <div id="profileRightSide">
                 <div id="profileHead">
-                    <div id="profileHeadPic">
-                        <img src="profile.png" alt="profile page dp" />
+                    <div id="profileHeadPic" onClick={profilePopUp}>
+                        <div id='profilePicShape'>
+                            <img src={dataToProfile.profilepicurl === '' ? 'profile.png' : dataToProfile.profilepicurl} alt="profile page dp" />
+                        </div>
                     </div>
                     <div id="profileHeadBio">
                         <div id="profileHeadBioTop">
@@ -84,7 +91,9 @@ export default function Profile() {
                         </div>
                         <div id="profileFollowers">
                             <div id="postsCount">
-                                <p className='CountPrefix'>20</p>
+                                <p className='CountPrefix'>{
+                                    Object.keys(dataToProfile.posts).length
+                                }</p>
                                 <p className='CountSuffix'>posts</p>
                             </div>
                             <div id="followersCount">
@@ -92,13 +101,13 @@ export default function Profile() {
                                 <p className='CountSuffix followPointer'>followers</p>
                             </div>
                             <div id="followingCount">
-                                <p className='CountPrefix followPointer'>902</p>
+                                <p className='CountPrefix followPointer'>{dataToProfile.following}</p>
                                 <p className='CountSuffix followPointer'>following</p>
                             </div>
                         </div>
                         <div id="profileBio">
                             <p id='BioName'>{dataToProfile.name}</p>
-                            <p id='Bio'>Studying B.Tech at Gec Wayanad</p>
+                            <p id='Bio'>{dataToProfile.bio ? dataToProfile.bio : "Add more about yourself"}</p>
                         </div>
                     </div>
                 </div>
@@ -158,6 +167,8 @@ export default function Profile() {
             <CreateComponent show={createToggle ? 'flex' : 'none'} createToggle={createToggle} setCreateToggle={setCreateToggle}></CreateComponent>
 
             <EditProfile show={editProfileToggle ? 'flex' : 'none'} editProfileToggle={editProfileToggle} setEditProfileToggle={setEditProfileToggle}></EditProfile>
+
+            <ProfilePicUpload data={dataToProfile} show={uploadPicToggle ? 'flex' : 'none'} uploadPicToggle={uploadPicToggle} setUploadPicToggle={setUploadPicToggle}></ProfilePicUpload>
 
         </div>
     )
