@@ -20,20 +20,20 @@ const SignUp = () => {
 
   const [loading, setLoading] = useState(false)
 
-  const auth = getAuth(app);
-  const db = getFirestore(app);
   const navigate = useNavigate();
-
+  
   const handleSubmit = async (e) => {
-
+    
     setLoading(true)
     e.preventDefault();
-
+    
     if (email.includes('.com')) {
-
+      
       if (password === repassword) {
-
+        
         try {
+          const auth = getAuth(app);
+          const db = getFirestore(app);
           const userCredential = await createUserWithEmailAndPassword(auth, email, password);
 
           const user = userCredential.user;

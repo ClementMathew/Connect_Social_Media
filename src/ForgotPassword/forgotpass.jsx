@@ -8,7 +8,6 @@ import '../LoginPage/welcome.css'
 
 function ForgotPassword() {
 
-    const auth = getAuth(app);
 
     const [loading, setLoading] = useState(false)
     const [myalert, setMyAlert] = useState('');
@@ -55,21 +54,29 @@ function ForgotPassword() {
 
         if (emalVal.includes('.com')) {
 
-            await sendPasswordResetEmail(auth, emalVal).then(data => {
-                setLoading(false)
-                setMyAlert("Check your Gmail !")
-                setTimeout(() => {
-                    hideAlert()
-                }, 2000
-                )
-            }).catch(err => {
-                setLoading(false)
-                setMyAlert("Check your Internet Connection !")
-                setTimeout(() => {
-                    hideAlert()
-                }, 2000
-                )
-            })
+            try {
+
+                const auth = getAuth(app);
+
+                await sendPasswordResetEmail(auth, emalVal).then(data => {
+                    setLoading(false)
+                    setMyAlert("Check your Gmail !")
+                    setTimeout(() => {
+                        hideAlert()
+                    }, 2000
+                    )
+                }).catch(err => {
+                    setLoading(false)
+                    setMyAlert("Check your Internet Connection !")
+                    setTimeout(() => {
+                        hideAlert()
+                    }, 2000
+                    )
+                })
+
+            } catch (error) {
+                console.log(error)
+            }
         }
         else {
             setLoading(false)

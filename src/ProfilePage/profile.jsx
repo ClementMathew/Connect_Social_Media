@@ -32,17 +32,23 @@ export default function Profile() {
     const location = useLocation()
     const dataToProfile = location.state.data
 
-    const auth = getAuth(app);
     const navigate = useNavigate();
 
     const handleClick = (e) => {
         e.preventDefault();
         // Add your authentication logic here
-        signOut(auth).then(() => {
-            navigate('/');
-        }).catch((error) => {
-            console.log(error);
-        });
+
+        try {
+            const auth = getAuth(app);
+
+            signOut(auth).then(() => {
+                navigate('/');
+            }).catch((error) => {
+                console.log(error);
+            });
+        } catch (error) {
+            console.log(error)
+        }
         // You can send a request to your authentication server here
     };
 

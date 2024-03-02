@@ -16,7 +16,6 @@ export default function ContinueWithGoogle() {
 
     const [loading, setLoading] = useState(false)
 
-    const db = getFirestore(app);
     const navigate = useNavigate();
     const location = useLocation();
     const userData = location.state
@@ -27,6 +26,7 @@ export default function ContinueWithGoogle() {
         e.preventDefault();
 
         try {
+            const db = getFirestore(app);
             const userDocRef = doc(db, 'Users', userData.uid);
 
             await setDoc(userDocRef, {

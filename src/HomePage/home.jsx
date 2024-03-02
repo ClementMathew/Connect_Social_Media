@@ -13,8 +13,6 @@ import { doc, collection, getFirestore, getDoc } from 'firebase/firestore';
 
 const Home = () => {
 
-    const auth = getAuth(app)
-    const db = getFirestore(app)
 
     let location = useLocation()
     let dataToHome = {}
@@ -40,6 +38,9 @@ const Home = () => {
         })
 
         try {
+            const auth = getAuth(app)
+            const db = getFirestore(app)
+
             const unsubscribe = onAuthStateChanged(auth, async (user) => {
 
                 const docRef = doc(collection(db, "Users"), user.uid)

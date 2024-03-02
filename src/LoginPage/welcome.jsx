@@ -15,8 +15,6 @@ const SignIn = () => {
   const [loading, setLoading] = useState(false)
   const [loadingCWG, setLoadingCWG] = useState(false)
 
-  const auth = getAuth(app);
-  const db = getFirestore(app);
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
@@ -25,34 +23,42 @@ const SignIn = () => {
     e.preventDefault();
     // Add your authentication logic here
 
-    signInWithEmailAndPassword(auth, email, password).then(async (credential) => {
+    try {
 
-      const user = credential.user
 
-      const docRef = doc(collection(db, "Users"), user.uid)
-      const docSnap = await getDoc(docRef)
-      const fieldData = docSnap.data()
+      const auth = getAuth(app);
+      const db = getFirestore(app);
+      signInWithEmailAndPassword(auth, email, password).then(async (credential) => {
 
-      const dataToHome = {
-        name: user.displayName,
-        username: fieldData.username,
-        phone: fieldData.phone,
-        email: fieldData.email,
-        profilepicurl: fieldData.profilepicurl
-      }
+        const user = credential.user
 
-      navigate('/home', { state: dataToHome });
-    }).catch((error) => {
+        const docRef = doc(collection(db, "Users"), user.uid)
+        const docSnap = await getDoc(docRef)
+        const fieldData = docSnap.data()
 
-      setLoading(false)
-      setMyError("Invalid Credentials !")
-      showError()
-      setTimeout(() => {
-        hideError()
-      }, 2000
-      )
-    });
-    // You can send a request to your authentication server here
+        const dataToHome = {
+          name: user.displayName,
+          username: fieldData.username,
+          phone: fieldData.phone,
+          email: fieldData.email,
+          profilepicurl: fieldData.profilepicurl
+        }
+
+        navigate('/home', { state: dataToHome });
+      }).catch((error) => {
+
+        setLoading(false)
+        setMyError("Invalid Credentials !")
+        showError()
+        setTimeout(() => {
+          hideError()
+        }, 2000
+        )
+      });
+      // You can send a request to your authentication server here
+    } catch (error) {
+      console.log(error)
+    }
   };
 
   const showError = () => {
@@ -85,40 +91,48 @@ const SignIn = () => {
 
     setLoadingCWG(true)
     const provider = new GoogleAuthProvider();
-    signInWithPopup(auth, provider).then(async (credential) => {
 
-      const user = credential.user
-      let userData = {
-        name: user.displayName,
-        uid: user.uid,
-        email: user.email
-      }
+    try {
+      const auth = getAuth(app);
+      const db = getFirestore(app);
+      signInWithPopup(auth, provider).then(async (credential) => {
 
-      const docRef = doc(collection(db, "Users"), userData.uid)
-      const docSnap = await getDoc(docRef);
+        const user = credential.user
+        let userData = {
+          name: user.displayName,
+          uid: user.uid,
+          email: user.email
+        }
 
-      if (docSnap.exists()) {
+        const docRef = doc(collection(db, "Users"), userData.uid)
+        const docSnap = await getDoc(docRef);
 
-        const fieldData = docSnap.data()
-        userData.username = fieldData.username
-        userData.phone = fieldData.phone
-        userData.profilepicurl = fieldData.profilepicurl
+        if (docSnap.exists()) {
 
-        navigate('/home', { state: userData })
-      } else {
-        navigate("/cwg", { state: userData })
-      }
+          const fieldData = docSnap.data()
+          userData.username = fieldData.username
+          userData.phone = fieldData.phone
+          userData.profilepicurl = fieldData.profilepicurl
 
-      setLoadingCWG(false)
-    }).catch((error) => {
+          navigate('/home', { state: userData })
+        } else {
+          navigate("/cwg", { state: userData })
+        }
 
-      setMyError("Check your Internet Connection !")
-      showError()
-      setTimeout(() => {
-        hideError()
-      }, 2000
-      )
-    });
+        setLoadingCWG(false)
+      }).catch((error) => {
+
+        setMyError("Check your Internet Connection !")
+        showError()
+        setTimeout(() => {
+          hideError()
+        }, 2000
+        )
+      });
+
+    } catch (error) {
+      console.log(error)
+    }
   };
 
   return (

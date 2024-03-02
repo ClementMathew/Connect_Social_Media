@@ -10,24 +10,22 @@ export default function CreateComponent(props) {
   const [toggleError, settoggleError] = useState({});
   const [loading, setLoading] = useState(false)
   const [imageUpload, setImageUpload] = useState(null);
-  const [imageUrls, setImageUrls] = useState([]);
 
   const popDown = () => {
     props.setCreateToggle(!props.createToggle)
     setImageUpload(null)
   }
 
-  const storage = getStorage(app)
-
   const uploadFile = () => {
 
     try {
       setLoading(true)
+      const storage = getStorage(app)
       if (imageUpload == null) return;
       const imageRef = ref(storage, `Users/${imageUpload.name}`);
       uploadBytes(imageRef, imageUpload).then((snapshot) => {
         getDownloadURL(snapshot.ref).then((url) => {
-          setImageUrls((prev) => [...prev, url]);
+
           setLoading(false)
           setMyError("Successfully Uploaded !")
           showError()

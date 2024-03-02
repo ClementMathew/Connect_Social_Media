@@ -16,15 +16,17 @@ export default function ProfilePicUpload(props) {
         setImageUpload(null)
     }
 
-    const storage = getStorage(app)
-    const db = getFirestore(app)
-
     const uploadFile = () => {
 
         try {
+            const storage = getStorage(app)
+            const db = getFirestore(app)
+
             setLoading(true)
             if (imageUpload == null) return;
+
             const imageRef = ref(storage, `Users/${props.data.username}/${imageUpload.name}`);
+            
             uploadBytes(imageRef, imageUpload).then((snapshot) => {
                 getDownloadURL(snapshot.ref).then(async (url) => {
 
