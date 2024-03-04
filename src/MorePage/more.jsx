@@ -99,7 +99,7 @@ export default function More() {
                 </div>
             </div>
 
-            <CreateComponent show={createToggle ? 'flex' : 'none'} createToggle={createToggle} setCreateToggle={setCreateToggle}></CreateComponent>
+            <CreateComponent data={dataToMore} show={createToggle ? 'flex' : 'none'} createToggle={createToggle} setCreateToggle={setCreateToggle}></CreateComponent>
 
         </div >
     )

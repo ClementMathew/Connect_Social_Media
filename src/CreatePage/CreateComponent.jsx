@@ -3,6 +3,7 @@ import './CreateComponent.css'
 import '../HomePage/home.css'
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage'
 import app from '../Firebase/firebase'
+import { collection, doc, getDoc, getFirestore, updateDoc, setDoc } from 'firebase/firestore'
 
 export default function CreateComponent(props) {
 
@@ -20,11 +21,47 @@ export default function CreateComponent(props) {
 
     try {
       setLoading(true)
+      const db = getFirestore(app)
       const storage = getStorage(app)
       if (imageUpload == null) return;
-      const imageRef = ref(storage, `Users/${imageUpload.name}`);
+
+      const imageRef = ref(storage, `Users/${props.data.username}/Posts/${imageUpload.name}`);
+
       uploadBytes(imageRef, imageUpload).then((snapshot) => {
-        getDownloadURL(snapshot.ref).then((url) => {
+        getDownloadURL(snapshot.ref).then(async (url) => {
+
+          const docRef1 = doc(collection(db, "Users"), props.data.uid)
+          const docSnap = (await getDoc(docRef1)).data()
+          let postData = docSnap.posts
+
+          const len = Object.keys(postData).length
+
+          postData[len] = {
+            url: url,
+            likes: 0,
+            commentcount: 0,
+            comments: {},
+            share: 0,
+            about: ''
+          }
+
+          await updateDoc(docRef1, {
+            posts: postData
+          })
+
+          const postId = props.data.uid.concat(url.slice(-20))
+          const docRef2 = doc(db, "Posts", postId)
+
+          await setDoc(docRef2, {
+            profilepicurl: docSnap.profilepicurl,
+            username: docSnap.username,
+            url: url,
+            likes: 0,
+            commentcount: 0,
+            comments: {},
+            share: 0,
+            about: ''
+          })
 
           setLoading(false)
           setMyError("Successfully Uploaded !")

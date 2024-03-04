@@ -135,20 +135,29 @@
 }
 
 #profilePostImages {
-    margin-left: 2px;
-    margin-right: 1px;
+    /* margin: 2px; */
     scrollbar-width: none;
     overflow-y: auto;
-    height: 70vh;
+    max-height: 70vh;
     display: grid;
-    grid-gap: 1fr;
-    grid-template-columns: repeat(auto-fit, minmax(217px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(217px, 0fr));
 }
 
-#profilePostImages img {
+#profilePostImagesShape {
+    border-top: 2px solid white;
+    border-left: 2px solid white;
+    background-color: black;
     width: 217px;
     height: 217px;
-    margin: 1px 0px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#profilePostImagesIn {
+    width: 100%;
+    height: auto;
 }
 
 #profilePostImages::-webkit-scrollbar {

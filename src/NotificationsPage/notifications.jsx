@@ -71,7 +71,7 @@ export default function Notifications() {
       <div id="rightside">
 
         <div id="profileDetails">
-          <img src={dataToNotifications.profilepicurl === '' ? 'profile.png' : dataToNotifications.profilepicurl}  alt="profilepic" />
+          <img src={dataToNotifications.profilepicurl === '' ? 'profile.png' : dataToNotifications.profilepicurl} alt="profilepic" />
           <ProfileDetails detailType='Username' detailName={dataToNotifications.username}></ProfileDetails>
           <ProfileDetails detailType='Name' detailName={dataToNotifications.name}></ProfileDetails>
           <ProfileDetails detailType='Email' detailName={dataToNotifications.email}></ProfileDetails>
@@ -83,7 +83,7 @@ export default function Notifications() {
         </div>
       </div>
 
-      <CreateComponent show={createToggle ? 'flex' : 'none'} createToggle={createToggle} setCreateToggle={setCreateToggle}></CreateComponent>
+      <CreateComponent data={dataToNotifications} show={createToggle ? 'flex' : 'none'} createToggle={createToggle} setCreateToggle={setCreateToggle}></CreateComponent>
 
     </div>
   )

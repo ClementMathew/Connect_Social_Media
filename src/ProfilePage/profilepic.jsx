@@ -25,7 +25,7 @@ export default function ProfilePicUpload(props) {
             setLoading(true)
             if (imageUpload == null) return;
 
-            const imageRef = ref(storage, `Users/${props.data.username}/${imageUpload.name}`);
+            const imageRef = ref(storage, `Users/${props.data.username}/Profile Picture/${imageUpload.name}`);
             
             uploadBytes(imageRef, imageUpload).then((snapshot) => {
                 getDownloadURL(snapshot.ref).then(async (url) => {

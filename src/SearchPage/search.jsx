@@ -98,7 +98,7 @@ export default function Search() {
                 </div>
             </div>
 
-            <CreateComponent show={createToggle ? 'flex' : 'none'} createToggle={createToggle} setCreateToggle={setCreateToggle}></CreateComponent>
+            <CreateComponent data={dataToSearch} show={createToggle ? 'flex' : 'none'} createToggle={createToggle} setCreateToggle={setCreateToggle}></CreateComponent>
 
         </div>
     )

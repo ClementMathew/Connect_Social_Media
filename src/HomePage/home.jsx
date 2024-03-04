@@ -9,7 +9,7 @@ import CreateComponent from '../CreatePage/CreateComponent';
 import { useLocation } from 'react-router-dom';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import app from '../Firebase/firebase';
-import { doc, collection, getFirestore, getDoc } from 'firebase/firestore';
+import { doc, collection, getFirestore, getDoc, getDocs } from 'firebase/firestore';
 
 const Home = () => {
 
@@ -25,12 +25,15 @@ const Home = () => {
     }
 
     const [createToggle, setCreateToggle] = useState(false)
+    const [postDatas, setPostDatas] = useState({})
 
     const popUp = () => {
         setCreateToggle(!createToggle)
     }
 
     const story = useRef(null);
+
+    let allPosts = {}
 
     useEffect(() => {
         story.current.addEventListener('wheel', (event) => {
@@ -40,6 +43,18 @@ const Home = () => {
         try {
             const auth = getAuth(app)
             const db = getFirestore(app)
+
+            const fetchPosts = async () => {
+                const docPosts = await getDocs(collection(db, "Posts"))
+                docPosts.forEach((doc) => {
+
+                    let ID = doc.id
+                    allPosts[ID] = doc.data()
+                })
+                console.log(allPosts)
+            }
+
+            fetchPosts()
 
             const unsubscribe = onAuthStateChanged(auth, async (user) => {
 
@@ -115,7 +130,8 @@ const Home = () => {
                 <div className="horizontalline"></div>
 
                 <div id="posthome">
-                    <PostComponent postPicSource='profile.jpg' postName='__clement.m__' postSource='post.png' postLikes='736' postComments='126' postShare='56' postAbout='Excellent Performance ...'></PostComponent>
+
+                    <PostComponent postPicSource={allPosts.username} postName='__clement.m__' postSource='post.png' postLikes='736' postComments='126' postShare='56' postAbout='Excellent Performance ...'></PostComponent>
                     <PostComponent postPicSource='profile.jpg' postName='__clement.m__' postSource='post.png' postLikes='736' postComments='126' postShare='56' postAbout='Excellent Performance ...'></PostComponent>
                     <PostComponent postPicSource='profile.jpg' postName='__clement.m__' postSource='post.png' postLikes='736' postComments='126' postShare='56' postAbout='Excellent Performance ...'></PostComponent>
                     <PostComponent postPicSource='profile.jpg' postName='__clement.m__' postSource='post.png' postLikes='736' postComments='126' postShare='56' postAbout='Excellent Performance ...'></PostComponent>
@@ -163,7 +179,7 @@ const Home = () => {
                 </div>
             </div>
 
-            <CreateComponent show={createToggle ? 'flex' : 'none'} createToggle={createToggle} setCreateToggle={setCreateToggle}></CreateComponent>
+            <CreateComponent data={dataToHome} show={createToggle ? 'flex' : 'none'} createToggle={createToggle} setCreateToggle={setCreateToggle}></CreateComponent>
 
         </div>
     );

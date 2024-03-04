@@ -222,10 +222,10 @@ const SignIn = () => {
         </div>
       </div>
 
-      {loadingCWG ? <div id="loadingCWG" >
+      {/* {loadingCWG ? <div id="loadingCWG" >
         <img src="loading_leaf.gif" alt="loading..." />
         <img src="loading_leaf.gif" alt="loading..." />
-      </div> : ''}
+      </div> : ''} */}
 
     </>
   );

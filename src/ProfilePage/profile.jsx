@@ -121,56 +121,26 @@ export default function Profile() {
                 <div id="profilePosts">
                     <div className="profileHorizontalLine"></div>
                     <div id='profilePostsHead'>Posts</div>
+                    <hr style={{
+                        color: 'white',
+                        border: '1px solid #e7e7e7',
+                        margin: '0px'
+                    }} />
                     <div id="profilePostImages">
-                        <img src="profile.jpg" alt="post pic" />
-                        <img src="profile.jpg" alt="post pic" />
-                        <img src="profile.jpg" alt="post pic" />
-                        <img src="profile.jpg" alt="post pic" />
-                        <img src="profile.jpg" alt="post pic" />
-                        <img src="profile.jpg" alt="post pic" />
-                        <img src="profile.jpg" alt="post pic" />
-                        <img src="profile.jpg" alt="post pic" />
-                        <img src="profile.jpg" alt="post pic" />
-                        <img src="profile.jpg" alt="post pic" />
-                        <img src="profile.jpg" alt="post pic" />
-                        <img src="profile.jpg" alt="post pic" />
-                        <img src="profile.jpg" alt="post pic" />
-                        <img src="profile.jpg" alt="post pic" />
-                        <img src="profile.jpg" alt="post pic" />
-                        <img src="profile.jpg" alt="post pic" />
-                        <img src="profile.jpg" alt="post pic" />
-                        <img src="profile.jpg" alt="post pic" />
-                        <img src="profile.jpg" alt="post pic" />
-                        <img src="profile.jpg" alt="post pic" />
-                        <img src="profile.jpg" alt="post pic" />
-                        <img src="profile.jpg" alt="post pic" />
-                        <img src="profile.jpg" alt="post pic" />
-                        <img src="profile.jpg" alt="post pic" />
-                        <img src="profile.jpg" alt="post pic" />
-                        <img src="profile.jpg" alt="post pic" />
-                        <img src="profile.jpg" alt="post pic" />
-                        <img src="profile.jpg" alt="post pic" />
-                        <img src="profile.jpg" alt="post pic" />
-                        <img src="profile.jpg" alt="post pic" />
-                        <img src="profile.jpg" alt="post pic" />
-                        <img src="profile.jpg" alt="post pic" />
-                        <img src="profile.jpg" alt="post pic" />
-                        <img src="profile.jpg" alt="post pic" />
-                        <img src="profile.jpg" alt="post pic" />
-                        <img src="profile.jpg" alt="post pic" />
-                        <img src="profile.jpg" alt="post pic" />
-                        <img src="profile.jpg" alt="post pic" />
-                        <img src="profile.jpg" alt="post pic" />
-                        <img src="profile.jpg" alt="post pic" />
-                        <img src="profile.jpg" alt="post pic" />
-                        <img src="profile.jpg" alt="post pic" />
-                        <img src="profile.jpg" alt="post pic" />
+
+                        {Object.keys(dataToProfile.posts).map((key, index) => (
+
+                            <div id='profilePostImagesShape'>
+                                < img id='profilePostImagesIn' key={index} src={dataToProfile.posts[index].url} alt="post pic" />
+                            </div>
+                        ))}
+
                         <div style={{ paddingBottom: '400px' }}></div>
                     </div>
                 </div>
             </div>
 
-            <CreateComponent show={createToggle ? 'flex' : 'none'} createToggle={createToggle} setCreateToggle={setCreateToggle}></CreateComponent>
+            <CreateComponent data={dataToProfile} show={createToggle ? 'flex' : 'none'} createToggle={createToggle} setCreateToggle={setCreateToggle}></CreateComponent>
 
             <EditProfile show={editProfileToggle ? 'flex' : 'none'} editProfileToggle={editProfileToggle} setEditProfileToggle={setEditProfileToggle}></EditProfile>
 
