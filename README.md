@@ -1,5 +1,9 @@
 # Connect
+<<<<<<< HEAD
 # aish
+=======
+# ashi
+>>>>>>> 5610e5abee1a98ad0c99e24e5a29c29ba34c0957
 ## Available Scripts
 
 In the project directory, you can run:
