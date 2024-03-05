@@ -130,8 +130,8 @@ export default function Profile() {
 
                         {Object.keys(dataToProfile.posts).map((key, index) => (
 
-                            <div id='profilePostImagesShape'>
-                                < img id='profilePostImagesIn' key={index} src={dataToProfile.posts[index].url} alt="post pic" />
+                            <div key={key} id='profilePostImagesShape'>
+                                < img id='profilePostImagesIn' src={dataToProfile.posts[index].url} alt="post pic" />
                             </div>
                         ))}
 

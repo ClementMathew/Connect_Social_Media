@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './CreateComponent.css'
 import '../HomePage/home.css'
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage'
 import app from '../Firebase/firebase'
-import { collection, doc, getDoc, getFirestore, updateDoc, setDoc } from 'firebase/firestore'
+import { collection, doc, getDoc, getFirestore, updateDoc, setDoc, onSnapshot } from 'firebase/firestore'
 
 export default function CreateComponent(props) {
 
@@ -16,6 +16,23 @@ export default function CreateComponent(props) {
     props.setCreateToggle(!props.createToggle)
     setImageUpload(null)
   }
+
+  let postsLength = 0
+
+  useEffect(() => {
+
+    try {
+      const db = getFirestore(app)
+
+      const collectionRef = collection(db, "Posts")
+      onSnapshot(collectionRef, (snapshot) => {
+        postsLength = snapshot.size
+      })
+
+    } catch (error) {
+      console.log(error)
+    }
+  })
 
   const uploadFile = () => {
 
@@ -49,7 +66,8 @@ export default function CreateComponent(props) {
             posts: postData
           })
 
-          const postId = props.data.uid.concat(url.slice(-20))
+          const postId = postsLength + "_" + props.data.uid
+          console.log(postId)
           const docRef2 = doc(db, "Posts", postId)
 
           await setDoc(docRef2, {

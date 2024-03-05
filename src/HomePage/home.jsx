@@ -1,7 +1,7 @@
 import './home.css'
+import '../HomeComponents/PostComponent.css'
 import SuggestComponent from "../HomeComponents/SuggestComponent";
 import StoryComponent from "../HomeComponents/StoryComponent";
-import PostComponent from "../HomeComponents/PostComponent";
 import NavComponent from "../HomeComponents/NavComponent";
 import { useEffect, useRef, useState } from "react";
 import '../HomeComponents/NavComponent.css'
@@ -12,7 +12,6 @@ import app from '../Firebase/firebase';
 import { doc, collection, getFirestore, getDoc, getDocs } from 'firebase/firestore';
 
 const Home = () => {
-
 
     let location = useLocation()
     let dataToHome = {}
@@ -51,7 +50,16 @@ const Home = () => {
                     let ID = doc.id
                     allPosts[ID] = doc.data()
                 })
-                console.log(allPosts)
+
+                const entries = Object.entries(allPosts);
+
+                // Reverse the array of entries
+                const reversedEntries = entries.reverse();
+
+                // Convert the reversed array back to an object
+                const reversedPosts = Object.fromEntries(reversedEntries);
+
+                setPostDatas(reversedPosts)
             }
 
             fetchPosts()
@@ -131,10 +139,43 @@ const Home = () => {
 
                 <div id="posthome">
 
-                    <PostComponent postPicSource={allPosts.username} postName='__clement.m__' postSource='post.png' postLikes='736' postComments='126' postShare='56' postAbout='Excellent Performance ...'></PostComponent>
-                    <PostComponent postPicSource='profile.jpg' postName='__clement.m__' postSource='post.png' postLikes='736' postComments='126' postShare='56' postAbout='Excellent Performance ...'></PostComponent>
-                    <PostComponent postPicSource='profile.jpg' postName='__clement.m__' postSource='post.png' postLikes='736' postComments='126' postShare='56' postAbout='Excellent Performance ...'></PostComponent>
-                    <PostComponent postPicSource='profile.jpg' postName='__clement.m__' postSource='post.png' postLikes='736' postComments='126' postShare='56' postAbout='Excellent Performance ...'></PostComponent>
+                    {
+                        Object.keys(postDatas).map((key) => (
+
+                            <div id="post" key={key}>
+
+                                <div id="posthead">
+                                    <div id="postProfilePic">
+                                        <img src={postDatas[key].profilepicurl} alt="profilepicture" />
+                                    </div>
+                                    <div id="postname">{postDatas[key].username}</div>
+                                </div>
+                                <div className="horizontalline"></div>
+                                <div id="postimage">
+                                    <img src={postDatas[key].url} alt="postimage" />
+                                </div>
+                                <div id="postfoot">
+                                    <div id="likes">
+                                        <img src="not_like.png" alt="like" />
+                                        <p>{postDatas[key].likes} Likes</p>
+                                    </div>
+                                    <div id="comments">
+                                        <img src="comment.png" alt="comment" />
+                                        <p>{postDatas[key].commentcount} Comments</p>
+                                    </div>
+                                    <div id="share">
+                                        <img src="share.png" alt="share" />
+                                        <p>{postDatas[key].share} Shares</p>
+                                    </div>
+                                    <div id="postabout">
+                                        <img src="dot.png" alt="dot" />
+                                        <p>{postDatas[key].about}</p>
+                                    </div>
+                                </div>
+                                <div className="horizontalline"></div>
+                            </div>
+                        ))
+                    }
 
                     <div style={{ paddingBottom: '120px' }}></div>
                 </div>
@@ -181,7 +222,7 @@ const Home = () => {
 
             <CreateComponent data={dataToHome} show={createToggle ? 'flex' : 'none'} createToggle={createToggle} setCreateToggle={setCreateToggle}></CreateComponent>
 
-        </div>
+        </div >
     );
 }
 
