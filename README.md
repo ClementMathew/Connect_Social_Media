@@ -1,6 +1,7 @@
 # Connect
 <<<<<<< HEAD
 # aish
+
 =======
 # ashi
 >>>>>>> 5610e5abee1a98ad0c99e24e5a29c29ba34c0957
@@ -70,3 +71,6 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+   
+ 
+ # bhhbhnbh
