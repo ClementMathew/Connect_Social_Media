@@ -1,5 +1,14 @@
 # Connect
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+# aish
+
+=======
+# ashi
+>>>>>>> 5610e5abee1a98ad0c99e24e5a29c29ba34c0957
+>>>>>>> 477695eb39a077d61fbe2ac85462db6f48d58881
 ## Available Scripts
 
 In the project directory, you can run:
@@ -66,3 +75,6 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+   
+ 
+ # bhhbhnbh
