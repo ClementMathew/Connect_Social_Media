@@ -21,16 +21,16 @@ const SignUp = () => {
   const [loading, setLoading] = useState(false)
 
   const navigate = useNavigate();
-  
+
   const handleSubmit = async (e) => {
-    
+
     setLoading(true)
     e.preventDefault();
-    
+
     if (email.includes('.com')) {
-      
+
       if (password === repassword) {
-        
+
         try {
           const auth = getAuth(app);
           const db = getFirestore(app);
@@ -57,9 +57,9 @@ const SignUp = () => {
             followers: 0,
             following: 0,
             bio: "",
-            darkmode: 'Off',
-            public: 'Off',
-            notifications: 'Off'
+            darkmode: false,
+            public: false,
+            notifications: false
           });
 
           const dataToHome = {

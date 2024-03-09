@@ -25,7 +25,6 @@ const SignIn = () => {
 
     try {
 
-
       const auth = getAuth(app);
       const db = getFirestore(app);
       signInWithEmailAndPassword(auth, email, password).then(async (credential) => {

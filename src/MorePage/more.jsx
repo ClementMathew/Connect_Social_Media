@@ -9,13 +9,28 @@ import { useState } from 'react'
 import '../HomeComponents/NavComponent.css'
 import CreateComponent from '../CreatePage/CreateComponent';
 import { useLocation } from 'react-router-dom'
+import Report from './report'
+import About from './about'
+import Help from './help'
 
 export default function More() {
 
     const [createToggle, setCreateToggle] = useState(false)
+    const [reportToggle, setReportToggle] = useState(false)
+    const [aboutToggle, setAboutToggle] = useState(false)
+    const [helpToggle, setHelpToggle] = useState(false)
 
     const popUp = () => {
         setCreateToggle(!createToggle)
+    }
+    const popReport = () => {
+        setReportToggle(!reportToggle)
+    }
+    const popAbout = () => {
+        setAboutToggle(!aboutToggle)
+    }
+    const popHelp = () => {
+        setHelpToggle(!helpToggle)
     }
 
     const location = useLocation()
@@ -65,32 +80,32 @@ export default function More() {
 
                         <div className='moreToggleSwitch'>
                             <p className="moreContent">Dark Mode</p>
-                            <ToggleSwitch></ToggleSwitch>
+                            <ToggleSwitch userid={dataToMore.userid} toggle={dataToMore.darkmode} type='darkmode'></ToggleSwitch>
                         </div>
 
                         <hr />
                         <div className='moreToggleSwitch'>
                             <p className="moreContent">Public Account</p>
-                            <ToggleSwitch ></ToggleSwitch>
+                            <ToggleSwitch userid={dataToMore.userid} toggle={dataToMore.public} type='public'></ToggleSwitch>
                         </div>
 
                         <hr />
                         <div className='moreToggleSwitch'>
                             <p className="moreContent">Notifications</p>
-                            <ToggleSwitch></ToggleSwitch>
+                            <ToggleSwitch userid={dataToMore.userid} toggle={dataToMore.notifications} type='notifications'></ToggleSwitch>
                         </div>
 
                         <hr />
                         <p className="moreContent" id='deleteAccount'>Delete Account</p>
 
                         <hr />
-                        <p className="moreContent">Report Problem</p>
+                        <p className="moreContent" onClick={popReport}>Report Problem</p>
 
                         <hr />
-                        <p className="moreContent">About</p>
+                        <p className="moreContent" onClick={popAbout} >About</p>
 
                         <hr />
-                        <p className="moreContent">Help</p>
+                        <p className="moreContent" onClick={popHelp}>Help</p>
 
                         <div style={{ padding: '7px' }}></div>
 
@@ -100,6 +115,12 @@ export default function More() {
             </div>
 
             <CreateComponent data={dataToMore} show={createToggle ? 'flex' : 'none'} createToggle={createToggle} setCreateToggle={setCreateToggle}></CreateComponent>
+
+            <Report show={reportToggle ? 'flex' : 'none'} reportToggle={reportToggle} setReportToggle={setReportToggle}></Report>
+
+            <About show={aboutToggle ? 'flex' : 'none'} aboutToggle={aboutToggle} setAboutToggle={setAboutToggle}></About>
+
+            <Help show={helpToggle ? 'flex' : 'none'} helpToggle={helpToggle} setHelpToggle={setHelpToggle}></Help>
 
         </div >
     )

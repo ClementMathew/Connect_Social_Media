@@ -9,6 +9,7 @@ import Profile from "./ProfilePage/profile";
 import Notifications from "./NotificationsPage/notifications";
 import Messages from "./MessagesPage/messages";
 import ContinueWithGoogle from "./LoginPage/continuewg";
+import SearchedProfile from "./SearchPage/searchedprofile";
 
 function App() {
 
@@ -25,6 +26,7 @@ function App() {
         <Route path="/notifications" element={<Notifications />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/more" element={<More />} />
+        <Route path="/searchedprofile" element={<SearchedProfile />} />
       </Routes>
     </BrowserRouter>);
 }

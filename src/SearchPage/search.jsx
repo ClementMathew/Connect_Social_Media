@@ -12,6 +12,8 @@ import { useLocation } from 'react-router-dom'
 export default function Search() {
 
     const [createToggle, setCreateToggle] = useState(false)
+    const [searchedUser, setSearchedUser] = useState({})
+    const [searchedUserToggle, setSearchedUserToggle] = useState(false)
 
     const popUp = () => {
         setCreateToggle(!createToggle)
@@ -19,6 +21,17 @@ export default function Search() {
 
     const location = useLocation()
     const dataToSearch = location.state.data
+
+    const handleClick = (e) => {
+        Object.keys(dataToSearch.allusers).map((key) => {
+            const username = dataToSearch.allusers[key].username
+            // console.log(searchedUser)
+            if (username.includes(e.target.value)) {
+                setSearchedUserToggle(true)
+                setSearchedUser(dataToSearch.allusers[key])
+            }
+        })
+    }
 
     return (
         <div id='containerhome'>
@@ -52,9 +65,11 @@ export default function Search() {
             <div id="center">
 
                 <div id="searchbar">
-                    <input id="searchbox" placeholder='Enter something ...'>
+                    <input id="searchbox" placeholder='Enter something ...' onChange={(e) => {
+                        handleClick(e)
+                    }} >
                     </input>
-                    <button id="searchbutton">Search</button>
+                    <button onClick={handleClick} id="searchbutton">Search</button>
                 </div>
 
                 <div id="recent">
@@ -63,20 +78,11 @@ export default function Search() {
                 </div>
 
                 <div id="recentHistory">
-                    <RecentSearch picSource='profile.jpg' userName='__clement.m__' mainName='Clement Mathew'></RecentSearch>
-                    <RecentSearch picSource='profile.jpg' userName='__clement.m__' mainName='Clement Mathew'></RecentSearch>
-                    <RecentSearch picSource='profile.jpg' userName='__clement.m__' mainName='Clement Mathew'></RecentSearch>
-                    <RecentSearch picSource='profile.jpg' userName='__clement.m__' mainName='Clement Mathew'></RecentSearch>
-                    <RecentSearch picSource='profile.jpg' userName='__clement.m__' mainName='Clement Mathew'></RecentSearch>
-                    <RecentSearch picSource='profile.jpg' userName='__clement.m__' mainName='Clement Mathew'></RecentSearch>
-                    <RecentSearch picSource='profile.jpg' userName='__clement.m__' mainName='Clement Mathew'></RecentSearch>
-                    <RecentSearch picSource='profile.jpg' userName='__clement.m__' mainName='Clement Mathew'></RecentSearch>
-                    <RecentSearch picSource='profile.jpg' userName='__clement.m__' mainName='Clement Mathew'></RecentSearch>
-                    <RecentSearch picSource='profile.jpg' userName='__clement.m__' mainName='Clement Mathew'></RecentSearch>
-                    <RecentSearch picSource='profile.jpg' userName='__clement.m__' mainName='Clement Mathew'></RecentSearch>
-                    <RecentSearch picSource='profile.jpg' userName='__clement.m__' mainName='Clement Mathew'></RecentSearch>
-                    <RecentSearch picSource='profile.jpg' userName='__clement.m__' mainName='Clement Mathew'></RecentSearch>
-                    <RecentSearch picSource='profile.jpg' userName='__clement.m__' mainName='Clement Mathew'></RecentSearch>
+
+                    {
+                        searchedUserToggle ? <RecentSearch picSource={searchedUser.profilepicurl} userName={searchedUser.username} mainName={searchedUser.name}></RecentSearch> : ''
+                    }
+
                     <div style={{ paddingBottom: '160px' }}></div>
                 </div>
             </div>

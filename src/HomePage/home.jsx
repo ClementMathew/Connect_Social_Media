@@ -33,6 +33,7 @@ const Home = () => {
     const story = useRef(null);
 
     let allPosts = {}
+    let allUsers = {}
 
     useEffect(() => {
         story.current.addEventListener('wheel', (event) => {
@@ -42,6 +43,18 @@ const Home = () => {
         try {
             const auth = getAuth(app)
             const db = getFirestore(app)
+
+            const fetchUsers = async () => {
+                const docPosts = await getDocs(collection(db, "Users"))
+                docPosts.forEach((doc) => {
+
+                    let ID = doc.id
+                    allUsers[ID] = doc.data()
+                })
+                dataToHome.allusers = allUsers
+            }
+
+            fetchUsers()
 
             const fetchPosts = async () => {
                 const docPosts = await getDocs(collection(db, "Posts"))
@@ -70,6 +83,7 @@ const Home = () => {
                 const docSnap = await getDoc(docRef)
                 const fieldData = docSnap.data()
 
+                dataToHome.userid = user.uid
                 dataToHome.profilepicurl = fieldData.profilepicurl
                 dataToHome.posts = fieldData.posts
                 dataToHome.followers = fieldData.followers

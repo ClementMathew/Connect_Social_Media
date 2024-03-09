@@ -1,19 +1,19 @@
-import React from 'react'
-import app from '../Firebase/firebase';
-import { useLocation, useNavigate } from "react-router-dom";
-import { signOut, getAuth } from "firebase/auth";
+import React, { useState } from 'react'
+import app from '../Firebase/firebase'
+import '../ProfilePage/profile.css'
 import NavComponent from '../HomeComponents/NavComponent'
 import '../HomePage/home.css'
-import './profile.css'
-import { useState } from 'react';
+import '../ProfilePage/profile.css'
 import '../HomeComponents/NavComponent.css'
 import CreateComponent from '../CreatePage/CreateComponent';
-import EditProfile from './editprofile';
-import ProfilePicUpload from './profilepic';
-import Followers from './followers';
-import Following from './following';
+import EditProfile from '../ProfilePage/editprofile';
+import ProfilePicUpload from '../ProfilePage/profilepic';
+import Followers from '../ProfilePage/followers';
+import Following from '../ProfilePage/following';
+import { useLocation, useNavigate } from "react-router-dom";
+import { signOut, getAuth } from "firebase/auth";
 
-export default function Profile() {
+export default function SearchedProfile() {
 
     const [createToggle, setCreateToggle] = useState(false)
     const [editProfileToggle, setEditProfileToggle] = useState(false)
