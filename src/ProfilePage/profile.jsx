@@ -96,7 +96,8 @@ export default function Profile() {
 
             <div id="profileRightSide">
                 <div id="profileHead">
-                    <div id="profileHeadPic" onClick={profilePopUp}>
+                    <div id="profileHeadPic" >
+                        <img onClick={profilePopUp} id='profilePicAddIcon' src="camera.png" alt="add profile pic" />
                         <div id='profilePicShape'>
                             <img src={dataToProfile.profilepicurl === '' ? 'profile.png' : dataToProfile.profilepicurl} alt="profile page dp" />
                         </div>
@@ -154,7 +155,7 @@ export default function Profile() {
 
             <CreateComponent data={dataToProfile} show={createToggle ? 'flex' : 'none'} createToggle={createToggle} setCreateToggle={setCreateToggle}></CreateComponent>
 
-            <EditProfile show={editProfileToggle ? 'flex' : 'none'} editProfileToggle={editProfileToggle} setEditProfileToggle={setEditProfileToggle}></EditProfile>
+            <EditProfile show={editProfileToggle ? 'flex' : 'none'} editProfileToggle={editProfileToggle} setEditProfileToggle={setEditProfileToggle} data={dataToProfile}></EditProfile>
 
             <ProfilePicUpload data={dataToProfile} show={uploadPicToggle ? 'flex' : 'none'} uploadPicToggle={uploadPicToggle} setUploadPicToggle={setUploadPicToggle}></ProfilePicUpload>
 

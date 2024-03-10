@@ -18,6 +18,12 @@
     justify-content: center;
 }
 
+#profilePicAddIcon {
+    height: 50px;
+    position: absolute;
+    transform: translate(85px, 90px);
+}
+
 #profilePicShape {
     width: 250px;
     height: 250px;

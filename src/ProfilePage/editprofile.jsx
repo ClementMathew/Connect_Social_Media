@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import '../CreatePage/CreateComponent.css'
+import { getFirestore, updateDoc, doc } from 'firebase/firestore';
+import app from '../Firebase/firebase';
 
 export default function EditProfile(props) {
 
@@ -7,20 +9,39 @@ export default function EditProfile(props) {
         props.setEditProfileToggle(!props.editProfileToggle)
     }
 
-    const [userName, setUserName] = useState();
-    const [name, setName] = useState();
-    const [phone, setPhone] = useState();
-    const [bio, setBio] = useState();
+    const [userName, setUserName] = useState(props.data.username);
+    const [name, setName] = useState(props.data.name);
+    const [phone, setPhone] = useState(props.data.phone);
+    const [bio, setBio] = useState(props.data.bio);
 
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
+        try {
+            const db = getFirestore(app)
+            const docRef = doc(db, "Users", props.data.uid)
 
+            await updateDoc(docRef, {
+                username: userName,
+                name: name,
+                phone: phone,
+                bio: bio
+            }).then(() => {
+                popDown()
+            })
+            props.data.username = userName
+            props.data.name = name
+            props.data.phone = phone
+            props.data.bio = bio
+
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     const textBoxStyle = {
         display: "flex",
         alignItems: 'center',
         justifyContent: 'end',
-        marginBottom: '10px',
+        marginBottom: '20px',
         fontWeight: 'bold',
         fontFamily: 'Arial'
     }
@@ -33,7 +54,7 @@ export default function EditProfile(props) {
                 <p>Edit Profile</p>
                 <div className="horizontalline"></div>
                 <div >
-                    <form onSubmit={handleSubmit} style={{ marginTop: '50px' }}>
+                    <form style={{ marginTop: '60px' }}>
                         <label style={textBoxStyle} htmlFor="input" >Username :
                             <input
                                 className='textbox'
@@ -80,8 +101,8 @@ export default function EditProfile(props) {
                         </label>
 
                     </form>
+                    <button style={{ marginTop: '45px' }} onClick={handleSubmit}>Submit</button>
                 </div>
-                <button>Select from PC</button>
             </div>
         </>
     )

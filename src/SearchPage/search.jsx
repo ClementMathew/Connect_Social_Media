@@ -23,12 +23,17 @@ export default function Search() {
     const dataToSearch = location.state.data
 
     const handleClick = (e) => {
+
+        const searchTemp = {}
+        setSearchedUserToggle(true)
+        console.log(dataToSearch.allusers)
+
         Object.keys(dataToSearch.allusers).map((key) => {
             const username = dataToSearch.allusers[key].username
-            // console.log(searchedUser)
-            if (username.includes(e.target.value)) {
-                setSearchedUserToggle(true)
-                setSearchedUser(dataToSearch.allusers[key])
+
+            if (username.includes(e.target.value) && (e.target.value) != '') {
+                searchTemp[key] = dataToSearch.allusers[key]
+                setSearchedUser(searchTemp)
             }
         })
     }
@@ -78,9 +83,10 @@ export default function Search() {
                 </div>
 
                 <div id="recentHistory">
-
                     {
-                        searchedUserToggle ? <RecentSearch picSource={searchedUser.profilepicurl} userName={searchedUser.username} mainName={searchedUser.name}></RecentSearch> : ''
+                        Object.keys(searchedUser).map((key) => (
+                            searchedUserToggle ? <RecentSearch data={dataToSearch} key={key} picSource={searchedUser[key].profilepicurl} userName={searchedUser[key].username} mainName={searchedUser[key].name}></RecentSearch> : ''
+                        ))
                     }
 
                     <div style={{ paddingBottom: '160px' }}></div>
