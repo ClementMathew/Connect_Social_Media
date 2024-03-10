@@ -1,36 +1,24 @@
-import React, { useState } from 'react'
-import app from '../Firebase/firebase'
+import React, { useEffect, useState } from 'react'
 import '../ProfilePage/profile.css'
 import NavComponent from '../HomeComponents/NavComponent'
 import '../HomePage/home.css'
 import '../ProfilePage/profile.css'
 import '../HomeComponents/NavComponent.css'
 import CreateComponent from '../CreatePage/CreateComponent';
-import EditProfile from '../ProfilePage/editprofile';
-import ProfilePicUpload from '../ProfilePage/profilepic';
 import Followers from '../ProfilePage/followers';
 import Following from '../ProfilePage/following';
-import { useLocation, useNavigate } from "react-router-dom";
-import { signOut, getAuth } from "firebase/auth";
+import { useLocation } from "react-router-dom";
+import { doc, getDoc, getFirestore, updateDoc } from 'firebase/firestore'
+import app from '../Firebase/firebase'
 
 export default function SearchedProfile() {
 
     const [createToggle, setCreateToggle] = useState(false)
-    const [editProfileToggle, setEditProfileToggle] = useState(false)
-    const [uploadPicToggle, setUploadPicToggle] = useState(false)
     const [followersList, setFollowersList] = useState(false)
     const [followingList, setFollowingList] = useState(false)
 
     const popUp = () => {
         setCreateToggle(!createToggle)
-    }
-
-    const editPopUp = () => {
-        setEditProfileToggle(!editProfileToggle)
-    }
-
-    const profilePopUp = () => {
-        setUploadPicToggle(!uploadPicToggle)
     }
 
     const followersPopUp = () => {
@@ -42,26 +30,37 @@ export default function SearchedProfile() {
     }
 
     const location = useLocation()
-    const dataToProfile = location.state.data
+    const searchPerson = location.state.data
+    const dataToSearchProfile = location.state.maindata
 
-    const navigate = useNavigate();
+    useEffect(() => {
+
+        const fetchRecentHistory = async () => {
+
+            const db = getFirestore(app)
+            const docRef = doc(db, "Users", dataToSearchProfile.uid)
+            const recentDataAll = {}
+
+            const recentData = {
+                username: searchPerson.username,
+                name: searchPerson.name,
+                profilepicurl: searchPerson.profilepicurl
+            }
+
+            recentDataAll[0] = recentData
+
+            updateDoc(docRef, {
+                recenthistory: recentDataAll
+            })
+        }
+
+        fetchRecentHistory()
+    }, [])
 
     const handleClick = (e) => {
         e.preventDefault();
-        // Add your authentication logic here
 
-        try {
-            const auth = getAuth(app);
 
-            signOut(auth).then(() => {
-                navigate('/');
-            }).catch((error) => {
-                console.log(error);
-            });
-        } catch (error) {
-            console.log(error)
-        }
-        // You can send a request to your authentication server here
     };
 
     return (
@@ -76,18 +75,18 @@ export default function SearchedProfile() {
                 </div>
 
                 <div id="navhome">
-                    <NavComponent iconSource='home.png' navName="Home" navPage='/home' data={dataToProfile}></NavComponent>
-                    <NavComponent iconSource='search.png' navName="Search" navPage="/search" data={dataToProfile}></NavComponent>
-                    <NavComponent iconSource='messages.png' navName="Messages" navPage="/messages" data={dataToProfile}></NavComponent>
-                    <NavComponent iconSource='notifications.png' navName="Notifications" navPage="/notifications" data={dataToProfile}></NavComponent>
+                    <NavComponent iconSource='home.png' navName="Home" navPage='/home' data={dataToSearchProfile}></NavComponent>
+                    <NavComponent iconSource='search.png' navName="Search" navPage="/search" data={dataToSearchProfile}></NavComponent>
+                    <NavComponent iconSource='messages.png' navName="Messages" navPage="/messages" data={dataToSearchProfile}></NavComponent>
+                    <NavComponent iconSource='notifications.png' navName="Notifications" navPage="/notifications" data={dataToSearchProfile}></NavComponent>
 
                     <div id='nav' onClick={popUp}>
                         <img src='create.png' alt="navIcon" />
                         <p>Create</p>
                     </div>
 
-                    <NavComponent selected='#F3F3F3' iconSource='profile_icon.png' navName="Profile" navPage="/profile" data={dataToProfile}></NavComponent>
-                    <NavComponent iconSource='more.png' navName="More" navPage="/more" data={dataToProfile}></NavComponent>
+                    <NavComponent selected='#F3F3F3' iconSource='profile_icon.png' navName="Profile" navPage="/profile" data={dataToSearchProfile}></NavComponent>
+                    <NavComponent iconSource='more.png' navName="More" navPage="/more" data={dataToSearchProfile}></NavComponent>
                 </div>
                 <div id="sloganhome">Get Connected, Get Social</div>
             </div>
@@ -96,36 +95,36 @@ export default function SearchedProfile() {
 
             <div id="profileRightSide">
                 <div id="profileHead">
-                    <div id="profileHeadPic" onClick={profilePopUp}>
+                    <div id="profileHeadPic" >
                         <div id='profilePicShape'>
-                            <img src={dataToProfile.profilepicurl === '' ? 'profile.png' : dataToProfile.profilepicurl} alt="profile page dp" />
+                            <img src={searchPerson.profilepicurl === '' ? 'profile.png' : searchPerson.profilepicurl} alt="profile page dp" />
                         </div>
                     </div>
                     <div id="profileHeadBio">
                         <div id="profileHeadBioTop">
-                            <p >{dataToProfile.username}</p>
-                            <button id="editProfile" onClick={editPopUp}>Edit Profile</button>
-                            <button id="logOut" onClick={handleClick}>Logout</button>
+                            <p >{searchPerson.username}</p>
+                            <button id="editProfile" onClick={handleClick}>Connect</button>
+                            <button id="logOut">Message</button>
                         </div>
                         <div id="profileFollowers">
                             <div id="postsCount">
                                 <p className='CountPrefix'>{
-                                    Object.keys(dataToProfile.posts).length
+                                    Object.keys(searchPerson.posts).length
                                 }</p>
                                 <p className='CountSuffix'>posts</p>
                             </div>
                             <div id="followersCount" onClick={followersPopUp}>
-                                <p className='CountPrefix followPointer'>{dataToProfile.followers}</p>
+                                <p className='CountPrefix followPointer'>{Object.keys(searchPerson.followers).length}</p>
                                 <p className='CountSuffix followPointer'>followers</p>
                             </div>
                             <div id="followingCount" onClick={followingPopUp}>
-                                <p className='CountPrefix followPointer'>{dataToProfile.following}</p>
+                                <p className='CountPrefix followPointer'>{Object.keys(searchPerson.following).length}</p>
                                 <p className='CountSuffix followPointer'>following</p>
                             </div>
                         </div>
                         <div id="profileBio">
-                            <p id='BioName'>{dataToProfile.name}</p>
-                            <p id='Bio'>{dataToProfile.bio ? dataToProfile.bio : "Add more about yourself"}</p>
+                            <p id='BioName'>{searchPerson.name}</p>
+                            <p id='Bio'>{searchPerson.bio ? searchPerson.bio : ""}</p>
                         </div>
                     </div>
                 </div>
@@ -140,10 +139,10 @@ export default function SearchedProfile() {
                     }} />
                     <div id="profilePostImages">
 
-                        {Object.keys(dataToProfile.posts).map((key, index) => (
+                        {Object.keys(searchPerson.posts).map((key, index) => (
 
                             <div key={key} id='profilePostImagesShape'>
-                                < img id='profilePostImagesIn' src={dataToProfile.posts[index].url} alt="post pic" />
+                                < img id='profilePostImagesIn' src={searchPerson.posts[index].url} alt="post pic" />
                             </div>
                         ))}
 
@@ -152,11 +151,7 @@ export default function SearchedProfile() {
                 </div>
             </div>
 
-            <CreateComponent data={dataToProfile} show={createToggle ? 'flex' : 'none'} createToggle={createToggle} setCreateToggle={setCreateToggle}></CreateComponent>
-
-            <EditProfile show={editProfileToggle ? 'flex' : 'none'} editProfileToggle={editProfileToggle} setEditProfileToggle={setEditProfileToggle}></EditProfile>
-
-            <ProfilePicUpload data={dataToProfile} show={uploadPicToggle ? 'flex' : 'none'} uploadPicToggle={uploadPicToggle} setUploadPicToggle={setUploadPicToggle}></ProfilePicUpload>
+            <CreateComponent data={dataToSearchProfile} show={createToggle ? 'flex' : 'none'} createToggle={createToggle} setCreateToggle={setCreateToggle}></CreateComponent>
 
             <Followers show={followersList ? 'flex' : 'none'} followersList={followersList} setFollowersList={setFollowersList}></Followers>
 

@@ -56,7 +56,6 @@ export default function CreateComponent(props) {
           postData[len] = {
             url: url,
             likes: 0,
-            commentcount: 0,
             comments: {},
             share: 0,
             about: ''
@@ -67,7 +66,6 @@ export default function CreateComponent(props) {
           })
 
           const postId = postsLength + "_" + props.data.uid
-          console.log(postId)
           const docRef2 = doc(db, "Posts", postId)
 
           await setDoc(docRef2, {
@@ -75,7 +73,6 @@ export default function CreateComponent(props) {
             username: docSnap.username,
             url: url,
             likes: 0,
-            commentcount: 0,
             comments: {},
             share: 0,
             about: ''

@@ -92,6 +92,7 @@ const Home = () => {
                 dataToHome.notifications = fieldData.notifications
                 dataToHome.bio = fieldData.bio
                 dataToHome.public = fieldData.public
+                dataToHome.recenthistory = fieldData.recenthistory
             });
 
             // Clean up subscription to avoid memory leaks
@@ -160,7 +161,7 @@ const Home = () => {
 
                                 <div id="posthead">
                                     <div id="postProfilePic">
-                                        <img src={postDatas[key].profilepicurl} alt="profilepicture" />
+                                        <img src={postDatas[key].profilepicurl == "" ? 'profile.png' : postDatas[key].profilepicurl} alt="profilepicture" />
                                     </div>
                                     <div id="postname">{postDatas[key].username}</div>
                                 </div>

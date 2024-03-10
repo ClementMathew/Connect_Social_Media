@@ -116,11 +116,11 @@ export default function Profile() {
                                 <p className='CountSuffix'>posts</p>
                             </div>
                             <div id="followersCount" onClick={followersPopUp}>
-                                <p className='CountPrefix followPointer'>{dataToProfile.followers}</p>
+                                <p className='CountPrefix followPointer'>{Object.keys(dataToProfile.followers).length}</p>
                                 <p className='CountSuffix followPointer'>followers</p>
                             </div>
                             <div id="followingCount" onClick={followingPopUp}>
-                                <p className='CountPrefix followPointer'>{dataToProfile.following}</p>
+                                <p className='CountPrefix followPointer'>{Object.keys(dataToProfile.following).length}</p>
                                 <p className='CountSuffix followPointer'>following</p>
                             </div>
                         </div>
@@ -134,11 +134,8 @@ export default function Profile() {
                 <div id="profilePosts">
                     <div className="profileHorizontalLine"></div>
                     <div id='profilePostsHead'>Posts</div>
-                    <hr style={{
-                        color: 'white',
-                        border: '1px solid #e7e7e7',
-                        margin: '0px'
-                    }} />
+                    <div className="horizontalOrange"></div>
+
                     <div id="profilePostImages">
 
                         {Object.keys(dataToProfile.posts).map((key, index) => (

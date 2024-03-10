@@ -98,7 +98,7 @@ export default function Messages() {
                     <img className='callSize' style={{ height: '29px' }} src="options.png" alt="options" />
                 </div>
 
-                <div className="horizontalline" style={{ width: '80vw' }}></div>
+                <div className="horizontalOrange"></div>
 
                 <div id="userChats">
                     <div style={{ padding: '10px' }}></div>

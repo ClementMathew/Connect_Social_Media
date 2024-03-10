@@ -3,8 +3,9 @@ import '../HomeComponents/SuggestComponent.css'
 import { Link } from 'react-router-dom'
 
 export default function RecentSearch(props) {
+
     return (
-        <Link to='/searchedprofile' state={{ data: props.data }} style={{ textDecoration: 'none', color: 'black' }}>
+        <Link to='/searchedprofile' state={{ data: props.data, maindata: props.mainData }} style={{ textDecoration: 'none', color: 'black' }}>
             <div style={{ marginLeft: '4.6vw', display: 'flex', alignItems: 'center', paddingTop: '10px', paddingBottom: '10px' }}>
                 <div id='profilepic' style={{ cursor: 'pointer' }}>
                     <img src={props.picSource} alt="profile picture" />

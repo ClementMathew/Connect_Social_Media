@@ -77,20 +77,36 @@ export default function Search() {
                     <button onClick={handleClick} id="searchbutton">Search</button>
                 </div>
 
-                <div id="recent">
-                    <p>Recent</p>
-                    <button>Clear All</button>
-                </div>
+                {
+                    searchedUserToggle ?
 
-                <div id="recentHistory">
-                    {
-                        Object.keys(searchedUser).map((key) => (
-                            searchedUserToggle ? <RecentSearch data={dataToSearch} key={key} picSource={searchedUser[key].profilepicurl} userName={searchedUser[key].username} mainName={searchedUser[key].name}></RecentSearch> : ''
-                        ))
-                    }
+                        <div id="recentHistory" style={{ marginTop: '30px' }}>
+                            {
+                                Object.keys(searchedUser).map((key) => (
+                                    <RecentSearch mainData={dataToSearch} data={searchedUser[key]} key={key} picSource={searchedUser[key].profilepicurl} userName={searchedUser[key].username} mainName={searchedUser[key].name}></RecentSearch>
+                                ))
+                            }
 
-                    <div style={{ paddingBottom: '160px' }}></div>
-                </div>
+                            <div style={{ paddingBottom: '160px' }}></div>
+                        </div>
+
+                        : <>
+                            <div id="recent">
+                                <p>Recent</p>
+                                <button>Clear All</button>
+                            </div>
+
+                            <div id="recentHistory">
+                                {
+                                    Object.keys(dataToSearch.recenthistory).map((key) => (
+                                        <RecentSearch mainData={dataToSearch} data={dataToSearch.recenthistory[key]} key={key} picSource={dataToSearch.recenthistory[key].profilepicurl} userName={dataToSearch.recenthistory[key].username} mainName={dataToSearch.recenthistory[key].name}></RecentSearch>
+                                    ))
+                                }
+                                <div style={{ paddingBottom: '160px' }}></div>
+                            </div>
+                        </>
+                }
+
             </div>
 
             <div className="verticalline"></div>

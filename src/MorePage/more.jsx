@@ -70,7 +70,7 @@ export default function More() {
 
                 <div id="notificationhead">More</div>
 
-                <div className="profileHorizontalLine" style={{ marginTop: '2px' }}></div>
+                <div className="profileHorizontalLine" style={{ marginTop: '3px' }}></div>
 
                 <div id="moreBody">
 
