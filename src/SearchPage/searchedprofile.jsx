@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import '../ProfilePage/profile.css'
-import NavComponent from '../HomeComponents/NavComponent'
+import NavComponent from '../Components/NavComponent'
 import '../HomePage/home.css'
 import '../ProfilePage/profile.css'
 import '../HomeComponents/NavComponent.css'
@@ -16,6 +16,8 @@ export default function SearchedProfile() {
     const [createToggle, setCreateToggle] = useState(false)
     const [followersList, setFollowersList] = useState(false)
     const [followingList, setFollowingList] = useState(false)
+    const [connect, setConnect] = useState('Connect')
+    const [connectColor, setConnectColor] = useState("editProfile")
 
     const popUp = () => {
         setCreateToggle(!createToggle)
@@ -37,37 +39,103 @@ export default function SearchedProfile() {
 
         const fetchRecentHistory = async () => {
 
+            try {
+
+                const db = getFirestore(app)
+                const docRef = doc(db, "Users", dataToSearchProfile.uid)
+
+                const recentDataAll = {}
+
+                const recentData = {
+                    username: searchPerson.username,
+                    name: searchPerson.name,
+                    profilepicurl: searchPerson.profilepicurl
+                }
+
+                recentDataAll[0] = recentData
+
+                updateDoc(docRef, {
+                    recenthistory: recentDataAll
+                })
+            } catch (error) {
+                console.log(error)
+            }
+        }
+
+        fetchRecentHistory()
+
+        const fetchFollowing = async () => {
+            try {
+                const db = getFirestore(app)
+                const docRef = doc(db, "Users", searchPerson.uid)
+                const docSnap = await getDoc(docRef)
+                const fieldData = docSnap.data()
+                dataToSearchProfile.following = fieldData.following
+                dataToSearchProfile.followers = fieldData.followers
+
+                Object.keys(dataToSearchProfile.followers).forEach(key => {
+                    key == dataToSearchProfile.uid ? setConnect("Connected") : setConnect("Connect")
+                })
+
+                Object.keys(dataToSearchProfile.followers).forEach(key => {
+                    key == dataToSearchProfile.uid ? setConnectColor("logOut") : setConnectColor("editProfile")
+                })
+
+            } catch (error) {
+                console.log(error)
+            }
+        }
+
+        return () => fetchFollowing();
+    }, [])
+
+    const handleClick = async (e) => {
+        e.preventDefault();
+
+        setConnect("Connected")
+        setConnectColor("logOut")
+
+        try {
             const db = getFirestore(app)
             const docRef = doc(db, "Users", dataToSearchProfile.uid)
-            const recentDataAll = {}
+            const docRef2 = doc(db, "Users", searchPerson.uid)
 
-            const recentData = {
+            const docSnap = await getDoc(docRef)
+            const docSnap2 = await getDoc(docRef2)
+            const fieldData = docSnap.data()
+            const fieldData2 = docSnap2.data()
+
+            const following = fieldData.following
+            const followers = fieldData2.followers
+
+            following[searchPerson.uid] = {
                 username: searchPerson.username,
                 name: searchPerson.name,
                 profilepicurl: searchPerson.profilepicurl
             }
 
-            recentDataAll[0] = recentData
-
+            followers[dataToSearchProfile.uid] = {
+                username: dataToSearchProfile.username,
+                name: dataToSearchProfile.name,
+                profilepicurl: dataToSearchProfile.profilepicurl
+            }
             updateDoc(docRef, {
-                recenthistory: recentDataAll
+                following: following
             })
+            updateDoc(docRef2, {
+                followers: followers
+            })
+
+        } catch (error) {
+            console.log(error)
         }
-
-        fetchRecentHistory()
-    }, [])
-
-    const handleClick = (e) => {
-        e.preventDefault();
-
-
     };
 
     return (
         <div id="containerhome">
             <div id="sidebar">
                 <div id="connectwithlogo">
-                    <img src="connectwithlogo.png" alt="connectlogo" />
+                    <img id="connectwithlogo-img" src="connectwithlogo.png" alt="connectlogo" />
                 </div>
                 <div id="stripes">
                     <div id="blackstripe"></div>
@@ -76,7 +144,7 @@ export default function SearchedProfile() {
 
                 <div id="navhome">
                     <NavComponent iconSource='home.png' navName="Home" navPage='/home' data={dataToSearchProfile}></NavComponent>
-                    <NavComponent iconSource='search.png' navName="Search" navPage="/search" data={dataToSearchProfile}></NavComponent>
+                    <NavComponent selected='#F3F3F3' iconSource='search.png' navName="Search" navPage="/search" data={dataToSearchProfile}></NavComponent>
                     <NavComponent iconSource='messages.png' navName="Messages" navPage="/messages" data={dataToSearchProfile}></NavComponent>
                     <NavComponent iconSource='notifications.png' navName="Notifications" navPage="/notifications" data={dataToSearchProfile}></NavComponent>
 
@@ -85,7 +153,7 @@ export default function SearchedProfile() {
                         <p>Create</p>
                     </div>
 
-                    <NavComponent selected='#F3F3F3' iconSource='profile_icon.png' navName="Profile" navPage="/profile" data={dataToSearchProfile}></NavComponent>
+                    <NavComponent iconSource='profile_icon.png' navName="Profile" navPage="/profile" data={dataToSearchProfile}></NavComponent>
                     <NavComponent iconSource='more.png' navName="More" navPage="/more" data={dataToSearchProfile}></NavComponent>
                 </div>
                 <div id="sloganhome">Get Connected, Get Social</div>
@@ -103,7 +171,7 @@ export default function SearchedProfile() {
                     <div id="profileHeadBio">
                         <div id="profileHeadBioTop">
                             <p >{searchPerson.username}</p>
-                            <button id="editProfile" onClick={handleClick}>Connect</button>
+                            <button id={connectColor} onClick={handleClick}>{connect}</button>
                             <button id="logOut">Message</button>
                         </div>
                         <div id="profileFollowers">
@@ -132,11 +200,8 @@ export default function SearchedProfile() {
                 <div id="profilePosts">
                     <div className="profileHorizontalLine"></div>
                     <div id='profilePostsHead'>Posts</div>
-                    <hr style={{
-                        color: 'white',
-                        border: '1px solid #e7e7e7',
-                        margin: '0px'
-                    }} />
+                    <div className="horizontalOrange"></div>
+
                     <div id="profilePostImages">
 
                         {Object.keys(searchPerson.posts).map((key, index) => (
@@ -153,9 +218,9 @@ export default function SearchedProfile() {
 
             <CreateComponent data={dataToSearchProfile} show={createToggle ? 'flex' : 'none'} createToggle={createToggle} setCreateToggle={setCreateToggle}></CreateComponent>
 
-            <Followers show={followersList ? 'flex' : 'none'} followersList={followersList} setFollowersList={setFollowersList}></Followers>
+            <Followers data={dataToSearchProfile.followers} show={followersList ? 'flex' : 'none'} followersList={followersList} setFollowersList={setFollowersList}></Followers>
 
-            <Following show={followingList ? 'flex' : 'none'} followingList={followingList} setFollowingList={setFollowingList}></Following>
+            <Following data={dataToSearchProfile.following} show={followingList ? 'flex' : 'none'} followingList={followingList} setFollowingList={setFollowingList}></Following>
 
         </div>
     )

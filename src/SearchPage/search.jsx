@@ -4,7 +4,7 @@ import '../HomePage/home.css'
 import { useState } from 'react'
 import './search.css'
 import ProfileDetails from '../Components/ProfileDetails'
-import RecentSearch from '../Components/RecentSearch'
+import RecentSearch from './RecentSearch'
 import '../HomeComponents/NavComponent.css'
 import CreateComponent from '../CreatePage/CreateComponent';
 import { useLocation } from 'react-router-dom'
@@ -92,8 +92,8 @@ export default function Search() {
 
                         : <>
                             <div id="recent">
-                                <p>Recent</p>
-                                <button>Clear All</button>
+                                <p id='recent-text'>Recent</p>
+                                <button id='recent-clear'>Clear All</button>
                             </div>
 
                             <div id="recentHistory">

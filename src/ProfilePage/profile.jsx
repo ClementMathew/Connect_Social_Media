@@ -1,17 +1,17 @@
-import React from 'react'
 import app from '../Firebase/firebase';
 import { useLocation, useNavigate } from "react-router-dom";
 import { signOut, getAuth } from "firebase/auth";
 import NavComponent from '../HomeComponents/NavComponent'
 import '../HomePage/home.css'
 import './profile.css'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import '../HomeComponents/NavComponent.css'
 import CreateComponent from '../CreatePage/CreateComponent';
 import EditProfile from './editprofile';
 import ProfilePicUpload from './profilepic';
 import Followers from './followers';
 import Following from './following';
+import { getDoc, getFirestore, doc } from 'firebase/firestore'
 
 export default function Profile() {
 
@@ -63,6 +63,25 @@ export default function Profile() {
         }
         // You can send a request to your authentication server here
     };
+
+    useEffect(() => {
+
+        const fetchFollowing = async () => {
+            try {
+                const db = getFirestore(app)
+                const docRef = doc(db, "Users", dataToProfile.uid)
+                const docSnap = await getDoc(docRef)
+                const fieldData = docSnap.data()
+                dataToProfile.following = fieldData.following
+                dataToProfile.followers = fieldData.followers
+
+            } catch (error) {
+                console.log(error)
+            }
+        }
+
+        return () => fetchFollowing();
+    }, [])
 
     return (
         <div id="containerhome">
@@ -156,9 +175,9 @@ export default function Profile() {
 
             <ProfilePicUpload data={dataToProfile} show={uploadPicToggle ? 'flex' : 'none'} uploadPicToggle={uploadPicToggle} setUploadPicToggle={setUploadPicToggle}></ProfilePicUpload>
 
-            <Followers show={followersList ? 'flex' : 'none'} followersList={followersList} setFollowersList={setFollowersList}></Followers>
+            <Followers data={dataToProfile.followers} show={followersList ? 'flex' : 'none'} followersList={followersList} setFollowersList={setFollowersList}></Followers>
 
-            <Following show={followingList ? 'flex' : 'none'} followingList={followingList} setFollowingList={setFollowingList}></Following>
+            <Following data={dataToProfile.following} show={followingList ? 'flex' : 'none'} followingList={followingList} setFollowingList={setFollowingList}></Following>
 
         </div>
     )

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './ToggleSwitch.css';
-import { collection, doc, getFirestore, updateDoc } from 'firebase/firestore';
+import { doc, getFirestore, updateDoc } from 'firebase/firestore';
 import app from '../Firebase/firebase';
 
 const ToggleSwitch = (props) => {
@@ -37,7 +37,7 @@ const ToggleSwitch = (props) => {
 
   return (
     <label className="toggle-switch">
-      <input
+      <input className="toggle-switch-check"
         type="checkbox"
         checked={isChecked}
         onChange={handleToggle}

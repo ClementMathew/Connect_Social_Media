@@ -50,6 +50,7 @@ const Home = () => {
 
                     let ID = doc.id
                     allUsers[ID] = doc.data()
+                    allUsers[ID].uid = doc.id
                 })
                 dataToHome.allusers = allUsers
             }
@@ -135,6 +136,14 @@ const Home = () => {
 
             <div id="center">
                 <div id="storyhome" ref={story}>
+                    <div id='story'>
+                        <div id="storyborder">
+                            <div id='storyProfilePic'>
+                                <img src='add.png' alt="add picture" />
+                            </div>
+                        </div>
+                        <div id="storyname">Add Story</div>
+                    </div>
                     <StoryComponent storyPicSource='profile.jpg' storyName='__clement.m__'></StoryComponent>
                     <StoryComponent storyPicSource='profile.jpg' storyName='__clement.m__'></StoryComponent>
                     <StoryComponent storyPicSource='profile.jpg' storyName='__clement.m__'></StoryComponent>

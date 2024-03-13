@@ -66,6 +66,7 @@ const SignUp = () => {
             username: userName,
             name: theName,
             email: email,
+            uid: user.uid,
             phone: ("+91" + phone),
           }
 

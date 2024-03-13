@@ -1,4 +1,5 @@
 import React from 'react'
+import '../HomeComponents/SuggestComponent.css'
 
 export default function Following(props) {
 
@@ -13,7 +14,29 @@ export default function Following(props) {
 
             <div id="createTopContainer" style={{ display: props.show }} >
                 <p>Following</p>
-                <div className="horizontalline"></div>
+                <div className="horizontalline" style={{ paddingBottom: '30px' }}></div>
+                {
+                    Object.keys(props.data).map((key) => (
+
+                        <div id='suggestions' key={key}>
+                            <div id='profilepic'>
+                                <img src={props.data[key].profilepicurl == '' ? 'profile.png' : props.data[key].profilepicurl} alt="profile picture" />
+                            </div>
+                            <div id="nametag">
+                                <div id="username" style={{ paddingBottom: '25px' }}>
+                                    {props.data[key].username}
+                                </div>
+                                <div id="mainname">
+                                    {props.data[key].name}
+                                </div>
+                            </div>
+                            <div id="followbutton">
+                                <button id='logOut' style={{ marginLeft: '100px', marginTop: '0px' }}>Unfollow</button>
+                            </div>
+                        </div>
+                    ))
+                }
+
             </div>
 
         </>
