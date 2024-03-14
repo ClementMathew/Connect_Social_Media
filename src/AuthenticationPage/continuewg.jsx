@@ -5,7 +5,6 @@ import app from '../Firebase/firebase';
 import { getFirestore, doc, setDoc } from 'firebase/firestore';
 import { useNavigate, useLocation } from 'react-router-dom';
 
-
 export default function ContinueWithGoogle() {
 
     const [phone, setPhoneNumber] = useState('');

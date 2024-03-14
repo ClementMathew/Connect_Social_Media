@@ -1,11 +1,11 @@
 import React from 'react'
-import NavComponent from '../HomeComponents/NavComponent'
+import NavComponent from '../Components/NavComponent'
 import '../HomePage/home.css'
 import { useState } from 'react'
 import './search.css'
 import ProfileDetails from '../Components/ProfileDetails'
 import RecentSearch from './RecentSearch'
-import '../HomeComponents/NavComponent.css'
+import '../Components/NavComponent.css'
 import CreateComponent from '../CreatePage/CreateComponent';
 import { useLocation } from 'react-router-dom'
 

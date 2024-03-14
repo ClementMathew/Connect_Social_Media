@@ -1,5 +1,5 @@
 import React from 'react'
-import '../HomeComponents/SuggestComponent.css'
+import '../HomePage/SuggestComponent.css'
 
 export default function Followers(props) {
 

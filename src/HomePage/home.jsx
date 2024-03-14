@@ -1,10 +1,10 @@
 import './home.css'
-import '../HomeComponents/PostComponent.css'
-import SuggestComponent from "../HomeComponents/SuggestComponent";
-import StoryComponent from "../HomeComponents/StoryComponent";
-import NavComponent from "../HomeComponents/NavComponent";
+import './PostComponent.css'
+import SuggestComponent from "./SuggestComponent";
+import StoryComponent from "./StoryComponent";
+import NavComponent from "../Components/NavComponent";
 import { useEffect, useRef, useState } from "react";
-import '../HomeComponents/NavComponent.css'
+import '../Components/NavComponent.css'
 import CreateComponent from '../CreatePage/CreateComponent';
 import { useLocation } from 'react-router-dom';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';

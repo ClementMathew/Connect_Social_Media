@@ -2,12 +2,10 @@ import { sendPasswordResetEmail, getAuth } from "firebase/auth";
 import React, { useEffect, useState } from "react";
 import app from "../Firebase/firebase";
 import { Link } from "react-router-dom";
-import '../LoginPage/welcome.css'
+import '../AuthenticationPage/welcome.css'
 import './forgotpass.css'
-import '../LoginPage/welcome.css'
 
 function ForgotPassword() {
-
 
     const [loading, setLoading] = useState(false)
     const [myalert, setMyAlert] = useState('');

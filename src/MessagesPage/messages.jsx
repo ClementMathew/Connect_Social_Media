@@ -3,10 +3,10 @@ import { useState } from 'react'
 import CreateComponent from '../CreatePage/CreateComponent'
 import './messages.css'
 import '../HomePage/home.css'
-import MessageNavComponent from '../Components/MessageNavComponent'
-import ChatComponent from '../ChatComponents/ChatComponent'
+import MessageNavComponent from './MessageNavComponent'
+import ChatComponent from './ChatComponent'
 import '../NotificationsPage/notifications.css'
-import UserChats from '../ChatComponents/UserChats'
+import UserChats from './UserChats'
 import { useLocation } from 'react-router-dom'
 
 export default function Messages() {

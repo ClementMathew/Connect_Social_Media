@@ -3,7 +3,7 @@ import '../ProfilePage/profile.css'
 import NavComponent from '../Components/NavComponent'
 import '../HomePage/home.css'
 import '../ProfilePage/profile.css'
-import '../HomeComponents/NavComponent.css'
+import '../Components/NavComponent.css'
 import CreateComponent from '../CreatePage/CreateComponent';
 import Followers from '../ProfilePage/followers';
 import Following from '../ProfilePage/following';

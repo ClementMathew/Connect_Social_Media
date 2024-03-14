@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import '../HomeComponents/NavComponent.css'
+import '../Components/NavComponent.css'
 
 export default function MessageNavComponent(props) {
     return (

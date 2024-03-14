@@ -1,11 +1,11 @@
 import app from '../Firebase/firebase';
 import { useLocation, useNavigate } from "react-router-dom";
 import { signOut, getAuth } from "firebase/auth";
-import NavComponent from '../HomeComponents/NavComponent'
+import NavComponent from '../Components/NavComponent'
 import '../HomePage/home.css'
 import './profile.css'
 import { useEffect, useState } from 'react';
-import '../HomeComponents/NavComponent.css'
+import '../Components/NavComponent.css'
 import CreateComponent from '../CreatePage/CreateComponent';
 import EditProfile from './editprofile';
 import ProfilePicUpload from './profilepic';
