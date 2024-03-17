@@ -37,6 +37,7 @@ const Home = () => {
     let allUsers = {}
 
     useEffect(() => {
+
         story.current.addEventListener('wheel', (event) => {
             story?.current.scrollBy({ left: event.deltaY * 5, top: 0, behavior: "smooth" });
         })
@@ -46,9 +47,10 @@ const Home = () => {
             const db = getFirestore(app)
 
             const fetchUsers = async () => {
-                const docPosts = await getDocs(collection(db, "Users"))
-                docPosts.forEach((doc) => {
 
+                const docPosts = await getDocs(collection(db, "Users"))
+
+                docPosts.forEach((doc) => {
                     let ID = doc.id
                     allUsers[ID] = doc.data()
                     allUsers[ID].uid = doc.id
@@ -59,19 +61,16 @@ const Home = () => {
             fetchUsers()
 
             const fetchPosts = async () => {
-                const docPosts = await getDocs(collection(db, "Posts"))
-                docPosts.forEach((doc) => {
 
+                const docPosts = await getDocs(collection(db, "Posts"))
+
+                docPosts.forEach((doc) => {
                     let ID = doc.id
                     allPosts[ID] = doc.data()
                 })
 
                 const entries = Object.entries(allPosts);
-
-                // Reverse the array of entries
                 const reversedEntries = entries.reverse();
-
-                // Convert the reversed array back to an object
                 const reversedPosts = Object.fromEntries(reversedEntries);
 
                 setPostDatas(reversedPosts)
@@ -85,7 +84,7 @@ const Home = () => {
                 const docSnap = await getDoc(docRef)
                 const fieldData = docSnap.data()
 
-                dataToHome.userid = user.uid
+                dataToHome.uid = user.uid
                 dataToHome.profilepicurl = fieldData.profilepicurl
                 dataToHome.posts = fieldData.posts
                 dataToHome.followers = fieldData.followers
@@ -97,7 +96,6 @@ const Home = () => {
                 dataToHome.recenthistory = fieldData.recenthistory
             });
 
-            // Clean up subscription to avoid memory leaks
             return () => unsubscribe();
 
         } catch (error) {
@@ -105,13 +103,15 @@ const Home = () => {
         }
     }, [])
 
-
     return (
         <div id="containerhome">
+
             <div id="sidebar">
+
                 <div id="connectwithlogo">
-                    <img src="connectwithlogo.png" alt="connectlogo" />
+                    <img id='connectwithlogo-img' src="connectwithlogo.png" alt="connectlogo" />
                 </div>
+
                 <div id="stripes">
                     <div id="blackstripe"></div>
                     <div id="orangestripe"></div>
@@ -125,19 +125,22 @@ const Home = () => {
 
                     <div id='nav' onClick={popUp}>
                         <img id='nav-img' src='create.png' alt="navIcon" />
-                        <p>Create</p>
+                        <p id='nav-p'>Create</p>
                     </div>
 
                     <NavComponent iconSource='profile_icon.png' navName="Profile" navPage="/profile" data={dataToHome}></NavComponent>
                     <NavComponent iconSource='more.png' navName="More" navPage="/more" data={dataToHome}></NavComponent>
                 </div>
+
                 <div id="sloganhome">Get Connected, Get Social</div>
             </div>
 
             <div className="verticalline"></div>
 
             <div id="center">
+
                 <div id="storyhome" ref={story}>
+
                     <div id='story'>
                         <div id="storyborder">
                             <div id='storyProfilePic'>
@@ -177,9 +180,11 @@ const Home = () => {
             <div className="verticalline"></div>
 
             <div id="rightside">
+
                 <div id="userhome">
+
                     <div id='profilepic'>
-                        <img src={dataToHome.profilepicurl === '' ? 'profile.png' : dataToHome.profilepicurl} alt="profile pic" />
+                        <img id='profilepic-img' src={dataToHome.profilepicurl === '' ? 'profile.png' : dataToHome.profilepicurl} alt="profile pic" />
                     </div>
                     <div id="nametag">
                         <p id="username">
@@ -189,20 +194,16 @@ const Home = () => {
                             {dataToHome.name}
                         </p>
                     </div>
-                    <div id="switchbutton">
-                        <button>Switch</button>
-                    </div>
+
+                    <button id='switchbutton'>Switch</button>
+
                 </div>
                 <div id="suggestionheading">
-                    <p>Suggested for you</p>
-                    <button>See All</button>
+                    <p id='suggestionheading-p'>Suggested for you</p>
+                    <button id='suggestionheading-button'>See All</button>
                 </div>
+
                 <div id="suggestionshome">
-                    <SuggestComponent picSource='profile.jpg' userName='__clement.m__' mainName='Clement Mathew'></SuggestComponent>
-                    <SuggestComponent picSource='profile.jpg' userName='__clement.m__' mainName='Clement Mathew'></SuggestComponent>
-                    <SuggestComponent picSource='profile.jpg' userName='__clement.m__' mainName='Clement Mathew'></SuggestComponent>
-                    <SuggestComponent picSource='profile.jpg' userName='__clement.m__' mainName='Clement Mathew'></SuggestComponent>
-                    <SuggestComponent picSource='profile.jpg' userName='__clement.m__' mainName='Clement Mathew'></SuggestComponent>
                     <SuggestComponent picSource='profile.jpg' userName='__clement.m__' mainName='Clement Mathew'></SuggestComponent>
                     <SuggestComponent picSource='profile.jpg' userName='__clement.m__' mainName='Clement Mathew'></SuggestComponent>
                     <SuggestComponent picSource='profile.jpg' userName='__clement.m__' mainName='Clement Mathew'></SuggestComponent>

@@ -5,7 +5,7 @@ export default function SuggestComponent(props) {
     return (
         <div id='suggestions'>
             <div id='profilepic'>
-                <img src={props.picSource} alt="profile picture" />
+                <img id='profilepic-img' src={props.picSource} alt="profile picture" />
             </div>
             <div id="nametag">
                 <p id="username">
@@ -15,9 +15,7 @@ export default function SuggestComponent(props) {
                     {props.mainName}
                 </p>
             </div>
-            <div id="followbutton">
-                <button>Connect</button>
-            </div>
+            <button id='followbutton'>Connect</button>
         </div>
     )
 }

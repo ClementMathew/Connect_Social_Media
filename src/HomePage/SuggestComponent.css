@@ -15,7 +15,7 @@
     justify-content: center;
 }
 
-#profilepic img {
+#profilepic-img {
     width: 100%;
     height: auto;
 }
@@ -38,7 +38,7 @@
     font-size: 15px;
 }
 
-#followbutton button {
+#followbutton {
     background-color: #FF9100;
     border: none;
     height: 40px;
