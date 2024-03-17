@@ -21,7 +21,7 @@
     border-radius: 85px;
 }
 
-#createTopContainer p {
+#createTopContainer-p {
     padding-top: 10px;
     line-height: 50px;
     font-family: Amaranth;
@@ -29,35 +29,20 @@
     font-size: 27px;
 }
 
-#newPostDrag img {
+#newPostDrag-img {
     margin-top: 40px;
     transform: scale(.9);
 }
 
-#newPostDrag p {
+#newPostDrag-p {
     line-height: 0px;
     padding-bottom: 40px;
     font-size: 20px;
+    font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
 }
 
-#createTopContainer button {
-    margin-top: 40px;
-    background-color: #FF9100;
-    border: none;
-    height: 48px;
-    width: 200px;
-    border-radius: 13px;
-    color: white;
-    font-weight: bold;
-    font-size: 16px;
-    padding-top: 2px;
-    box-shadow: 0px 0px 2px 0px rgb(128, 128, 128);
-    cursor: pointer;
-    letter-spacing: 1px;
-}
-
-#fileName p {
+#fileName-p {
     font-size: 16px;
     line-height: 0px;
     padding: 0px;
@@ -71,4 +56,20 @@
     display: flex;
     width: 60%;
     justify-content: space-around;
+}
+
+#createTopContainer-button {
+    margin-top: 40px;
+    background-color: #FF9100;
+    border: none;
+    height: 48px;
+    width: 200px;
+    border-radius: 13px;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    padding-top: 2px;
+    box-shadow: 0px 0px 2px 0px rgb(128, 128, 128);
+    cursor: pointer;
+    letter-spacing: 1px;
 }

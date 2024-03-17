@@ -13,6 +13,7 @@ export default function CreateComponent(props) {
   const [imageUpload, setImageUpload] = useState(null);
 
   const popDown = () => {
+
     props.setCreateToggle(!props.createToggle)
     setImageUpload(null)
   }
@@ -25,6 +26,7 @@ export default function CreateComponent(props) {
       const db = getFirestore(app)
 
       const collectionRef = collection(db, "Posts")
+
       onSnapshot(collectionRef, (snapshot) => {
         postsLength = snapshot.size
       })
@@ -38,13 +40,16 @@ export default function CreateComponent(props) {
 
     try {
       setLoading(true)
+
       const db = getFirestore(app)
       const storage = getStorage(app)
+
       if (imageUpload == null) return;
 
       const imageRef = ref(storage, `Users/${props.data.username}/Posts/${imageUpload.name}`);
 
       uploadBytes(imageRef, imageUpload).then((snapshot) => {
+
         getDownloadURL(snapshot.ref).then(async (url) => {
 
           const docRef1 = doc(collection(db, "Users"), props.data.uid)
@@ -81,6 +86,7 @@ export default function CreateComponent(props) {
           setLoading(false)
           setMyError("Successfully Uploaded !")
           showError()
+
           setTimeout(() => {
             hideError()
             popDown()
@@ -88,6 +94,7 @@ export default function CreateComponent(props) {
           )
         });
       });
+
     } catch (error) {
       setLoading(false)
       popDown()
@@ -95,6 +102,7 @@ export default function CreateComponent(props) {
   };
 
   const showError = () => {
+
     settoggleError({
       display: 'flex',
       alignItems: 'center',
@@ -136,14 +144,17 @@ export default function CreateComponent(props) {
       </div>
 
       <div id="createTopContainer" style={{ display: props.show }} >
-        <p>Create New Post</p>
+        <p id='createTopContainer-p'>Create New Post</p>
+
         <div className="horizontalline"></div>
-        <div id="newPostDrag">
-          <img src="draggallery.png" alt="drag gallery" />
-          <p>Drag photos here</p>
+
+        <div>
+          <img id='newPostDrag-img' src="draggallery.png" alt="drag gallery" />
+          <p id='newPostDrag-p'>Drag photos here</p>
         </div>
-        <div id="fileName">
-          <p>{imageUpload === null ? 'No File Choosen' : imageUpload.name}</p>
+
+        <div >
+          <p id="fileName-p">{imageUpload === null ? 'No File Choosen' : imageUpload.name}</p>
         </div>
 
         <input
@@ -154,12 +165,12 @@ export default function CreateComponent(props) {
         />
 
         <div id="chooseFile">
-          <button
+          <button id='createTopContainer-button'
             onClick={() => document.getElementById('fileInput').click()}
           >
             Choose File
           </button>
-          <button onClick={uploadFile}>{loading ? 'Loading...' : 'Upload'}</button>
+          <button id='createTopContainer-button' onClick={uploadFile}>{loading ? 'Loading...' : 'Upload'}</button>
         </div>
 
       </div>
