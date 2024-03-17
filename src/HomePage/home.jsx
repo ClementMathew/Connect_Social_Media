@@ -124,7 +124,7 @@ const Home = () => {
                     <NavComponent iconSource='notifications.png' navName="Notifications" navPage="/notifications" data={dataToHome}></NavComponent>
 
                     <div id='nav' onClick={popUp}>
-                        <img src='create.png' alt="navIcon" />
+                        <img id='nav-img' src='create.png' alt="navIcon" />
                         <p>Create</p>
                     </div>
 

@@ -13,7 +13,9 @@ function ForgotPassword() {
     const [toggleAlert, settoggleAlert] = useState({});
 
     useEffect(() => {
+
         if (myalert) {
+
             settoggleAlert({
                 display: 'flex',
                 alignItems: 'center',
@@ -35,8 +37,8 @@ function ForgotPassword() {
         }
     }, [myalert])
 
-
     const hideAlert = () => {
+
         settoggleAlert({
         });
         settheError(false)
@@ -53,19 +55,24 @@ function ForgotPassword() {
         if (emalVal.includes('.com')) {
 
             try {
-
                 const auth = getAuth(app);
 
                 await sendPasswordResetEmail(auth, emalVal).then(data => {
+
+                    console.log(data)
                     setLoading(false)
                     setMyAlert("Check your Gmail !")
+
                     setTimeout(() => {
                         hideAlert()
                     }, 2000
                     )
-                }).catch(err => {
+                }).catch(error => {
+
+                    console.log(error)
                     setLoading(false)
                     setMyAlert("Check your Internet Connection !")
+
                     setTimeout(() => {
                         hideAlert()
                     }, 2000
@@ -79,6 +86,7 @@ function ForgotPassword() {
         else {
             setLoading(false)
             setMyAlert("Invalid Email !")
+
             setTimeout(() => {
                 hideAlert()
             }, 2000
@@ -93,7 +101,7 @@ function ForgotPassword() {
                 </Link>
             </button>
 
-            <div id="rectangles">
+            <div>
                 <img id='rect6' src="Rectangles/Rectangle 6.png" alt="Rectangle 6" />
                 <img id='rect7' src="Rectangles/Rectangle 7.png" alt="Rectangle 7" />
                 <img id='rect5' src="Rectangles/Rectangle 5.png" alt="Rectangle 5" />
@@ -105,13 +113,14 @@ function ForgotPassword() {
             </div>
 
             <div id="containertop">
+
                 <div id="forgot">
 
                     <img id='lets' style={{ paddingTop: '75px', paddingLeft: '115px' }} src="lets.svg" alt="lets" />
 
                     <div id='logincenter'>
 
-                        <img src="connecthead.png" style={{ paddingTop: '90px', paddingBottom: '20px' }} alt="connecthead" id="connecthead" />
+                        <img id="connecthead" src="connecthead.png" style={{ paddingTop: '90px', paddingBottom: '20px' }} alt="connecthead" />
 
                         <form onSubmit={(e) => handleSubmit(e)}>
                             <input className='textbox' style={{ marginTop: '20px', marginBottom: '20px' }}
@@ -125,19 +134,19 @@ function ForgotPassword() {
                             {loading ?
                                 <div id='loading' style={{ height: '80px' }}>
                                     <img id='loadingBox' src='loading_box.gif' alt='loading...'></img>
-                                    <p>Loading...</p>
+                                    <p id="loading-p">Loading...</p>
                                 </div>
                                 :
-                                <button type="submit" style={{ marginBottom: '30px' }} className='loginButton'>
+                                <button className='loginButton' type="submit" style={{ marginBottom: '30px' }}>
                                     Reset Password
                                 </button>
                             }
                         </form>
 
                         <ul id='mySection'>
-                            <hr />
-                            <p>Info</p>
-                            <hr />
+                            <hr id="mySection-hr" />
+                            <p id="mySection-p">Info</p>
+                            <hr id="mySection-hr" />
                         </ul>
 
                         <p className="info" style={{ marginTop: '30px' }}><strong>Step 1 :</strong> Reset link is send to your email address.</p>
@@ -146,6 +155,7 @@ function ForgotPassword() {
 
                         <p className="info"><strong>Step 3 :</strong> Relogin to your account with new password.</p>
                     </div>
+
                 </div>
                 {
                     theError ? <div style={toggleAlert}>
