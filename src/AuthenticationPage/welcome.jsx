@@ -166,7 +166,7 @@ const SignIn = () => {
 
           <div id='logincenter'>
 
-            <img src="connecthead.png" style={{ paddingTop: '90px', paddingBottom: '20px' }} alt="connecthead" id="connecthead" />
+            <img id="connecthead" src="connecthead.png" style={{ paddingTop: '90px', paddingBottom: '20px' }} alt="connecthead" />
 
             <form onSubmit={handleSubmit}>
               <input className='textbox'
@@ -192,7 +192,7 @@ const SignIn = () => {
                   <p id='loading-p'>Loading...</p>
                 </div>
                 :
-                <button type="submit" style={{ marginBottom: '40px', marginTop: '15px' }} className='loginButton'>
+                <button className='loginButton' type="submit" style={{ marginBottom: '40px', marginTop: '15px' }} >
                   Login
                 </button>}
 

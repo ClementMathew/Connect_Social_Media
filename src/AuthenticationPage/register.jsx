@@ -17,7 +17,6 @@ const SignUp = () => {
 
   const [mypasserror, setMyPassError] = useState('');
   const [togglePassError, settogglePassError] = useState({});
-
   const [loading, setLoading] = useState(false)
 
   const navigate = useNavigate();
@@ -34,6 +33,7 @@ const SignUp = () => {
         try {
           const auth = getAuth(app);
           const db = getFirestore(app);
+
           const userCredential = await createUserWithEmailAndPassword(auth, email, password);
 
           const user = userCredential.user;
@@ -41,6 +41,7 @@ const SignUp = () => {
 
           updateProfile(user, {
             displayName: theName,
+
           }).then(() => {
             console.log(user.displayName)
           })
@@ -71,7 +72,7 @@ const SignUp = () => {
           }
 
           navigate('/home', { state: dataToHome })
-          // You can send a request to your authentication server here
+
         } catch (error) {
 
           setLoading(false)
@@ -81,17 +82,18 @@ const SignUp = () => {
               break;
           }
           showPassError()
+
           setTimeout(() => {
             hidePassError()
           }, 2000
           )
         }
-        // You can send a request to your authentication server here
       }
       else {
         setLoading(false)
         setMyPassError("Passwords doesn't match !")
         showPassError()
+
         setTimeout(() => {
           hidePassError()
         }, 2000
@@ -102,6 +104,7 @@ const SignUp = () => {
       setLoading(false)
       setMyPassError("Invalid Email !")
       showPassError()
+
       setTimeout(() => {
         hidePassError()
       }, 2000
@@ -139,7 +142,7 @@ const SignUp = () => {
     <>
       <img id="logo" src="logo.png" alt="Logo" />
 
-      <div id="rectangles">
+      <div>
         <img id='rect6' src="Rectangles/Rectangle 6.png" alt="Rectangle 6" />
         <img id='rect7' src="Rectangles/Rectangle 7.png" alt="Rectangle 7" />
         <img id='rect5' src="Rectangles/Rectangle 5.png" alt="Rectangle 5" />
@@ -153,13 +156,14 @@ const SignUp = () => {
       <img id="slogan" src="slogan.svg" alt="Slogan" />
 
       <div id="containertop">
+
         <div id="signup">
 
           <img id='lets' style={{ paddingTop: '75px', paddingLeft: '115px' }} src="lets.svg" alt="lets" />
 
           <div id='logincenter'>
 
-            <img src="connecthead.png" style={{ paddingTop: '90px', paddingBottom: '20px' }} alt="connecthead" id="connecthead" />
+            <img id="connecthead" src="connecthead.png" style={{ paddingTop: '90px', paddingBottom: '20px' }} alt="connecthead" />
 
             <form onSubmit={handleSubmit}>
               <input
@@ -225,10 +229,10 @@ const SignUp = () => {
               {loading ?
                 <div id='loading'>
                   <img id='loadingBox' src='loading_box.gif' alt='loading...'></img>
-                  <p>Loading...</p>
+                  <p id='loading-p'>Loading...</p>
                 </div>
                 :
-                <button type="submit" className='loginButton' style={{ marginBottom: '40px', marginTop: '15px' }}>
+                <button className='loginButton' type="submit" style={{ marginBottom: '40px', marginTop: '15px' }}>
                   Sign Up
                 </button>
               }
