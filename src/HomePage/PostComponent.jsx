@@ -30,7 +30,7 @@ export default function PostComponent(props) {
     }
 
     return (
-        <div key={props.key}>
+        <div >
 
             <div id="posthead">
 

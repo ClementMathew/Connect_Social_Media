@@ -1,6 +1,7 @@
 import React from 'react'
 
 export default function Help(props) {
+
     const popDown = () => {
         props.setHelpToggle(!props.helpToggle)
     }
@@ -11,10 +12,11 @@ export default function Help(props) {
             </div>
 
             <div id="createTopContainer" style={{ display: props.show }} >
-                <p>Help</p>
+
+                <p id='createTopContainer-p'>Help</p>
+
                 <div className="horizontalline"></div>
             </div>
-
         </>
     )
 }

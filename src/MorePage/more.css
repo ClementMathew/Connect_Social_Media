@@ -16,7 +16,7 @@
     justify-content: space-evenly;
 }
 
-#moreContainer hr {
+#moreContainer-hr {
     border: none;
     margin: 0px;
     background-color: rgb(195, 195, 195);

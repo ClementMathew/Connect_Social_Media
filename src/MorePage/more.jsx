@@ -12,7 +12,7 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import Report from './report'
 import About from './about'
 import Help from './help'
-import { deleteUser, getAuth, onAuthStateChanged } from 'firebase/auth'
+import { deleteUser, getAuth } from 'firebase/auth'
 import app from '../Firebase/firebase'
 import { deleteDoc, doc, getFirestore } from 'firebase/firestore'
 
@@ -26,25 +26,33 @@ export default function More() {
     const popUp = () => {
         setCreateToggle(!createToggle)
     }
+
     const popReport = () => {
         setReportToggle(!reportToggle)
     }
+
     const popAbout = () => {
         setAboutToggle(!aboutToggle)
     }
+
     const popHelp = () => {
         setHelpToggle(!helpToggle)
     }
 
     const navigate = useNavigate()
 
-    const deleteAccount = () => {
+    const deleteAccount = async () => {
         try {
             const auth = getAuth(app)
             const db = getFirestore(app)
-            const docRef = doc(db, "Users", dataToMore.uid)
-            // const user = auth.currentUser
-            // console.log(user)
+            const user = auth.currentUser
+            console.log(user)
+            // const docRef = doc(db, "Users", dataToMore.uid)
+            // await deleteUser(user).then(() => {
+            //     deleteDoc(docRef)
+            //     navigate('/')
+            // })
+
         } catch (error) {
             console.log(error)
         }
@@ -55,10 +63,13 @@ export default function More() {
 
     return (
         <div id="containerhome">
+
             <div id="sidebar">
+
                 <div id="connectwithlogo">
-                    <img src="connectwithlogo.png" alt="connectlogo" />
+                    <img id='connectwithlogo-img' src="connectwithlogo.png" alt="connectlogo" />
                 </div>
+
                 <div id="stripes">
                     <div id="blackstripe"></div>
                     <div id="orangestripe"></div>
@@ -71,19 +82,20 @@ export default function More() {
                     <NavComponent iconSource='notifications.png' navName="Notifications" navPage="/notifications" data={dataToMore}></NavComponent>
 
                     <div id='nav' onClick={popUp}>
-                        <img src='create.png' alt="navIcon" />
-                        <p>Create</p>
+                        <img id='nav-img' src='create.png' alt="navIcon" />
+                        <p id='nav-p'>Create</p>
                     </div>
 
                     <NavComponent iconSource='profile_icon.png' navName="Profile" navPage="/profile" data={dataToMore}></NavComponent>
                     <NavComponent selected='#F3F3F3' iconSource='more.png' navName="More" navPage="/more" data={dataToMore}></NavComponent>
                 </div>
+
                 <div id="sloganhome">Get Connected, Get Social</div>
             </div>
 
             <div className="verticalline"></div>
 
-            <div id="morecenter">
+            <div >
 
                 <div id="notificationhead">More</div>
 
@@ -100,28 +112,28 @@ export default function More() {
                             <ToggleSwitch userid={dataToMore.userid} toggle={dataToMore.darkmode} type='darkmode'></ToggleSwitch>
                         </div>
 
-                        <hr />
+                        <hr id='moreContainer-hr' />
                         <div className='moreToggleSwitch'>
                             <p className="moreContent">Public Account</p>
                             <ToggleSwitch userid={dataToMore.userid} toggle={dataToMore.public} type='public'></ToggleSwitch>
                         </div>
 
-                        <hr />
+                        <hr id='moreContainer-hr' />
                         <div className='moreToggleSwitch'>
                             <p className="moreContent">Notifications</p>
                             <ToggleSwitch userid={dataToMore.userid} toggle={dataToMore.notifications} type='notifications'></ToggleSwitch>
                         </div>
 
-                        <hr />
+                        <hr id='moreContainer-hr' />
                         <p className="moreContent" id='deleteAccount' onClick={deleteAccount}>Delete Account</p>
 
-                        <hr />
+                        <hr id='moreContainer-hr' />
                         <p className="moreContent" onClick={popReport}>Report Problem</p>
 
-                        <hr />
+                        <hr id='moreContainer-hr' />
                         <p className="moreContent" onClick={popAbout} >About</p>
 
-                        <hr />
+                        <hr id='moreContainer-hr' />
                         <p className="moreContent" onClick={popHelp}>Help</p>
 
                         <div style={{ padding: '7px' }}></div>
