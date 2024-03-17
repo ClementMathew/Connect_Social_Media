@@ -26,12 +26,11 @@ export default function Search() {
 
         const searchTemp = {}
         setSearchedUserToggle(true)
-        console.log(dataToSearch.allusers)
 
         Object.keys(dataToSearch.allusers).map((key) => {
             const username = dataToSearch.allusers[key].username
 
-            if (username.includes(e.target.value) && (e.target.value) != '') {
+            if (username.includes(e.target.value) && (e.target.value) !== '') {
                 searchTemp[key] = dataToSearch.allusers[key]
                 setSearchedUser(searchTemp)
             }

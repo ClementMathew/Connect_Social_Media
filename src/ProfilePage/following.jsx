@@ -31,7 +31,7 @@ export default function Following(props) {
                                 </div>
                             </div>
                             <div id="followbutton">
-                                <button id='logOut' style={{ marginLeft: '100px', marginTop: '0px' }}>Unfollow</button>
+                                <button id='logOut' style={{ marginLeft: '100px', marginTop: '0px' }}>Disconnect</button>
                             </div>
                         </div>
                     ))

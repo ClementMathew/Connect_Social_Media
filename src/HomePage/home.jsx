@@ -10,6 +10,7 @@ import { useLocation } from 'react-router-dom';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import app from '../Firebase/firebase';
 import { doc, collection, getFirestore, getDoc, getDocs } from 'firebase/firestore';
+import PostComponent from './PostComponent';
 
 const Home = () => {
 
@@ -104,6 +105,7 @@ const Home = () => {
         }
     }, [])
 
+
     return (
         <div id="containerhome">
             <div id="sidebar">
@@ -162,42 +164,9 @@ const Home = () => {
                 <div className="horizontalline"></div>
 
                 <div id="posthome">
-
                     {
                         Object.keys(postDatas).map((key) => (
-
-                            <div id="post" key={key}>
-
-                                <div id="posthead">
-                                    <div id="postProfilePic">
-                                        <img src={postDatas[key].profilepicurl == "" ? 'profile.png' : postDatas[key].profilepicurl} alt="profilepicture" />
-                                    </div>
-                                    <div id="postname">{postDatas[key].username}</div>
-                                </div>
-                                <div className="horizontalline"></div>
-                                <div id="postimage">
-                                    <img src={postDatas[key].url} alt="postimage" />
-                                </div>
-                                <div id="postfoot">
-                                    <div id="likes">
-                                        <img src="not_like.png" alt="like" />
-                                        <p>{postDatas[key].likes} Likes</p>
-                                    </div>
-                                    <div id="comments">
-                                        <img src="comment.png" alt="comment" />
-                                        <p>{postDatas[key].commentcount} Comments</p>
-                                    </div>
-                                    <div id="share">
-                                        <img src="share.png" alt="share" />
-                                        <p>{postDatas[key].share} Shares</p>
-                                    </div>
-                                    <div id="postabout">
-                                        <img src="dot.png" alt="dot" />
-                                        <p>{postDatas[key].about}</p>
-                                    </div>
-                                </div>
-                                <div className="horizontalline"></div>
-                            </div>
+                            <PostComponent key={key} profilepicurl={postDatas[key].profilepicurl} username={postDatas[key].username} url={postDatas[key].url} likes={postDatas[key].likes} comments={Object.keys(postDatas[key].comments).length} share={postDatas[key].share} about={postDatas[key].about} />
                         ))
                     }
 

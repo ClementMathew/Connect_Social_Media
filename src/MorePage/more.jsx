@@ -8,10 +8,13 @@ import ToggleSwitch from '../ToggleSwitch/ToggleSwitch'
 import { useState } from 'react'
 import '../Components/NavComponent.css'
 import CreateComponent from '../CreatePage/CreateComponent';
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import Report from './report'
 import About from './about'
 import Help from './help'
+import { deleteUser, getAuth, onAuthStateChanged } from 'firebase/auth'
+import app from '../Firebase/firebase'
+import { deleteDoc, doc, getFirestore } from 'firebase/firestore'
 
 export default function More() {
 
@@ -31,6 +34,20 @@ export default function More() {
     }
     const popHelp = () => {
         setHelpToggle(!helpToggle)
+    }
+
+    const navigate = useNavigate()
+
+    const deleteAccount = () => {
+        try {
+            const auth = getAuth(app)
+            const db = getFirestore(app)
+            const docRef = doc(db, "Users", dataToMore.uid)
+            // const user = auth.currentUser
+            // console.log(user)
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     const location = useLocation()
@@ -96,7 +113,7 @@ export default function More() {
                         </div>
 
                         <hr />
-                        <p className="moreContent" id='deleteAccount'>Delete Account</p>
+                        <p className="moreContent" id='deleteAccount' onClick={deleteAccount}>Delete Account</p>
 
                         <hr />
                         <p className="moreContent" onClick={popReport}>Report Problem</p>

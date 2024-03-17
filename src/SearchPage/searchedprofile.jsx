@@ -18,6 +18,7 @@ export default function SearchedProfile() {
     const [followingList, setFollowingList] = useState(false)
     const [connect, setConnect] = useState('Connect')
     const [connectColor, setConnectColor] = useState("editProfile")
+    const [connectToggle, setConnectToggle] = useState(false)
 
     const popUp = () => {
         setCreateToggle(!createToggle)
@@ -74,11 +75,11 @@ export default function SearchedProfile() {
                 dataToSearchProfile.followers = fieldData.followers
 
                 Object.keys(dataToSearchProfile.followers).forEach(key => {
-                    key == dataToSearchProfile.uid ? setConnect("Connected") : setConnect("Connect")
+                    key === dataToSearchProfile.uid ? setConnect("Connected") : setConnect("Connect")
                 })
 
                 Object.keys(dataToSearchProfile.followers).forEach(key => {
-                    key == dataToSearchProfile.uid ? setConnectColor("logOut") : setConnectColor("editProfile")
+                    key === dataToSearchProfile.uid ? setConnectColor("logOut") : setConnectColor("editProfile")
                 })
 
             } catch (error) {
@@ -92,42 +93,86 @@ export default function SearchedProfile() {
     const handleClick = async (e) => {
         e.preventDefault();
 
-        setConnect("Connected")
-        setConnectColor("logOut")
+        setConnectToggle(!connectToggle)
 
-        try {
-            const db = getFirestore(app)
-            const docRef = doc(db, "Users", dataToSearchProfile.uid)
-            const docRef2 = doc(db, "Users", searchPerson.uid)
+        if (connectToggle) {
 
-            const docSnap = await getDoc(docRef)
-            const docSnap2 = await getDoc(docRef2)
-            const fieldData = docSnap.data()
-            const fieldData2 = docSnap2.data()
+            setConnect("Connected")
+            setConnectColor("logOut")
 
-            const following = fieldData.following
-            const followers = fieldData2.followers
+            try {
+                const db = getFirestore(app)
+                const docRef = doc(db, "Users", dataToSearchProfile.uid)
+                const docRef2 = doc(db, "Users", searchPerson.uid)
 
-            following[searchPerson.uid] = {
-                username: searchPerson.username,
-                name: searchPerson.name,
-                profilepicurl: searchPerson.profilepicurl
+                const docSnap = await getDoc(docRef)
+                const docSnap2 = await getDoc(docRef2)
+                const fieldData = docSnap.data()
+                const fieldData2 = docSnap2.data()
+
+                const following = fieldData.following
+                const followers = fieldData2.followers
+
+                following[searchPerson.uid] = {
+                    username: searchPerson.username,
+                    name: searchPerson.name,
+                    profilepicurl: searchPerson.profilepicurl
+                }
+
+                followers[dataToSearchProfile.uid] = {
+                    username: dataToSearchProfile.username,
+                    name: dataToSearchProfile.name,
+                    profilepicurl: dataToSearchProfile.profilepicurl
+                }
+                updateDoc(docRef, {
+                    following: following
+                })
+                updateDoc(docRef2, {
+                    followers: followers
+                })
+
+            } catch (error) {
+                console.log(error)
             }
+        }
+        else {
+            setConnect("Connect")
+            setConnectColor("editProfile")
 
-            followers[dataToSearchProfile.uid] = {
-                username: dataToSearchProfile.username,
-                name: dataToSearchProfile.name,
-                profilepicurl: dataToSearchProfile.profilepicurl
+            try {
+                const db = getFirestore(app)
+                const docRef = doc(db, "Users", dataToSearchProfile.uid)
+                const docRef2 = doc(db, "Users", searchPerson.uid)
+
+                const docSnap = await getDoc(docRef)
+                const docSnap2 = await getDoc(docRef2)
+                const fieldData = docSnap.data()
+                const fieldData2 = docSnap2.data()
+
+                const following = fieldData.following
+                const followers = fieldData2.followers
+
+                following[searchPerson.uid] = {
+                    username: searchPerson.username,
+                    name: searchPerson.name,
+                    profilepicurl: searchPerson.profilepicurl
+                }
+
+                followers[dataToSearchProfile.uid] = {
+                    username: dataToSearchProfile.username,
+                    name: dataToSearchProfile.name,
+                    profilepicurl: dataToSearchProfile.profilepicurl
+                }
+                updateDoc(docRef, {
+                    following: following
+                })
+                updateDoc(docRef2, {
+                    followers: followers
+                })
+
+            } catch (error) {
+                console.log(error)
             }
-            updateDoc(docRef, {
-                following: following
-            })
-            updateDoc(docRef2, {
-                followers: followers
-            })
-
-        } catch (error) {
-            console.log(error)
         }
     };
 

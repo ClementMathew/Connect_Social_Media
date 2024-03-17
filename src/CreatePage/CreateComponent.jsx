@@ -124,7 +124,6 @@ export default function CreateComponent(props) {
   }
 
   const handleFileInputChange = (event) => {
-
     setImageUpload(event.target.files[0]);
   };
 

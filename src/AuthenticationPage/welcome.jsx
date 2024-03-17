@@ -21,16 +21,14 @@ const SignIn = () => {
 
     setLoading(true)
     e.preventDefault();
-    // Add your authentication logic here
 
     try {
-
       const auth = getAuth(app);
       const db = getFirestore(app);
+
       signInWithEmailAndPassword(auth, email, password).then(async (credential) => {
 
         const user = credential.user
-
         const docRef = doc(collection(db, "Users"), user.uid)
         const docSnap = await getDoc(docRef)
         const fieldData = docSnap.data()
@@ -44,17 +42,20 @@ const SignIn = () => {
         }
 
         navigate('/home', { state: dataToHome });
+
       }).catch((error) => {
 
+        console.log(error)
         setLoading(false)
         setMyError("Invalid Credentials !")
         showError()
+
         setTimeout(() => {
           hideError()
         }, 2000
         )
       });
-      // You can send a request to your authentication server here
+
     } catch (error) {
       console.log(error)
     }
@@ -94,9 +95,11 @@ const SignIn = () => {
     try {
       const auth = getAuth(app);
       const db = getFirestore(app);
+
       signInWithPopup(auth, provider).then(async (credential) => {
 
         const user = credential.user
+
         let userData = {
           name: user.displayName,
           uid: user.uid,
@@ -114,15 +117,19 @@ const SignIn = () => {
           userData.profilepicurl = fieldData.profilepicurl
 
           navigate('/home', { state: userData })
+
         } else {
           navigate("/cwg", { state: userData })
-        }
 
+        }
         setLoadingCWG(false)
+
       }).catch((error) => {
 
+        console.log(error)
         setMyError("Check your Internet Connection !")
         showError()
+
         setTimeout(() => {
           hideError()
         }, 2000
@@ -138,7 +145,7 @@ const SignIn = () => {
     <>
       <img id="logo" src="logo.png" alt="Logo" />
 
-      <div id="rectangles">
+      <div>
         <img id='rect6' src="Rectangles/Rectangle 6.png" alt="Rectangle 6" />
         <img id='rect7' src="Rectangles/Rectangle 7.png" alt="Rectangle 7" />
         <img id='rect5' src="Rectangles/Rectangle 5.png" alt="Rectangle 5" />
@@ -152,6 +159,7 @@ const SignIn = () => {
       <img id="slogan" src="slogan.svg" alt="Slogan" />
 
       <div id="containertop">
+
         <div id="login">
 
           <img id='lets' style={{ paddingTop: '75px', paddingLeft: '115px' }} src="lets.svg" alt="lets" />
@@ -181,7 +189,7 @@ const SignIn = () => {
               {loading ?
                 <div id='loading'>
                   <img id='loadingBox' src='loading_box.gif' alt='loading...'></img>
-                  <p>Loading...</p>
+                  <p id='loading-p'>Loading...</p>
                 </div>
                 :
                 <button type="submit" style={{ marginBottom: '40px', marginTop: '15px' }} className='loginButton'>
@@ -195,9 +203,9 @@ const SignIn = () => {
               </div>
 
               <ul id='mySection'>
-                <hr />
-                <p>or</p>
-                <hr />
+                <hr id='mySection-hr' />
+                <p id='mySection-p'>or</p>
+                <hr id='mySection-hr' />
               </ul>
 
               <div className='myLink'>
@@ -206,10 +214,10 @@ const SignIn = () => {
             </form>
 
             {loadingCWG ?
-              <button className='cancelLoading' style={{ marginTop: '30px' }} onClick={() => setLoadingCWG(false)}><p>Cancel</p></button>
+              <button className='cancelLoading' style={{ marginTop: '30px' }} onClick={() => setLoadingCWG(false)}><p className='cancelLoading-p'>Cancel</p></button>
               :
               <button className="myOutButton" onClick={signInWithGoogle} style={{ marginTop: '30px' }}>
-                <img src="google.png" alt="continue with google" />
+                <img className='myOutButton-img' src="google.png" alt="continue with google" />
               </button>
             }
 
@@ -221,10 +229,10 @@ const SignIn = () => {
         </div>
       </div>
 
-      {/* {loadingCWG ? <div id="loadingCWG" >
-        <img src="loading_leaf.gif" alt="loading..." />
-        <img src="loading_leaf.gif" alt="loading..." />
-      </div> : ''} */}
+      {loadingCWG ? <div id="loadingCWG" >
+        <img id='loadingCWG-img' src="loading_leaf.gif" alt="loading..." />
+        <img id='loadingCWG-img' src="loading_leaf.gif" alt="loading..." />
+      </div> : ''}
 
     </>
   );

@@ -20,6 +20,8 @@ export default function Profile() {
     const [uploadPicToggle, setUploadPicToggle] = useState(false)
     const [followersList, setFollowersList] = useState(false)
     const [followingList, setFollowingList] = useState(false)
+    const [followersLen, setFollowersLen] = useState(0)
+    const [followingLen, setFollowingLen] = useState(0)
 
     const popUp = () => {
         setCreateToggle(!createToggle)
@@ -69,11 +71,14 @@ export default function Profile() {
         const fetchFollowing = async () => {
             try {
                 const db = getFirestore(app)
-                const docRef = doc(db, "Users", dataToProfile.uid)
+                const docRef = doc(db, "Users", dataToProfile.userid)
                 const docSnap = await getDoc(docRef)
                 const fieldData = docSnap.data()
                 dataToProfile.following = fieldData.following
                 dataToProfile.followers = fieldData.followers
+                dataToProfile.profilepicurl = fieldData.profilepicurl
+                setFollowersLen(Object.keys(dataToProfile.followers).length)
+                setFollowingLen(Object.keys(dataToProfile.following).length)
 
             } catch (error) {
                 console.log(error)
@@ -135,11 +140,11 @@ export default function Profile() {
                                 <p className='CountSuffix'>posts</p>
                             </div>
                             <div id="followersCount" onClick={followersPopUp}>
-                                <p className='CountPrefix followPointer'>{Object.keys(dataToProfile.followers).length}</p>
+                                <p className='CountPrefix followPointer'>{followersLen}</p>
                                 <p className='CountSuffix followPointer'>followers</p>
                             </div>
                             <div id="followingCount" onClick={followingPopUp}>
-                                <p className='CountPrefix followPointer'>{Object.keys(dataToProfile.following).length}</p>
+                                <p className='CountPrefix followPointer'>{followingLen}</p>
                                 <p className='CountSuffix followPointer'>following</p>
                             </div>
                         </div>
