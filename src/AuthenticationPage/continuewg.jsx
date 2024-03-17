@@ -12,7 +12,6 @@ export default function ContinueWithGoogle() {
 
     const [mypasserror, setMyPassError] = useState('');
     const [togglePassError, settogglePassError] = useState({});
-
     const [loading, setLoading] = useState(false)
 
     const navigate = useNavigate();
@@ -44,22 +43,23 @@ export default function ContinueWithGoogle() {
                 public: false,
                 notifications: false
             });
+
             userData.username = userName
             userData.phone = ("+91" + phone)
 
             navigate('/home', { state: userData })
-            // You can send a request to your authentication server here
+
         } catch (error) {
 
             setLoading(false)
             setMyPassError('Check Internet Connection !')
             showPassError()
+
             setTimeout(() => {
                 hidePassError()
             }, 2000
             )
         }
-        // You can send a request to your authentication server here
     };
 
     const showPassError = () => {
@@ -92,7 +92,7 @@ export default function ContinueWithGoogle() {
         <>
             <img id="logo" src="logo.png" alt="Logo" />
 
-            <div id="rectangles">
+            <div>
                 <img id='rect6' src="Rectangles/Rectangle 6.png" alt="Rectangle 6" />
                 <img id='rect7' src="Rectangles/Rectangle 7.png" alt="Rectangle 7" />
                 <img id='rect5' src="Rectangles/Rectangle 5.png" alt="Rectangle 5" />
@@ -106,13 +106,14 @@ export default function ContinueWithGoogle() {
             <img id="slogan" src="slogan.svg" alt="Slogan" />
 
             <div id="containertop">
+
                 <div id="signup" style={{ height: '530px', borderRadius: '65px' }}>
 
                     <img id='lets' style={{ paddingTop: '90px', paddingLeft: '115px' }} src="lets.svg" alt="lets" />
 
                     <div id='logincenter'>
 
-                        <img src="connecthead.png" style={{ paddingTop: '105px', paddingBottom: '40px' }} alt="connecthead" id="connecthead" />
+                        <img id="connecthead" src="connecthead.png" style={{ paddingTop: '105px', paddingBottom: '40px' }} alt="connecthead" />
 
                         <form onSubmit={handleSubmit}>
 
@@ -143,15 +144,14 @@ export default function ContinueWithGoogle() {
                             {loading ?
                                 <div id='loading' style={{ marginTop: '20px' }}>
                                     <img id='loadingBox' src='loading_box.gif' alt='loading...'></img>
-                                    <p>Loading...</p>
+                                    <p id='loading-p'>Loading...</p>
                                 </div>
                                 :
-                                <button type="submit" className='loginButton' style={{ marginBottom: '40px', marginTop: '35px' }}>
+                                <button className='loginButton' type="submit" style={{ marginBottom: '40px', marginTop: '35px' }}>
                                     Continue
                                 </button>
                             }
                             <br />
-
                         </form>
                     </div>
                 </div>
