@@ -25,8 +25,9 @@ export default function Messages() {
             <div id="messageSidebar">
 
                 <div id="messageLogo">
-                    <img src="logo.png" alt="connectlogo" />
+                    <img id='messageLogo-img' src="logo.png" alt="connectlogo" />
                 </div>
+
                 <div id="stripes">
                     <div id="blackstripe"></div>
                     <div id="orangestripe"></div>
@@ -39,7 +40,7 @@ export default function Messages() {
                     <MessageNavComponent iconSource='notifications.png' navPage='/notifications' data={dataToMessages}></MessageNavComponent>
 
                     <div id='nav' onClick={popUp} style={{ justifyContent: 'center' }}>
-                        <img style={{ margin: '0px' }} src='create.png' alt="navIcon" />
+                        <img id='nav-img' style={{ margin: '0px' }} src='create.png' alt="navIcon" />
                     </div>
 
                     <MessageNavComponent iconSource='profile_icon.png' navPage='/profile' data={dataToMessages}></MessageNavComponent>
@@ -50,6 +51,7 @@ export default function Messages() {
             <div className="verticalline"></div>
 
             <div id="messageCenter">
+
                 <div id="notificationhead">Messages</div>
 
                 <div id="ChatsList">
@@ -82,7 +84,7 @@ export default function Messages() {
                 <div id="chattingTop">
 
                     <div id='profilepic' style={{ height: '60px', width: '60px' }}>
-                        <img src='profile.jpg' alt="profile picture" />
+                        <img id='profilepic-img' src='profile.jpg' alt="profile picture" />
                     </div >
                     <div id="nametag" style={{ marginLeft: '24px', marginRight: '38vw' }}>
                         <p id="username">
@@ -101,6 +103,7 @@ export default function Messages() {
                 <div className="horizontalOrange"></div>
 
                 <div id="userChats">
+
                     <div style={{ padding: '10px' }}></div>
                     <UserChats chatType="Sent"></UserChats>
                     <UserChats chatType="Recieve"></UserChats>
@@ -113,15 +116,15 @@ export default function Messages() {
                 </div>
 
                 <div id="chattingBottom">
+
                     <div id="chatTyping">
-                        <img src="smiley.png" alt="smiley" />
-                        <input type="text" placeholder='Enter Something ...' />
+                        <img id='chatTyping-img' src="smiley.png" alt="smiley" />
+                        <input id='chatTyping-input' type="text" placeholder='Enter Something ...' />
                     </div>
 
-
                     <div id="chatSend">
-                        <img src="voice.png" alt="voice" />
-                        <img src="gallery.png" alt="gallery" />
+                        <img id='chatSend-img' src="voice.png" alt="voice" />
+                        <img id='chatSend-img' src="gallery.png" alt="gallery" />
                         <button id="chatSendButton">Send</button>
                     </div>
                 </div>
