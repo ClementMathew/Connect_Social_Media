@@ -8,6 +8,7 @@ const ToggleSwitch = (props) => {
   const [isChecked, setIsChecked] = useState(props.toggle);
 
   const handleToggle = () => {
+    
     setIsChecked(!isChecked);
 
     try {

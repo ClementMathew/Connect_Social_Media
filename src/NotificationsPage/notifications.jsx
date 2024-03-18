@@ -23,14 +23,18 @@ export default function Notifications() {
 
   return (
     <div id='containerhome'>
+
       <div id="sidebar">
+
         <div id="connectwithlogo">
-          <img src="connectwithlogo.png" alt="connectlogo" />
+          <img id='connectwithlogo-img' src="connectwithlogo.png" alt="connectlogo" />
         </div>
+
         <div id="stripes">
           <div id="blackstripe"></div>
           <div id="orangestripe"></div>
         </div>
+
         <div id="navhome">
           <NavComponent iconSource='home.png' navName="Home" navPage='/home' data={dataToNotifications}></NavComponent>
           <NavComponent iconSource='search.png' navName="Search" navPage="/search" data={dataToNotifications}></NavComponent>
@@ -38,13 +42,14 @@ export default function Notifications() {
           <NavComponent selected='#F3F3F3' iconSource='notifications.png' navName="Notifications" navPage="/notifications" data={dataToNotifications}></NavComponent>
 
           <div id='nav' onClick={popUp}>
-            <img src='create.png' alt="navIcon" />
-            <p>Create</p>
+            <img id='nav-img' src='create.png' alt="navIcon" />
+            <p id='nav-p'>Create</p>
           </div>
 
           <NavComponent iconSource='profile_icon.png' navName="Profile" navPage="/profile" data={dataToNotifications}></NavComponent>
           <NavComponent iconSource='more.png' navName="More" navPage="/more" data={dataToNotifications}></NavComponent>
         </div>
+
         <div id="sloganhome">Get Connected, Get Social</div>
       </div>
 
@@ -71,14 +76,21 @@ export default function Notifications() {
       <div id="rightside">
 
         <div id="profileDetails">
-          <img src={dataToNotifications.profilepicurl === '' ? 'profile.png' : dataToNotifications.profilepicurl} alt="profilepic" />
+
+          <div id="profileDetailsCenter">
+
+            <div id='profileDetailsPicShape'>
+              <img id='profileDetailsPic' src={dataToNotifications.profilepicurl === '' ? 'profile.png' : dataToNotifications.profilepicurl} alt="profilepic" />
+            </div>
+          </div>
+
           <ProfileDetails detailType='Username' detailName={dataToNotifications.username}></ProfileDetails>
           <ProfileDetails detailType='Name' detailName={dataToNotifications.name}></ProfileDetails>
           <ProfileDetails detailType='Email' detailName={dataToNotifications.email}></ProfileDetails>
           <ProfileDetails detailType='Phone' detailName={dataToNotifications.phone}></ProfileDetails>
         </div>
 
-        <div id="copyright" style={{ paddingTop: '144px' }}>
+        <div id="copyright" style={{ paddingTop: '124px' }}>
           @ 2024 Copyright from Connect
         </div>
       </div>

@@ -109,19 +109,19 @@ export default function More() {
 
                         <div className='moreToggleSwitch'>
                             <p className="moreContent">Dark Mode</p>
-                            <ToggleSwitch userid={dataToMore.userid} toggle={dataToMore.darkmode} type='darkmode'></ToggleSwitch>
+                            <ToggleSwitch userid={dataToMore.uid} toggle={dataToMore.darkmode} type='darkmode'></ToggleSwitch>
                         </div>
 
                         <hr id='moreContainer-hr' />
                         <div className='moreToggleSwitch'>
                             <p className="moreContent">Public Account</p>
-                            <ToggleSwitch userid={dataToMore.userid} toggle={dataToMore.public} type='public'></ToggleSwitch>
+                            <ToggleSwitch userid={dataToMore.uid} toggle={dataToMore.public} type='public'></ToggleSwitch>
                         </div>
 
                         <hr id='moreContainer-hr' />
                         <div className='moreToggleSwitch'>
                             <p className="moreContent">Notifications</p>
-                            <ToggleSwitch userid={dataToMore.userid} toggle={dataToMore.notifications} type='notifications'></ToggleSwitch>
+                            <ToggleSwitch userid={dataToMore.uid} toggle={dataToMore.notifications} type='notifications'></ToggleSwitch>
                         </div>
 
                         <hr id='moreContainer-hr' />

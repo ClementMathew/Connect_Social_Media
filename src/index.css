@@ -4,15 +4,3 @@ body {
 
 /* Profile Details */
 
-#profileDetails {
-  width: 27.96vw;
-  text-align: center;
-}
-
-#profileDetails img {
-  margin-top: 109px;
-  margin-bottom: 30px;
-  height: 250px;
-  width: 250px;
-  border-radius: 50%;
-}

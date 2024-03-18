@@ -56,7 +56,7 @@ export default function Messages() {
 
                 <div id="ChatsList">
 
-                    <ChatComponent picSource='profile.jpg' messageCount='3' userName='__clement.m__' mainName='Clement Mathew'></ChatComponent>
+                    <ChatComponent selected={true} picSource='profile.jpg' messageCount='3' userName='__clement.m__' mainName='Clement Mathew'></ChatComponent>
                     <ChatComponent picSource='profile.jpg' messageCount='3' userName='__clement.m__' mainName='Clement Mathew'></ChatComponent>
                     <ChatComponent picSource='profile.jpg' messageCount='3' userName='__clement.m__' mainName='Clement Mathew'></ChatComponent>
                     <ChatComponent picSource='profile.jpg' messageCount='3' userName='__clement.m__' mainName='Clement Mathew'></ChatComponent>

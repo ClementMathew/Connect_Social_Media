@@ -79,3 +79,32 @@
     font-family: Arial, Helvetica, sans-serif;
     cursor: pointer;
 }
+
+#profileDetails {
+    width: 27.96vw;
+    display: flex;
+    flex-direction: column;
+}
+
+#profileDetailsCenter {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+#profileDetailsPicShape {
+    margin-top: 109px;
+    margin-bottom: 30px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 250px;
+    width: 250px;
+    border-radius: 50%;
+}
+
+#profileDetailsPic {
+    width: 100%;
+    height: auto;
+}
