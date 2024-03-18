@@ -15,6 +15,7 @@ export default function EditProfile(props) {
     const [bio, setBio] = useState(props.data.bio);
 
     const handleSubmit = async () => {
+
         try {
             const db = getFirestore(app)
             const docRef = doc(db, "Users", props.data.uid)
@@ -24,9 +25,11 @@ export default function EditProfile(props) {
                 name: name,
                 phone: phone,
                 bio: bio
+
             }).then(() => {
                 popDown()
             })
+
             props.data.username = userName
             props.data.name = name
             props.data.phone = phone
@@ -51,8 +54,11 @@ export default function EditProfile(props) {
             <div id='createBackContainer' onClick={popDown} style={{ display: props.show }}></div>
 
             <div id="createTopContainer" style={{ display: props.show }} >
-                <p>Edit Profile</p>
+
+                <p id='createTopContainer-p'>Edit Profile</p>
+
                 <div className="horizontalline"></div>
+
                 <div >
                     <form style={{ marginTop: '60px' }}>
                         <label style={textBoxStyle} htmlFor="input" >Username :
@@ -101,7 +107,7 @@ export default function EditProfile(props) {
                         </label>
 
                     </form>
-                    <button style={{ marginTop: '45px' }} onClick={handleSubmit}>Submit</button>
+                    <button id='createTopContainer-button' style={{ marginTop: '45px' }} onClick={handleSubmit}>Submit</button>
                 </div>
             </div>
         </>

@@ -26,11 +26,13 @@ export default function ProfilePicUpload(props) {
             if (imageUpload == null) return;
 
             const imageRef = ref(storage, `Users/${props.data.username}/Profile Picture/${imageUpload.name}`);
-            
+
             uploadBytes(imageRef, imageUpload).then((snapshot) => {
+
                 getDownloadURL(snapshot.ref).then(async (url) => {
 
                     const docRef = doc(db, "Users", props.data.uid)
+
                     await updateDoc(docRef, {
                         profilepicurl: url
                     })
@@ -38,6 +40,7 @@ export default function ProfilePicUpload(props) {
                     setLoading(false)
                     setMyError("Successfully Uploaded !")
                     showError()
+
                     setTimeout(() => {
                         hideError()
                         popDown()
@@ -81,10 +84,8 @@ export default function ProfilePicUpload(props) {
     }
 
     const handleFileInputChange = (event) => {
-
         setImageUpload(event.target.files[0]);
     };
-
 
     return (
         <>
@@ -95,16 +96,17 @@ export default function ProfilePicUpload(props) {
             </div>
 
             <div id="createTopContainer" style={{ display: props.show }} >
-                <p>Upload Profile Picture</p>
+
+                <p id='createTopContainer-p'>Upload Profile Picture</p>
+
                 <div className="horizontalline"></div>
+
                 <div id="newPostDrag">
-                    <img src="draggallery.png" alt="drag gallery" />
-                    <p>Drag photos here</p>
+                    <img id='newPostDrag-img' src="draggallery.png" alt="drag gallery" />
+                    <p id='newPostDrag-p'>Drag photos here</p>
                 </div>
 
-                <div id="fileName">
-                    <p>{imageUpload === null ? 'No File Choosen' : imageUpload.name}</p>
-                </div>
+                <p id="fileName">{imageUpload === null ? 'No File Choosen' : imageUpload.name}</p>
 
                 <input
                     type="file"
@@ -114,12 +116,12 @@ export default function ProfilePicUpload(props) {
                 />
 
                 <div id="chooseFile">
-                    <button
+                    <button id='createTopContainer-button'
                         onClick={() => document.getElementById('fileInputProfile').click()}
                     >
                         Choose File
                     </button>
-                    <button onClick={uploadFile}>{loading ? 'Loading...' : 'Upload'}</button>
+                    <button id='createTopContainer-button' onClick={uploadFile}>{loading ? 'Loading...' : 'Upload'}</button>
                 </div>
 
             </div>

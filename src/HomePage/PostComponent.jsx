@@ -62,7 +62,7 @@ export default function PostComponent(props) {
                 </div>
 
                 <div id="postabout">
-                    <img src="dot.png" alt="dot" />
+                    <img id='postabout-img' src="dot.png" alt="dot" />
                     <p id='postabout-p'>{props.about}</p>
                 </div>
             </div>

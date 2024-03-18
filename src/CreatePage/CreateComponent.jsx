@@ -153,9 +153,7 @@ export default function CreateComponent(props) {
           <p id='newPostDrag-p'>Drag photos here</p>
         </div>
 
-        <div >
-          <p id="fileName-p">{imageUpload === null ? 'No File Choosen' : imageUpload.name}</p>
-        </div>
+        <p id="fileName">{imageUpload === null ? 'No File Choosen' : imageUpload.name}</p>
 
         <input
           type="file"

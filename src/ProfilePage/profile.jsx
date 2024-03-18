@@ -50,33 +50,36 @@ export default function Profile() {
 
     const handleClick = (e) => {
         e.preventDefault();
-        // Add your authentication logic here
 
         try {
             const auth = getAuth(app);
 
             signOut(auth).then(() => {
                 navigate('/');
+
             }).catch((error) => {
                 console.log(error);
             });
+
         } catch (error) {
             console.log(error)
         }
-        // You can send a request to your authentication server here
     };
 
     useEffect(() => {
 
         const fetchFollowing = async () => {
+
             try {
                 const db = getFirestore(app)
-                const docRef = doc(db, "Users", dataToProfile.userid)
+                const docRef = doc(db, "Users", dataToProfile.uid)
                 const docSnap = await getDoc(docRef)
                 const fieldData = docSnap.data()
+
                 dataToProfile.following = fieldData.following
                 dataToProfile.followers = fieldData.followers
                 dataToProfile.profilepicurl = fieldData.profilepicurl
+
                 setFollowersLen(Object.keys(dataToProfile.followers).length)
                 setFollowingLen(Object.keys(dataToProfile.following).length)
 
@@ -84,16 +87,18 @@ export default function Profile() {
                 console.log(error)
             }
         }
-
         return () => fetchFollowing();
     }, [])
 
     return (
         <div id="containerhome">
+
             <div id="sidebar">
+
                 <div id="connectwithlogo">
-                    <img src="connectwithlogo.png" alt="connectlogo" />
+                    <img id='connectwithlogo-img' src="connectwithlogo.png" alt="connectlogo" />
                 </div>
+
                 <div id="stripes">
                     <div id="blackstripe"></div>
                     <div id="orangestripe"></div>
@@ -106,48 +111,60 @@ export default function Profile() {
                     <NavComponent iconSource='notifications.png' navName="Notifications" navPage="/notifications" data={dataToProfile}></NavComponent>
 
                     <div id='nav' onClick={popUp}>
-                        <img src='create.png' alt="navIcon" />
-                        <p>Create</p>
+                        <img id='nav-img' src='create.png' alt="navIcon" />
+                        <p id='nav-p'>Create</p>
                     </div>
 
                     <NavComponent selected='#F3F3F3' iconSource='profile_icon.png' navName="Profile" navPage="/profile" data={dataToProfile}></NavComponent>
                     <NavComponent iconSource='more.png' navName="More" navPage="/more" data={dataToProfile}></NavComponent>
                 </div>
+
                 <div id="sloganhome">Get Connected, Get Social</div>
             </div>
 
             <div className="verticalline"></div>
 
             <div id="profileRightSide">
+
                 <div id="profileHead">
+
                     <div id="profileHeadPic" >
-                        <img onClick={profilePopUp} id='profilePicAddIcon' src="camera.png" alt="add profile pic" />
+
+                        <img id='profilePicAddIcon' onClick={profilePopUp} src="camera.png" alt="add profile pic" />
                         <div id='profilePicShape'>
-                            <img src={dataToProfile.profilepicurl === '' ? 'profile.png' : dataToProfile.profilepicurl} alt="profile page dp" />
+                            <img id='profilePicShape-img' src={dataToProfile.profilepicurl === '' ? 'profile.png' : dataToProfile.profilepicurl} alt="profile page dp" />
                         </div>
                     </div>
+
                     <div id="profileHeadBio">
+
                         <div id="profileHeadBioTop">
-                            <p >{dataToProfile.username}</p>
+
+                            <p id='profileHeadBioTop-p'>{dataToProfile.username}</p>
                             <button id="editProfile" onClick={editPopUp}>Edit Profile</button>
                             <button id="logOut" onClick={handleClick}>Logout</button>
                         </div>
+
                         <div id="profileFollowers">
+
                             <div id="postsCount">
                                 <p className='CountPrefix'>{
                                     Object.keys(dataToProfile.posts).length
                                 }</p>
                                 <p className='CountSuffix'>posts</p>
                             </div>
+
                             <div id="followersCount" onClick={followersPopUp}>
                                 <p className='CountPrefix followPointer'>{followersLen}</p>
                                 <p className='CountSuffix followPointer'>followers</p>
                             </div>
+
                             <div id="followingCount" onClick={followingPopUp}>
                                 <p className='CountPrefix followPointer'>{followingLen}</p>
                                 <p className='CountSuffix followPointer'>following</p>
                             </div>
                         </div>
+
                         <div id="profileBio">
                             <p id='BioName'>{dataToProfile.name}</p>
                             <p id='Bio'>{dataToProfile.bio ? dataToProfile.bio : "Add more about yourself"}</p>
@@ -156,8 +173,11 @@ export default function Profile() {
                 </div>
 
                 <div id="profilePosts">
+
                     <div className="profileHorizontalLine"></div>
+
                     <div id='profilePostsHead'>Posts</div>
+
                     <div className="horizontalOrange"></div>
 
                     <div id="profilePostImages">
