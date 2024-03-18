@@ -58,6 +58,7 @@ export default function SearchedProfile() {
                 updateDoc(docRef, {
                     recenthistory: recentDataAll
                 })
+
             } catch (error) {
                 console.log(error)
             }
@@ -66,11 +67,13 @@ export default function SearchedProfile() {
         fetchRecentHistory()
 
         const fetchFollowing = async () => {
+
             try {
                 const db = getFirestore(app)
                 const docRef = doc(db, "Users", searchPerson.uid)
                 const docSnap = await getDoc(docRef)
                 const fieldData = docSnap.data()
+
                 dataToSearchProfile.following = fieldData.following
                 dataToSearchProfile.followers = fieldData.followers
 
@@ -178,10 +181,13 @@ export default function SearchedProfile() {
 
     return (
         <div id="containerhome">
+
             <div id="sidebar">
+
                 <div id="connectwithlogo">
                     <img id="connectwithlogo-img" src="connectwithlogo.png" alt="connectlogo" />
                 </div>
+
                 <div id="stripes">
                     <div id="blackstripe"></div>
                     <div id="orangestripe"></div>
@@ -194,47 +200,57 @@ export default function SearchedProfile() {
                     <NavComponent iconSource='notifications.png' navName="Notifications" navPage="/notifications" data={dataToSearchProfile}></NavComponent>
 
                     <div id='nav' onClick={popUp}>
-                        <img src='create.png' alt="navIcon" />
-                        <p>Create</p>
+                        <img id='nav-img' src='create.png' alt="navIcon" />
+                        <p id='nav-p'>Create</p>
                     </div>
 
                     <NavComponent iconSource='profile_icon.png' navName="Profile" navPage="/profile" data={dataToSearchProfile}></NavComponent>
                     <NavComponent iconSource='more.png' navName="More" navPage="/more" data={dataToSearchProfile}></NavComponent>
                 </div>
+
                 <div id="sloganhome">Get Connected, Get Social</div>
             </div>
 
             <div className="verticalline"></div>
 
             <div id="profileRightSide">
+
                 <div id="profileHead">
+
                     <div id="profileHeadPic" >
                         <div id='profilePicShape'>
-                            <img src={searchPerson.profilepicurl === '' ? 'profile.png' : searchPerson.profilepicurl} alt="profile page dp" />
+                            <img id='profilePicShape-img' src={searchPerson.profilepicurl === '' ? 'profile.png' : searchPerson.profilepicurl} alt="profile page dp" />
                         </div>
                     </div>
+
                     <div id="profileHeadBio">
+
                         <div id="profileHeadBioTop">
-                            <p >{searchPerson.username}</p>
+                            <p id='profileHeadBioTop-p'>{searchPerson.username}</p>
                             <button id={connectColor} onClick={handleClick}>{connect}</button>
                             <button id="logOut">Message</button>
                         </div>
+
                         <div id="profileFollowers">
+
                             <div id="postsCount">
                                 <p className='CountPrefix'>{
                                     Object.keys(searchPerson.posts).length
                                 }</p>
                                 <p className='CountSuffix'>posts</p>
                             </div>
+
                             <div id="followersCount" onClick={followersPopUp}>
                                 <p className='CountPrefix followPointer'>{Object.keys(searchPerson.followers).length}</p>
                                 <p className='CountSuffix followPointer'>followers</p>
                             </div>
+
                             <div id="followingCount" onClick={followingPopUp}>
                                 <p className='CountPrefix followPointer'>{Object.keys(searchPerson.following).length}</p>
                                 <p className='CountSuffix followPointer'>following</p>
                             </div>
                         </div>
+
                         <div id="profileBio">
                             <p id='BioName'>{searchPerson.name}</p>
                             <p id='Bio'>{searchPerson.bio ? searchPerson.bio : ""}</p>
@@ -243,8 +259,11 @@ export default function SearchedProfile() {
                 </div>
 
                 <div id="profilePosts">
+
                     <div className="profileHorizontalLine"></div>
+
                     <div id='profilePostsHead'>Posts</div>
+                    
                     <div className="horizontalOrange"></div>
 
                     <div id="profilePostImages">

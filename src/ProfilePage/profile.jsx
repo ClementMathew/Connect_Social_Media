@@ -131,6 +131,7 @@ export default function Profile() {
                     <div id="profileHeadPic" >
 
                         <img id='profilePicAddIcon' onClick={profilePopUp} src="camera.png" alt="add profile pic" />
+                        
                         <div id='profilePicShape'>
                             <img id='profilePicShape-img' src={dataToProfile.profilepicurl === '' ? 'profile.png' : dataToProfile.profilepicurl} alt="profile page dp" />
                         </div>

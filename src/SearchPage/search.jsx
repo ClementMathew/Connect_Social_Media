@@ -28,9 +28,11 @@ export default function Search() {
         setSearchedUserToggle(true)
 
         Object.keys(dataToSearch.allusers).map((key) => {
+
             const username = dataToSearch.allusers[key].username
 
             if (username.includes(e.target.value) && (e.target.value) !== '') {
+
                 searchTemp[key] = dataToSearch.allusers[key]
                 setSearchedUser(searchTemp)
             }
@@ -39,14 +41,18 @@ export default function Search() {
 
     return (
         <div id='containerhome'>
+
             <div id="sidebar">
+
                 <div id="connectwithlogo">
-                    <img src="connectwithlogo.png" alt="connectlogo" />
+                    <img id='connectwithlogo-img' src="connectwithlogo.png" alt="connectlogo" />
                 </div>
+
                 <div id="stripes">
                     <div id="blackstripe"></div>
                     <div id="orangestripe"></div>
                 </div>
+
                 <div id="navhome">
                     <NavComponent iconSource='home.png' navName="Home" navPage='/home' data={dataToSearch}></NavComponent>
                     <NavComponent selected='#F3F3F3' iconSource='search.png' navName="Search" navPage="/search" data={dataToSearch}></NavComponent>
@@ -54,13 +60,14 @@ export default function Search() {
                     <NavComponent iconSource='notifications.png' navName="Notifications" navPage="/notifications" data={dataToSearch}></NavComponent>
 
                     <div id='nav' onClick={popUp}>
-                        <img src='create.png' alt="navIcon" />
-                        <p>Create</p>
+                        <img id='nav-img' src='create.png' alt="navIcon" />
+                        <p id='nav-p'>Create</p>
                     </div>
 
                     <NavComponent iconSource='profile_icon.png' navName="Profile" navPage="/profile" data={dataToSearch}></NavComponent>
                     <NavComponent iconSource='more.png' navName="More" navPage="/more" data={dataToSearch}></NavComponent>
                 </div>
+
                 <div id="sloganhome">Get Connected, Get Social</div>
             </div>
 
@@ -69,11 +76,12 @@ export default function Search() {
             <div id="center">
 
                 <div id="searchbar">
+
                     <input id="searchbox" placeholder='Enter something ...' onChange={(e) => {
                         handleClick(e)
                     }} >
                     </input>
-                    <button onClick={handleClick} id="searchbutton">Search</button>
+                    <button id="searchbutton" onClick={handleClick} >Search</button>
                 </div>
 
                 {
@@ -85,12 +93,12 @@ export default function Search() {
                                     <RecentSearch mainData={dataToSearch} data={searchedUser[key]} key={key} picSource={searchedUser[key].profilepicurl} userName={searchedUser[key].username} mainName={searchedUser[key].name}></RecentSearch>
                                 ))
                             }
-
                             <div style={{ paddingBottom: '160px' }}></div>
                         </div>
 
                         : <>
                             <div id="recent">
+
                                 <p id='recent-text'>Recent</p>
                                 <button id='recent-clear'>Clear All</button>
                             </div>
@@ -113,7 +121,7 @@ export default function Search() {
             <div id="rightside">
 
                 <div id="profileDetails">
-                    
+
                     <img src={dataToSearch.profilepicurl === '' ? 'profile.png' : dataToSearch.profilepicurl} alt="profilepic" />
 
                     <ProfileDetails detailType='Username' detailName={dataToSearch.username}></ProfileDetails>
