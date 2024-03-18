@@ -80,6 +80,7 @@ export default function Notifications() {
           <div id="profileDetailsCenter">
 
             <div id='profileDetailsPicShape'>
+              
               <img id='profileDetailsPic' src={dataToNotifications.profilepicurl === '' ? 'profile.png' : dataToNotifications.profilepicurl} alt="profilepic" />
             </div>
           </div>

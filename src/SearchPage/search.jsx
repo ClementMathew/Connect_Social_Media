@@ -122,7 +122,13 @@ export default function Search() {
 
                 <div id="profileDetails">
 
-                    <img src={dataToSearch.profilepicurl === '' ? 'profile.png' : dataToSearch.profilepicurl} alt="profilepic" />
+                    <div id="profileDetailsCenter">
+
+                        <div id='profileDetailsPicShape'>
+
+                            <img id='profileDetailsPic' src={dataToSearch.profilepicurl === '' ? 'profile.png' : dataToSearch.profilepicurl} alt="profilepic" />
+                        </div>
+                    </div>
 
                     <ProfileDetails detailType='Username' detailName={dataToSearch.username}></ProfileDetails>
                     <ProfileDetails detailType='Name' detailName={dataToSearch.name}></ProfileDetails>
