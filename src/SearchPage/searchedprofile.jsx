@@ -19,6 +19,10 @@ export default function SearchedProfile() {
     const [connect, setConnect] = useState('Connect')
     const [connectColor, setConnectColor] = useState("editProfile")
     const [connectToggle, setConnectToggle] = useState(false)
+    const [followersLen, setFollowersLen] = useState(0)
+    const [followingLen, setFollowingLen] = useState(0)
+    const [followersData, setFollowersData] = useState({})
+    const [followingData, setFollowingData] = useState({})
 
     const popUp = () => {
         setCreateToggle(!createToggle)
@@ -74,14 +78,17 @@ export default function SearchedProfile() {
                 const docSnap = await getDoc(docRef)
                 const fieldData = docSnap.data()
 
-                dataToSearchProfile.following = fieldData.following
-                dataToSearchProfile.followers = fieldData.followers
+                setFollowersLen(Object.keys(fieldData.followers).length)
+                setFollowingLen(Object.keys(fieldData.following).length)
 
-                Object.keys(dataToSearchProfile.followers).forEach(key => {
+                setFollowersData(fieldData.followers)
+                setFollowingData(fieldData.following)
+
+                Object.keys(fieldData.followers).forEach(key => {
                     key === dataToSearchProfile.uid ? setConnect("Connected") : setConnect("Connect")
                 })
 
-                Object.keys(dataToSearchProfile.followers).forEach(key => {
+                Object.keys(fieldData.followers).forEach(key => {
                     key === dataToSearchProfile.uid ? setConnectColor("logOut") : setConnectColor("editProfile")
                 })
 
@@ -96,6 +103,18 @@ export default function SearchedProfile() {
     const handleClick = async (e) => {
         e.preventDefault();
 
+        const db = getFirestore(app)
+        const docRef = doc(db, "Users", dataToSearchProfile.uid)
+        const docRef2 = doc(db, "Users", searchPerson.uid)
+
+        const docSnap = await getDoc(docRef)
+        const docSnap2 = await getDoc(docRef2)
+        const fieldData = docSnap.data()
+        const fieldData2 = docSnap2.data()
+
+        const following = fieldData.following
+        const followers = fieldData2.followers
+
         setConnectToggle(!connectToggle)
 
         if (connectToggle) {
@@ -104,17 +123,6 @@ export default function SearchedProfile() {
             setConnectColor("logOut")
 
             try {
-                const db = getFirestore(app)
-                const docRef = doc(db, "Users", dataToSearchProfile.uid)
-                const docRef2 = doc(db, "Users", searchPerson.uid)
-
-                const docSnap = await getDoc(docRef)
-                const docSnap2 = await getDoc(docRef2)
-                const fieldData = docSnap.data()
-                const fieldData2 = docSnap2.data()
-
-                const following = fieldData.following
-                const followers = fieldData2.followers
 
                 following[searchPerson.uid] = {
                     username: searchPerson.username,
@@ -143,29 +151,10 @@ export default function SearchedProfile() {
             setConnectColor("editProfile")
 
             try {
-                const db = getFirestore(app)
-                const docRef = doc(db, "Users", dataToSearchProfile.uid)
-                const docRef2 = doc(db, "Users", searchPerson.uid)
 
-                const docSnap = await getDoc(docRef)
-                const docSnap2 = await getDoc(docRef2)
-                const fieldData = docSnap.data()
-                const fieldData2 = docSnap2.data()
+                delete following[searchPerson.uid]
+                delete followers[dataToSearchProfile.uid]
 
-                const following = fieldData.following
-                const followers = fieldData2.followers
-
-                following[searchPerson.uid] = {
-                    username: searchPerson.username,
-                    name: searchPerson.name,
-                    profilepicurl: searchPerson.profilepicurl
-                }
-
-                followers[dataToSearchProfile.uid] = {
-                    username: dataToSearchProfile.username,
-                    name: dataToSearchProfile.name,
-                    profilepicurl: dataToSearchProfile.profilepicurl
-                }
                 updateDoc(docRef, {
                     following: following
                 })
@@ -241,12 +230,12 @@ export default function SearchedProfile() {
                             </div>
 
                             <div id="followersCount" onClick={followersPopUp}>
-                                <p className='CountPrefix followPointer'>{Object.keys(searchPerson.followers).length}</p>
+                                <p className='CountPrefix followPointer'>{followersLen}</p>
                                 <p className='CountSuffix followPointer'>followers</p>
                             </div>
 
                             <div id="followingCount" onClick={followingPopUp}>
-                                <p className='CountPrefix followPointer'>{Object.keys(searchPerson.following).length}</p>
+                                <p className='CountPrefix followPointer'>{followingLen}</p>
                                 <p className='CountSuffix followPointer'>following</p>
                             </div>
                         </div>
@@ -263,7 +252,7 @@ export default function SearchedProfile() {
                     <div className="profileHorizontalLine"></div>
 
                     <div id='profilePostsHead'>Posts</div>
-                    
+
                     <div className="horizontalOrange"></div>
 
                     <div id="profilePostImages">
@@ -282,9 +271,9 @@ export default function SearchedProfile() {
 
             <CreateComponent data={dataToSearchProfile} show={createToggle ? 'flex' : 'none'} createToggle={createToggle} setCreateToggle={setCreateToggle}></CreateComponent>
 
-            <Followers data={dataToSearchProfile.followers} show={followersList ? 'flex' : 'none'} followersList={followersList} setFollowersList={setFollowersList}></Followers>
+            <Followers data={followersData} show={followersList ? 'flex' : 'none'} followersList={followersList} setFollowersList={setFollowersList}></Followers>
 
-            <Following data={dataToSearchProfile.following} show={followingList ? 'flex' : 'none'} followingList={followingList} setFollowingList={setFollowingList}></Following>
+            <Following data={followingData} show={followingList ? 'flex' : 'none'} followingList={followingList} setFollowingList={setFollowingList}></Following>
 
         </div>
     )
