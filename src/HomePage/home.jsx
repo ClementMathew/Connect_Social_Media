@@ -11,6 +11,8 @@ import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import app from '../Firebase/firebase';
 import { doc, collection, getFirestore, getDoc, getDocs } from 'firebase/firestore';
 import PostComponent from './PostComponent';
+import AddStory from './AddStory';
+import ViewStory from './ViewStory';
 
 const Home = () => {
 
@@ -25,15 +27,33 @@ const Home = () => {
     }
 
     const [createToggle, setCreateToggle] = useState(false)
+    const [storyToggle, setStoryToggle] = useState(false)
+    const [storyViewToggle, setStoryViewToggle] = useState(false)
+    const [currentStoryToggle, setCurrentStoryToggle] = useState(false)
     const [postDatas, setPostDatas] = useState({})
+    const [storyDatas, setStoryDatas] = useState({})
+    const [currentStory, setCurrentStory] = useState('')
 
     const popUp = () => {
         setCreateToggle(!createToggle)
     }
 
+    const storyPopUp = () => {
+        setStoryToggle(!storyToggle)
+    }
+
+    const storyView = (key) => {
+        setCurrentStory(key)
+        if (storyDatas != {}) {
+            setCurrentStoryToggle(!currentStoryToggle)
+            setStoryViewToggle(!storyViewToggle)
+        }
+    }
+
     const story = useRef(null);
 
     let allPosts = {}
+    let allStories = {}
     let allUsers = {}
 
     useEffect(() => {
@@ -77,6 +97,24 @@ const Home = () => {
             }
 
             fetchPosts()
+
+            const fetchStories = async () => {
+
+                const docStories = await getDocs(collection(db, "Stories"))
+
+                docStories.forEach((doc) => {
+                    let ID = doc.id
+                    allStories[ID] = doc.data()
+                })
+
+                const entries = Object.entries(allStories);
+                const reversedEntries = entries.reverse();
+                const reversedStories = Object.fromEntries(reversedEntries);
+
+                setStoryDatas(reversedStories)
+            }
+
+            fetchStories()
 
             const unsubscribe = onAuthStateChanged(auth, async (user) => {
 
@@ -141,26 +179,22 @@ const Home = () => {
 
                 <div id="storyhome" ref={story}>
 
-                    <div id='story'>
+                    <div id='story' onClick={storyPopUp}>
                         <div id="storyborder">
-                            <div id='storyProfilePic'>
-                                <img src='add.png' alt="add picture" />
+                            <div id='storyProfilePicShape'>
+                                <img id='storyProfilePic' src='add.png' alt="add picture" />
                             </div>
                         </div>
                         <div id="storyname">Add Story</div>
                     </div>
-                    <StoryComponent storyPicSource='profile.jpg' storyName='__clement.m__'></StoryComponent>
-                    <StoryComponent storyPicSource='profile.jpg' storyName='__clement.m__'></StoryComponent>
-                    <StoryComponent storyPicSource='profile.jpg' storyName='__clement.m__'></StoryComponent>
-                    <StoryComponent storyPicSource='profile.jpg' storyName='__clement.m__'></StoryComponent>
-                    <StoryComponent storyPicSource='profile.jpg' storyName='__clement.m__'></StoryComponent>
-                    <StoryComponent storyPicSource='profile.jpg' storyName='__clement.m__'></StoryComponent>
-                    <StoryComponent storyPicSource='profile.jpg' storyName='__clement.m__'></StoryComponent>
-                    <StoryComponent storyPicSource='profile.jpg' storyName='__clement.m__'></StoryComponent>
-                    <StoryComponent storyPicSource='profile.jpg' storyName='__clement.m__'></StoryComponent>
-                    <StoryComponent storyPicSource='profile.jpg' storyName='__clement.m__'></StoryComponent>
-                    <StoryComponent storyPicSource='profile.jpg' storyName='__clement.m__'></StoryComponent>
+                    {
+                        Object.keys(storyDatas).map((key) => (
 
+                            <StoryComponent key={key} onClick={() => {
+                                storyView(key)
+                            }} storyPicSource={storyDatas[key].profilepicurl} storyName={storyDatas[key].username}></StoryComponent>
+                        ))
+                    }
                     <div style={{ paddingRight: '15px' }}></div>
                 </div>
 
@@ -216,6 +250,9 @@ const Home = () => {
 
             <CreateComponent data={dataToHome} show={createToggle ? 'flex' : 'none'} createToggle={createToggle} setCreateToggle={setCreateToggle}></CreateComponent>
 
+            <AddStory data={dataToHome} show={storyToggle ? 'flex' : 'none'} storyToggle={storyToggle} setStoryToggle={setStoryToggle}></AddStory>
+
+            {currentStoryToggle ? (<ViewStory show={storyViewToggle ? 'flex' : 'none'} storyDatas={storyDatas} currentStory={currentStory} currentStoryToggle={currentStoryToggle} setCurrentStoryToggle={setCurrentStoryToggle} storyViewToggle={storyViewToggle} setStoryViewToggle={setStoryViewToggle}></ViewStory>) : ''}
         </div >
     );
 }

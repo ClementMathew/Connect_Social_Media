@@ -17,16 +17,48 @@
     margin-bottom: 8px;
 }
 
-#storyProfilePic {
+#storyProfilePicShape {
     height: 82px;
     width: 82px;
     border-radius: 50%;
     display: flex;
+    align-items: center;
+    justify-content: center;
     overflow: hidden;
+}
+
+#storyProfilePic {
+    height: auto;
+    width: 100%;
 }
 
 #storyname {
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
     font-size: 15px;
+}
+
+#storyBackContainer {
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
+    z-index: 9;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+#storyTopContainer {
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    height: 700px;
+    background-color: white;
+    overflow: hidden;
+}
+
+#storyImage {
+    height: 100%;
 }

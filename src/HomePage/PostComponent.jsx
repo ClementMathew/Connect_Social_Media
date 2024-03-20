@@ -34,8 +34,8 @@ export default function PostComponent(props) {
 
             <div id="posthead">
 
-                <div id="postProfilePic">
-                    <img src={props.profilepicurl == "" ? 'profile.png' : props.profilepicurl} alt="profilepicture" />
+                <div id="postProfilePicShape">
+                    <img id="postProfilePic" src={props.profilepicurl == "" ? 'profile.png' : props.profilepicurl} alt="profilepicture" />
                 </div>
                 <div id="postname">{props.username}</div>
             </div>
