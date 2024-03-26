@@ -207,7 +207,7 @@ const Home = () => {
                 <div id="posthome">
                     {
                         Object.keys(postDatas).map((key) => (
-                            <PostComponent key={key} onClick={() => {
+                            <PostComponent key={key} postkey={key} data={dataToHome} onClick={() => {
                                 setComment(postDatas[key].comments)
                                 setCommentKey(key)
                             }} commentToggle={commentToggle} setCommentToggle={setCommentToggle} profilepicurl={postDatas[key].profilepicurl} username={postDatas[key].username} url={postDatas[key].url} likes={postDatas[key].likes} comments={postDatas[key].comments} share={postDatas[key].share} about={postDatas[key].about} />

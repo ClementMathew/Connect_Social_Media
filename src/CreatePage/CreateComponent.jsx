@@ -59,11 +59,11 @@ export default function CreateComponent(props) {
           const docSnap = (await getDoc(docRef1)).data()
           let postData = docSnap.posts
 
-          const len = Object.keys(postData).length
+          const postId = postsLength + "_" + props.data.uid
 
-          postData[len] = {
+          postData[postId] = {
             url: url,
-            likes: 0,
+            likes: {},
             comments: {},
             share: 0,
             about: about
@@ -73,14 +73,13 @@ export default function CreateComponent(props) {
             posts: postData
           })
 
-          const postId = postsLength + "_" + props.data.uid
           const docRef2 = doc(db, "Posts", postId)
 
           await setDoc(docRef2, {
             profilepicurl: docSnap.profilepicurl,
             username: docSnap.username,
             url: url,
-            likes: 0,
+            likes: {},
             comments: {},
             share: 0,
             about: about

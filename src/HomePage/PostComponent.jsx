@@ -1,10 +1,17 @@
+import { doc, getFirestore, updateDoc } from 'firebase/firestore';
 import React, { useState, useEffect } from 'react'
+import app from '../Firebase/firebase';
 
 export default function PostComponent(props) {
 
-    const [likeToggle, setLikeToggle] = useState(false);
+    const likeLen = Object.keys(props.likes).length
+
+    const [likeToggle, setLikeToggle] = useState(props.likes[props.data.uid]);
     const [likeicon, setLikeIcon] = useState('not_like.png')
-    const [likeCount, setLikeCount] = useState(2)
+    const [likeCount, setLikeCount] = useState(likeLen - 2)
+
+    const db = getFirestore(app)
+    const docRef = doc(db, "Posts", props.postkey)
 
     const commentPop = () => {
         props.setCommentToggle(!props.commentToggle)
@@ -15,12 +22,24 @@ export default function PostComponent(props) {
         if (likeToggle) {
 
             setLikeIcon('liked.png')
-            setLikeCount(prevlikeCount => prevlikeCount + 1)
+            setLikeCount(likeLen + 1)
+
+            props.likes[props.data.uid] = true
+
+            updateDoc(docRef, {
+                likes: props.likes
+            })
         }
         else {
 
             setLikeIcon('not_like.png')
-            setLikeCount(prevlikeCount => prevlikeCount - 1)
+            setLikeCount(likeLen - 1)
+
+            delete props.likes[props.data.uid]
+
+            updateDoc(docRef, {
+                likes: props.likes
+            })
         }
     }, [likeToggle])
 

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import './CommentBox.css'
-import { getFirestore, doc, getDoc, updateDoc } from 'firebase/firestore';
+import { getFirestore, doc, updateDoc, getDoc } from 'firebase/firestore';
 import app from '../Firebase/firebase';
 
 export default function CommentBox(props) {
@@ -25,7 +25,12 @@ export default function CommentBox(props) {
         const len = Object.keys(comments).length
 
         if (currentComment !== '') {
-            comments[len] = currentComment
+            comments[len] = {
+                username: props.data.username,
+                profilepicurl: props.data.profilepicurl,
+                text: currentComment
+            }
+            console.log(comments)
         }
         props.setComment(comments)
         setCurrentComment('')
@@ -43,15 +48,38 @@ export default function CommentBox(props) {
 
                 <div>
                     <input id='CommentsInput' placeholder='Enter Something ...' value={currentComment} onChange={(e => { setCurrentComment(e.target.value) })} />
+
                     <button id='CommentsDone' onClick={handleComment}>Post</button>
                 </div>
 
-                {Object.keys(props.comment).map((key) => (
-                    <div key={key}>
-                        <p>{props.comment[key]}</p>
-                    </div>
-                ))}
+                <div id='CommentList'>
+
+                    {Object.keys(props.comment).map((key) => (
+
+                        <div key={key}>
+
+                            <div id='CommentsDetails'>
+
+                                <div id='CommentsPicShape'>
+
+                                    <img id='CommentsPic' src={props.comment[key].profilepicurl} alt="profile picture" />
+
+                                </div>
+
+                                <p id='CommentsUser'>
+                                    {props.comment[key].username}
+                                </p>
+
+                                <p id='CommentsText'>
+                                    {props.comment[key].text}
+                                </p>
+
+                            </div>
+
+                        </div>
+                    ))}
+                </div>
             </div>
         </>
-    )
+    );
 }

@@ -131,7 +131,7 @@ export default function Profile() {
                     <div id="profileHeadPic" >
 
                         <img id='profilePicAddIcon' onClick={profilePopUp} src="camera.png" alt="add profile pic" />
-                        
+
                         <div id='profilePicShape'>
                             <img id='profilePicShape-img' src={dataToProfile.profilepicurl === '' ? 'profile.png' : dataToProfile.profilepicurl} alt="profile page dp" />
                         </div>
@@ -183,10 +183,10 @@ export default function Profile() {
 
                     <div id="profilePostImages">
 
-                        {Object.keys(dataToProfile.posts).map((key, index) => (
+                        {Object.keys(dataToProfile.posts).map((key) => (
 
                             <div key={key} id='profilePostImagesShape'>
-                                < img id='profilePostImagesIn' src={dataToProfile.posts[index].url} alt="post pic" />
+                                < img id='profilePostImagesIn' src={dataToProfile.posts[key].url} alt="post pic" />
                             </div>
                         ))}
 
