@@ -13,6 +13,7 @@ import { doc, collection, getFirestore, getDoc, getDocs } from 'firebase/firesto
 import PostComponent from './PostComponent';
 import AddStory from './AddStory';
 import ViewStory from './ViewStory';
+import CommentBox from './CommentBox';
 
 const Home = () => {
 
@@ -30,9 +31,12 @@ const Home = () => {
     const [storyToggle, setStoryToggle] = useState(false)
     const [storyViewToggle, setStoryViewToggle] = useState(false)
     const [currentStoryToggle, setCurrentStoryToggle] = useState(false)
+    const [commentToggle, setCommentToggle] = useState(false)
     const [postDatas, setPostDatas] = useState({})
     const [storyDatas, setStoryDatas] = useState({})
     const [currentStory, setCurrentStory] = useState('')
+    const [comment, setComment] = useState({});
+    const [commentKey, setCommentKey] = useState('');
 
     const popUp = () => {
         setCreateToggle(!createToggle)
@@ -203,7 +207,10 @@ const Home = () => {
                 <div id="posthome">
                     {
                         Object.keys(postDatas).map((key) => (
-                            <PostComponent key={key} profilepicurl={postDatas[key].profilepicurl} username={postDatas[key].username} url={postDatas[key].url} likes={postDatas[key].likes} comments={Object.keys(postDatas[key].comments).length} share={postDatas[key].share} about={postDatas[key].about} />
+                            <PostComponent key={key} onClick={() => {
+                                setComment(postDatas[key].comments)
+                                setCommentKey(key)
+                            }} commentToggle={commentToggle} setCommentToggle={setCommentToggle} profilepicurl={postDatas[key].profilepicurl} username={postDatas[key].username} url={postDatas[key].url} likes={postDatas[key].likes} comments={postDatas[key].comments} share={postDatas[key].share} about={postDatas[key].about} />
                         ))
                     }
 
@@ -253,6 +260,8 @@ const Home = () => {
             <AddStory data={dataToHome} show={storyToggle ? 'flex' : 'none'} storyToggle={storyToggle} setStoryToggle={setStoryToggle}></AddStory>
 
             {currentStoryToggle ? (<ViewStory show={storyViewToggle ? 'flex' : 'none'} storyDatas={storyDatas} currentStory={currentStory} currentStoryToggle={currentStoryToggle} setCurrentStoryToggle={setCurrentStoryToggle} storyViewToggle={storyViewToggle} setStoryViewToggle={setStoryViewToggle}></ViewStory>) : ''}
+
+            <CommentBox data={dataToHome} commentKey={commentKey} comment={comment} setComment={setComment} show={commentToggle ? 'flex' : 'none'} commentToggle={commentToggle} setCommentToggle={setCommentToggle}></CommentBox>
         </div >
     );
 }

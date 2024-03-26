@@ -11,11 +11,14 @@ export default function CreateComponent(props) {
   const [toggleError, settoggleError] = useState({});
   const [loading, setLoading] = useState(false)
   const [imageUpload, setImageUpload] = useState(null);
+  const [imagePreview, setImagePreview] = useState(null);
+  const [about, setAbout] = useState('');
 
   const popDown = () => {
 
-    props.setCreateToggle(!props.createToggle)
     setImageUpload(null)
+    setImagePreview(null)
+    props.setCreateToggle(!props.createToggle)
   }
 
   let postsLength = 0
@@ -63,7 +66,7 @@ export default function CreateComponent(props) {
             likes: 0,
             comments: {},
             share: 0,
-            about: ''
+            about: about
           }
 
           await updateDoc(docRef1, {
@@ -80,7 +83,7 @@ export default function CreateComponent(props) {
             likes: 0,
             comments: {},
             share: 0,
-            about: ''
+            about: about
           })
 
           setLoading(false)
@@ -133,6 +136,12 @@ export default function CreateComponent(props) {
 
   const handleFileInputChange = (event) => {
     setImageUpload(event.target.files[0]);
+
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setImagePreview(reader.result);
+    };
+    reader.readAsDataURL(event.target.files[0]);
   };
 
   return (
@@ -148,9 +157,23 @@ export default function CreateComponent(props) {
 
         <div className="horizontalline"></div>
 
-        <div>
-          <img id='newPostDrag-img' src="draggallery.png" alt="drag gallery" />
-          <p id='newPostDrag-p'>Drag photos here</p>
+        <div style={{ display: 'block' }}>
+          <img id='newPostDrag-img' src={imagePreview != null ? imagePreview : "draggallery.png"} alt="drag gallery" />
+          {imagePreview != null ?
+            <>
+              <br />
+              <input
+                className='textbox'
+                type="text"
+                placeholder='Add About ...'
+                value={about}
+                onChange={(e) => setAbout(e.target.value)}
+                required
+              />
+              <br />
+              <br />
+            </>
+            : <p id='newPostDrag-p'>Drag photos here</p>}
         </div>
 
         <p id="fileName">{imageUpload === null ? 'No File Choosen' : imageUpload.name}</p>

@@ -5,10 +5,9 @@ export default function PostComponent(props) {
     const [likeToggle, setLikeToggle] = useState(false);
     const [likeicon, setLikeIcon] = useState('not_like.png')
     const [likeCount, setLikeCount] = useState(2)
-    const [commentToggle, setCommentToggle] = useState(false)
 
     const commentPop = () => {
-        setCommentToggle(!commentToggle)
+        props.setCommentToggle(!props.commentToggle)
     }
 
     useEffect(() => {
@@ -30,8 +29,7 @@ export default function PostComponent(props) {
     }
 
     return (
-        <div >
-
+        <div onClick={props.onClick}>
             <div id="posthead">
 
                 <div id="postProfilePicShape">
@@ -53,7 +51,7 @@ export default function PostComponent(props) {
 
                 <div id="comments">
                     <img id='comments-img' onClick={commentPop} src="comment.png" alt="comment" />
-                    <p id='comments-p'>{props.comments} Comments</p>
+                    <p id='comments-p'>{Object.keys(props.comments).length} Comments</p>
                 </div>
 
                 <div id="share">

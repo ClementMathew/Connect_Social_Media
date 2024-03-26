@@ -32,6 +32,8 @@
 #newPostDrag-img {
     margin-top: 40px;
     transform: scale(.9);
+    height: 260px;
+    width: auto;
 }
 
 #newPostDrag-p {
