@@ -32,7 +32,6 @@
     display: none;
 }
 
-
 #messageRightside {
     width: 64%;
 }
@@ -51,6 +50,8 @@
 }
 
 #userChats {
+    display: flex;
+    flex-direction: column;
     height: 100%;
     overflow: auto;
     height: 720px;

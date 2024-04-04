@@ -1,11 +1,12 @@
+
 import React from 'react'
 
 export default function UserChats(props) {
 
     const sentStyle = {
         backgroundColor: '#FF9100',
-        width: '700px',
-        padding: '17px',
+        width: 'auto',
+        padding: '17px 29px',
         color: 'white',
         fontFamily: 'Arial',
         fontSize: '16px',
@@ -20,8 +21,8 @@ export default function UserChats(props) {
 
     const recieveStyle = {
         backgroundColor: '#F3F3F3',
-        width: '700px',
-        padding: '17px',
+        width: 'auto',
+        padding: '17px 29px',
         fontFamily: 'Arial',
         fontSize: '16px',
         lineHeight: '22px',
@@ -34,6 +35,6 @@ export default function UserChats(props) {
     }
 
     return (
-        <div style={props.chatType == "Sent" ? sentStyle : recieveStyle} >Hi Good Morning Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sequi temporibus quam nobis labore aliquam, cum consequuntur veniam inventore corporis qui recusandae? Cum esse aliquam impedit, in error cupiditate quaerat explicabo!...</div>
+        <div style={props.chatType == "Sent" ? sentStyle : recieveStyle} >{props.msg}</div>
     )
 }

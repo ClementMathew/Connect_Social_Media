@@ -6,6 +6,7 @@ import { initializeApp } from "firebase/app";
 const firebaseConfig = {
   apiKey: "AIzaSyDjK_PZBg_MpRyMfDtP7mo_QLbmLmDcsAs",
   authDomain: "connect-30c52.firebaseapp.com",
+  databaseURL: "https://connect-30c52-default-rtdb.asia-southeast1.firebasedatabase.app",
   projectId: "connect-30c52",
   storageBucket: "connect-30c52.appspot.com",
   messagingSenderId: "136533609571",

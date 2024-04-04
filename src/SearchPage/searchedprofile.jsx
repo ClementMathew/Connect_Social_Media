@@ -7,7 +7,7 @@ import '../Components/NavComponent.css'
 import CreateComponent from '../CreatePage/CreateComponent';
 import Followers from '../ProfilePage/followers';
 import Following from '../ProfilePage/following';
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import { doc, getDoc, getFirestore, updateDoc } from 'firebase/firestore'
 import app from '../Firebase/firebase'
 
@@ -217,7 +217,9 @@ export default function SearchedProfile() {
                         <div id="profileHeadBioTop">
                             <p id='profileHeadBioTop-p'>{searchPerson.username}</p>
                             <button id={connectColor} onClick={handleClick}>{connect}</button>
-                            <button id="logOut">Message</button>
+                            <Link to='/messages' state={{ data: dataToSearchProfile, msgdata: searchPerson }}>
+                                <button id="logOut" >Message</button>
+                            </Link>
                         </div>
 
                         <div id="profileFollowers">
@@ -257,10 +259,10 @@ export default function SearchedProfile() {
 
                     <div id="profilePostImages">
 
-                        {Object.keys(searchPerson.posts).map((key, index) => (
+                        {Object.keys(searchPerson.posts).map((key) => (
 
                             <div key={key} id='profilePostImagesShape'>
-                                < img id='profilePostImagesIn' src={searchPerson.posts[index].url} alt="post pic" />
+                                < img id='profilePostImagesIn' src={searchPerson.posts[key].url} alt="post pic" />
                             </div>
                         ))}
 
