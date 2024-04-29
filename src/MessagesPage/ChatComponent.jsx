@@ -5,7 +5,7 @@ import './ChatComponent.css'
 export default function ChatComponent(props) {
 
     return (
-        <div id='chatPerson' style={props.selected ? { backgroundColor: '#F3F3F3' } : {}}>
+        <div onClick={props.onClick} id='chatPerson' style={props.selected ? { backgroundColor: '#F3F3F3' } : {}}>
             <div id='profilepic' style={{ height: '60px', width: '60px' }}>
                 <img id='profilepic-img' src={props.picSource} alt="profile picture" />
             </div >
@@ -14,11 +14,12 @@ export default function ChatComponent(props) {
                     {props.userName}
                 </p>
                 <p id="mainname">
-                    {props.mainName}
+                    {props.messageCount} new messages
                 </p>
             </div>
-            <img id='newDot' src="dot.png" alt="new dot" />
-            <p id='msgCount'>{props.messageCount} new messages</p>
+            <div id='chatDot'>
+                <p id='msgCount'>{props.messageCount}</p>
+            </div>
         </ div >
     )
 }

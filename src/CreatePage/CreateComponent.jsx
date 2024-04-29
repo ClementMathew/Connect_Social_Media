@@ -49,6 +49,10 @@ export default function CreateComponent(props) {
 
       if (imageUpload == null) return;
 
+      query(imageUpload).then((response) => {
+        console.log(JSON.stringify(response));
+      });
+
       const imageRef = ref(storage, `Users/${props.data.username}/Posts/${imageUpload.name}`);
 
       uploadBytes(imageRef, imageUpload).then((snapshot) => {
@@ -131,6 +135,20 @@ export default function CreateComponent(props) {
     settoggleError({
     });
     setMyError('')
+  }
+
+  async function query(filename) {
+    const data = fs.readFileSync(filename);
+    const response = await fetch(
+      "https://api-inference.huggingface.co/models/jiechau/adult-content-identify-image",
+      {
+        headers: { Authorization: "Bearer {API_TOKEN}" },
+        method: "POST",
+        body: data,
+      }
+    );
+    const result = await response.json();
+    return result;
   }
 
   const handleFileInputChange = (event) => {

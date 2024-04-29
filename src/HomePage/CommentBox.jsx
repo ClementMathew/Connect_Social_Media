@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
 import './CommentBox.css'
-import { getFirestore, doc, updateDoc, getDoc } from 'firebase/firestore';
+import { getFirestore, doc, updateDoc } from 'firebase/firestore';
 import app from '../Firebase/firebase';
+import axios from 'axios'
+
 
 export default function CommentBox(props) {
 
@@ -25,12 +27,21 @@ export default function CommentBox(props) {
         const len = Object.keys(comments).length
 
         if (currentComment !== '') {
+
+            axios.post('http://localhost:5000/comment', { comment: currentComment })
+                .then(response => {
+                    if (response.data.toxicity == true)
+                        delete comments[len]
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+
             comments[len] = {
                 username: props.data.username,
                 profilepicurl: props.data.profilepicurl,
                 text: currentComment
             }
-            console.log(comments)
         }
         props.setComment(comments)
         setCurrentComment('')
