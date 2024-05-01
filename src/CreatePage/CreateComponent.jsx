@@ -49,56 +49,83 @@ export default function CreateComponent(props) {
 
       if (imageUpload == null) return;
 
-      query(imageUpload).then((response) => {
-        console.log(JSON.stringify(response));
-      });
+      query(imagePreview).then((response) => {
 
-      const imageRef = ref(storage, `Users/${props.data.username}/Posts/${imageUpload.name}`);
+        const data = response;
+        let adultScore = null;
 
-      uploadBytes(imageRef, imageUpload).then((snapshot) => {
-
-        getDownloadURL(snapshot.ref).then(async (url) => {
-
-          const docRef1 = doc(collection(db, "Users"), props.data.uid)
-          const docSnap = (await getDoc(docRef1)).data()
-          let postData = docSnap.posts
-
-          const postId = postsLength + "_" + props.data.uid
-
-          postData[postId] = {
-            url: url,
-            likes: {},
-            comments: {},
-            share: 0,
-            about: about
+        for (let i = 0; i < data.length; i++) {
+          if (data[i].label === "adult_成人商品") {
+            adultScore = data[i].score;
+            break; // Exit the loop once the "adult_成人商品" label is found
           }
+        }
 
-          await updateDoc(docRef1, {
-            posts: postData
-          })
+        if (adultScore !== null) {
+          if (adultScore < 0.7) {
 
-          const docRef2 = doc(db, "Posts", postId)
+            const imageRef = ref(storage, `Users/${props.data.username}/Posts/${imageUpload.name}`);
 
-          await setDoc(docRef2, {
-            profilepicurl: docSnap.profilepicurl,
-            username: docSnap.username,
-            url: url,
-            likes: {},
-            comments: {},
-            share: 0,
-            about: about
-          })
+            uploadBytes(imageRef, imageUpload).then((snapshot) => {
 
-          setLoading(false)
-          setMyError("Successfully Uploaded !")
-          showError()
+              getDownloadURL(snapshot.ref).then(async (url) => {
 
-          setTimeout(() => {
-            hideError()
-            popDown()
-          }, 2000
-          )
-        });
+                const docRef1 = doc(collection(db, "Users"), props.data.uid)
+                const docSnap = (await getDoc(docRef1)).data()
+                let postData = docSnap.posts
+
+                const postId = postsLength + "_" + props.data.uid
+
+                postData[postId] = {
+                  url: url,
+                  likes: {},
+                  comments: {},
+                  share: 0,
+                  about: about
+                }
+
+                await updateDoc(docRef1, {
+                  posts: postData
+                })
+
+                const docRef2 = doc(db, "Posts", postId)
+
+                await setDoc(docRef2, {
+                  profilepicurl: docSnap.profilepicurl,
+                  username: docSnap.username,
+                  url: url,
+                  likes: {},
+                  comments: {},
+                  share: 0,
+                  about: about
+                })
+
+                setLoading(false)
+                setMyError("Successfully Uploaded !")
+                showError('off')
+
+                setTimeout(() => {
+                  hideError()
+                  popDown()
+                }, 2000
+                )
+              });
+            });
+          }
+          else {
+            setLoading(false)
+            setMyError("Upload Failed !")
+            showError('on')
+
+            setTimeout(() => {
+              hideError()
+              popDown()
+            }, 2000
+            )
+          }
+        } else {
+          console.log("No adult score found.");
+        }
       });
 
     } catch (error) {
@@ -107,7 +134,7 @@ export default function CreateComponent(props) {
     }
   };
 
-  const showError = () => {
+  const showError = (error) => {
 
     settoggleError({
       display: 'flex',
@@ -127,7 +154,7 @@ export default function CreateComponent(props) {
       bottom: '40px',
       height: '50px',
       width: '400px',
-      backgroundColor: 'rgb(0, 202, 30)'
+      backgroundColor: error == 'on' ? 'rgb(255, 40, 40)' : 'rgb(0, 202, 30)'
     });
   }
 
@@ -137,29 +164,48 @@ export default function CreateComponent(props) {
     setMyError('')
   }
 
-  async function query(filename) {
-    const data = fs.readFileSync(filename);
+  const handleFileInputChange = (event) => {
+    setImageUpload(event.target.files[0]);
+
+    const reader = new FileReader();
+
+    reader.onloadend = () => {
+      setImagePreview(reader.result);
+    };
+    reader.readAsDataURL(event.target.files[0]);
+  };
+
+
+  async function query(data) {
+    const dataConverted = dataUrlToArrayBuffer(data)
     const response = await fetch(
       "https://api-inference.huggingface.co/models/jiechau/adult-content-identify-image",
       {
-        headers: { Authorization: "Bearer {API_TOKEN}" },
+        headers: { Authorization: "Bearer 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" },
         method: "POST",
-        body: data,
+        body: dataConverted,
       }
     );
     const result = await response.json();
     return result;
   }
 
-  const handleFileInputChange = (event) => {
-    setImageUpload(event.target.files[0]);
+  function dataUrlToArrayBuffer(dataUrl) {
+    // Extract base64-encoded data portion from Data URL
+    const base64Data = dataUrl.split(',')[1];
 
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      setImagePreview(reader.result);
-    };
-    reader.readAsDataURL(event.target.files[0]);
-  };
+    // Decode base64-encoded data into binary string
+    const binaryString = atob(base64Data);
+
+    // Create ArrayBuffer from binary string
+    const arrayBuffer = new ArrayBuffer(binaryString.length);
+    const uint8Array = new Uint8Array(arrayBuffer);
+    for (let i = 0; i < binaryString.length; i++) {
+      uint8Array[i] = binaryString.charCodeAt(i);
+    }
+
+    return arrayBuffer;
+  }
 
   return (
     <>
