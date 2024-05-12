@@ -264,7 +264,7 @@ export default function SearchedProfile() {
                             <div key={key} id='profilePostImagesShape'>
                                 < img id='profilePostImagesIn' src={searchPerson.posts[key].url} alt="post pic" />
                             </div>
-                        )) : <div style={{ paddingTop: '200px', paddingLeft: '200px', width: '1000px', fontSize: '30px' }}>'This is a Private Account'</div>}
+                        )) : <div style={{ paddingTop: '200px', paddingLeft: '600px', width: '1000px', fontSize: '30px' }}>'This is a Private Account'</div>}
 
                         <div style={{ paddingBottom: '400px' }}></div>
                     </div>

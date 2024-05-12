@@ -4,6 +4,7 @@ import '../HomePage/home.css'
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage'
 import app from '../Firebase/firebase'
 import { collection, doc, getDoc, getFirestore, updateDoc, setDoc, onSnapshot } from 'firebase/firestore'
+import axios from 'axios'
 
 export default function CreateComponent(props) {
 
@@ -64,53 +65,88 @@ export default function CreateComponent(props) {
         if (adultScore !== null) {
           if (adultScore < 0.7) {
 
-            const imageRef = ref(storage, `Users/${props.data.username}/Posts/${imageUpload.name}`);
+            query2(imagePreview).then((response) => {
 
-            uploadBytes(imageRef, imageUpload).then((snapshot) => {
+              console.log(JSON.stringify(response));
 
-              getDownloadURL(snapshot.ref).then(async (url) => {
+              var generatedText = JSON.stringify(response);
+              var data = JSON.parse(generatedText);
 
-                const docRef1 = doc(collection(db, "Users"), props.data.uid)
-                const docSnap = (await getDoc(docRef1)).data()
-                let postData = docSnap.posts
+              console.log(data)
 
-                const postId = postsLength + "_" + props.data.uid
+              var word = data[0].generated_text.match(/<s_nm>(.*?)<\/s_nm>/)[1].trim();
 
-                postData[postId] = {
-                  url: url,
-                  likes: {},
-                  comments: {},
-                  share: 0,
-                  about: about
-                }
+              axios.post('http://localhost:5000/comment', { comment: word })
+                .then(response => {
+                  if (response.data.toxicity == false) {
 
-                await updateDoc(docRef1, {
-                  posts: postData
+                    const imageRef = ref(storage, `Users/${props.data.username}/Posts/${imageUpload.name}`);
+
+                    uploadBytes(imageRef, imageUpload).then((snapshot) => {
+
+                      getDownloadURL(snapshot.ref).then(async (url) => {
+
+                        const docRef1 = doc(collection(db, "Users"), props.data.uid)
+                        const docSnap = (await getDoc(docRef1)).data()
+                        let postData = docSnap.posts
+
+                        const postId = postsLength + "_" + props.data.uid
+
+                        postData[postId] = {
+                          url: url,
+                          likes: {},
+                          comments: {},
+                          share: 0,
+                          about: about
+                        }
+
+                        await updateDoc(docRef1, {
+                          posts: postData
+                        })
+
+                        const docRef2 = doc(db, "Posts", postId)
+
+                        await setDoc(docRef2, {
+                          profilepicurl: docSnap.profilepicurl,
+                          username: docSnap.username,
+                          url: url,
+                          likes: {},
+                          comments: {},
+                          share: 0,
+                          about: about
+                        })
+
+                        setLoading(false)
+                        setMyError("Successfully Uploaded !")
+                        showError('off')
+
+                        setTimeout(() => {
+                          hideError()
+                          popDown()
+                        }, 2000
+                        )
+                      });
+                    });
+                  }
+                  else {
+                    setLoading(false)
+                    setMyError("Upload Failed !")
+                    showError('on')
+
+                    setTimeout(() => {
+                      hideError()
+                      popDown()
+                    }, 2000
+                    )
+                  }
+
                 })
+                .catch(error => {
+                  console.error('Error:', error);
+                });
 
-                const docRef2 = doc(db, "Posts", postId)
+            })
 
-                await setDoc(docRef2, {
-                  profilepicurl: docSnap.profilepicurl,
-                  username: docSnap.username,
-                  url: url,
-                  likes: {},
-                  comments: {},
-                  share: 0,
-                  about: about
-                })
-
-                setLoading(false)
-                setMyError("Successfully Uploaded !")
-                showError('off')
-
-                setTimeout(() => {
-                  hideError()
-                  popDown()
-                }, 2000
-                )
-              });
-            });
           }
           else {
             setLoading(false)
@@ -175,6 +211,19 @@ export default function CreateComponent(props) {
     reader.readAsDataURL(event.target.files[0]);
   };
 
+  async function query2(data) {
+    const dataConverted = dataUrlToArrayBuffer(data)
+    const response = await fetch(
+      "https://api-inference.huggingface.co/models/jinhybr/OCR-Donut-CORD",
+      {
+        headers: { Authorization: "Bearer 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" },
+        method: "POST",
+        body: dataConverted,
+      }
+    );
+    const result = await response.json();
+    return result;
+  }
 
   async function query(data) {
     const dataConverted = dataUrlToArrayBuffer(data)
