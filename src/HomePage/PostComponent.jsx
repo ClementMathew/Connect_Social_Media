@@ -8,7 +8,7 @@ export default function PostComponent(props) {
 
     const [likeToggle, setLikeToggle] = useState(props.likes[props.data.uid]);
     const [likeicon, setLikeIcon] = useState('not_like.png')
-    const [likeCount, setLikeCount] = useState(likeLen - 2)
+    const [likeCount, setLikeCount] = useState(likeLen)
 
     const db = getFirestore(app)
     const docRef = doc(db, "Posts", props.postkey)

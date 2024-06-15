@@ -74,7 +74,13 @@ export default function CreateComponent(props) {
 
               console.log(data)
 
-              var word = data[0].generated_text.match(/<s_nm>(.*?)<\/s_nm>/)[1].trim();
+              console.log(generatedText)
+              if (data[0].generated_text == '<s_cord-v2><s_menu><s_nm>') {
+                var word = 'hi'
+              }
+              else {
+                var word = data[0].generated_text.match(/<s_nm>(.*?)<\/s_nm>/)[1].trim();
+              }
 
               axios.post('http://localhost:5000/comment', { comment: word })
                 .then(response => {
