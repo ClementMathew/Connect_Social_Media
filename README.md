@@ -12,18 +12,16 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
-![10-MorePage](https://github.com/user-attachments/assets/e3d756b6-3907-494e-8c77-3c0790e6b92c)
-![9-CreatePage](https://github.com/user-attachments/assets/28332262-a2ef-4198-a97e-d5173e0b78b2)
-![8-NotificationsPage](https://github.com/user-attachments/assets/ee12e62c-4808-40ad-9aeb-1ecf00265f89)
-![7-SearchPage](https://github.com/user-attachments/assets/2e2ef173-bee7-4700-8c88-2a9f41f60f86)
-![6-MessagesPage](https://github.com/user-attachments/assets/c8bcc163-8ab2-4704-9536-5c01f3bd0648)
-![5-ProfilePage](https://github.com/user-attachments/assets/c86866f4-c767-41d8-8141-ccca976e752e)
-![4-HomePage](https://github.com/user-attachments/assets/c7dd7ee4-97db-4b58-a1c9-d41f4fa4e6e0)
-![3-ForgotPasswordPage](https://github.com/user-attachments/assets/a875337b-6b24-42a7-8013-e7fcc1e0f888)
-![2-RegisterPage](https://github.com/user-attachments/assets/049ca762-1ff6-479d-be92-ac602bcb9fef)
 ![1-WelcomePage](https://github.com/user-attachments/assets/52a9bcfc-3187-44ff-b42c-ec35e4a00df8)
-
-![image](https://user-images.githubusercontent.com/89939823/234174428-ac7559b2-caef-4000-aab2-c70d32ec2af9.png)
+![2-RegisterPage](https://github.com/user-attachments/assets/049ca762-1ff6-479d-be92-ac602bcb9fef)
+![3-ForgotPasswordPage](https://github.com/user-attachments/assets/a875337b-6b24-42a7-8013-e7fcc1e0f888)
+![4-HomePage](https://github.com/user-attachments/assets/c7dd7ee4-97db-4b58-a1c9-d41f4fa4e6e0)
+![5-ProfilePage](https://github.com/user-attachments/assets/c86866f4-c767-41d8-8141-ccca976e752e)
+![6-MessagesPage](https://github.com/user-attachments/assets/c8bcc163-8ab2-4704-9536-5c01f3bd0648)
+![7-SearchPage](https://github.com/user-attachments/assets/2e2ef173-bee7-4700-8c88-2a9f41f60f86)
+![8-NotificationsPage](https://github.com/user-attachments/assets/ee12e62c-4808-40ad-9aeb-1ecf00265f89)
+![9-CreatePage](https://github.com/user-attachments/assets/28332262-a2ef-4198-a97e-d5173e0b78b2)
+![10-MorePage](https://github.com/user-attachments/assets/e3d756b6-3907-494e-8c77-3c0790e6b92c)
 
 ### `npm test`
 
